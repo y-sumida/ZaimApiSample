@@ -51,7 +51,16 @@ class ViewController: UIViewController {
         let _ = oauthswift.authorize(
             withCallbackURL: URL(string: "myzaimapp://oauth-callback")!,
             success: { credential, response, parameters in
-                dump(credential)
+
+                _ = oauthswift.client.get("https://api.zaim.net/v2/home/user/verify",
+                                      success: { response in
+                                        let dataString = response.string
+                                        print(dataString ?? "")
+                },
+                                      failure: { error in
+                                        print(error)
+                }
+                )
         },
             failure: { error in
                 print(error.description)
