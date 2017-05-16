@@ -52,6 +52,7 @@ playground.xcworkspace
 # Add this line if you want to avoid checking in source code from Carthage dependencies.
 # Carthage/Checkouts
 
+Carthage/
 Carthage/Build
 
 # fastlane
@@ -65,3 +66,10 @@ fastlane/report.xml
 fastlane/Preview.html
 fastlane/screenshots
 fastlane/test_output
+
+# Mac
+.DS_Store
+
+# Vim
+.*swp
+.*.un~
