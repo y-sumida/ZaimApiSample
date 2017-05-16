@@ -13,7 +13,19 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+
+        // APIKey読み取り
+        guard let path: URL = Bundle.main.url(forResource: "ApiKeys", withExtension: "plist") else {
+            return
+        }
+        do {
+            let data: Data = try Data(contentsOf: path)
+            let keys = try PropertyListSerialization.propertyList(from: data, options: [], format: nil) as? [String: Any]
+            dump(keys)
+        }
+        catch {
+            return
+        }
     }
 
     override func didReceiveMemoryWarning() {
