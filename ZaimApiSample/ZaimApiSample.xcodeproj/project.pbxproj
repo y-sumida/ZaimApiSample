@@ -19,6 +19,7 @@
 		A99955641ECC861A0067ABC8 /* RxBlocking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A99955631ECC861A0067ABC8 /* RxBlocking.framework */; };
 		A99955661ECC861F0067ABC8 /* ObjectMapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A99955651ECC861F0067ABC8 /* ObjectMapper.framework */; };
 		A999556C1ECC8D9A0067ABC8 /* Requestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A999556B1ECC8D9A0067ABC8 /* Requestable.swift */; };
+		A999556E1ECC8E010067ABC8 /* OAuthSwift+ObjectMapper+RxSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = A999556D1ECC8E010067ABC8 /* OAuthSwift+ObjectMapper+RxSwift.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		A99955631ECC861A0067ABC8 /* RxBlocking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxBlocking.framework; path = Carthage/Build/iOS/RxBlocking.framework; sourceTree = "<group>"; };
 		A99955651ECC861F0067ABC8 /* ObjectMapper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ObjectMapper.framework; path = Carthage/Build/iOS/ObjectMapper.framework; sourceTree = "<group>"; };
 		A999556B1ECC8D9A0067ABC8 /* Requestable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Requestable.swift; sourceTree = "<group>"; };
+		A999556D1ECC8E010067ABC8 /* OAuthSwift+ObjectMapper+RxSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "OAuthSwift+ObjectMapper+RxSwift.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +79,7 @@
 				A99955301ECB30B90067ABC8 /* AppDelegate.swift */,
 				A99955321ECB30B90067ABC8 /* ViewController.swift */,
 				A999556B1ECC8D9A0067ABC8 /* Requestable.swift */,
+				A999556D1ECC8E010067ABC8 /* OAuthSwift+ObjectMapper+RxSwift.swift */,
 				A99955341ECB30B90067ABC8 /* Main.storyboard */,
 				A99955371ECB30B90067ABC8 /* Assets.xcassets */,
 				A99955391ECB30B90067ABC8 /* LaunchScreen.storyboard */,
@@ -196,6 +199,7 @@
 				A999556C1ECC8D9A0067ABC8 /* Requestable.swift in Sources */,
 				A99955331ECB30B90067ABC8 /* ViewController.swift in Sources */,
 				A99955311ECB30B90067ABC8 /* AppDelegate.swift in Sources */,
+				A999556E1ECC8E010067ABC8 /* OAuthSwift+ObjectMapper+RxSwift.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
