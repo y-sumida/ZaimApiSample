@@ -8,9 +8,12 @@
 
 import UIKit
 import OAuthSwift
+import RxSwift
 
 class ViewController: UIViewController {
     @IBOutlet weak var oauthView: UIView!
+
+    private let bag: DisposeBag = DisposeBag()
 
     var oauthswift: OAuthSwift?
 
@@ -42,6 +45,20 @@ class ViewController: UIViewController {
                             print(error)
         }
         )
+
+        // Rx化したクライアントでコールしてみる
+        // TODO ViewModel経由で呼ぶ
+        UserVerifyModel.call(client: client)
+            .observeOn(MainScheduler.instance)
+            .subscribe(
+                onNext: {model, response in
+                    dump(model)
+                },
+                onError: {(error: Error) in
+                    print("ng")
+                }
+            )
+            .addDisposableTo(bag)
     }
 
     override func didReceiveMemoryWarning() {

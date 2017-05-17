@@ -19,7 +19,7 @@ extension OAuthSwiftClient {
         // TODO エラー処理
         return Observable.create { (observer: AnyObserver<(T.Response, HTTPURLResponse)>) -> Disposable in
             let handle: OAuthSwiftRequestHandle?  = self.request(
-                "\(request.baseURL)/\(request.path)",
+                "\(request.baseURL)\(request.path)",
                 method: request.method,
                 parameters: request.parameters,
                 success: { response in
