@@ -31,16 +31,15 @@ class ViewController: UIViewController {
 
         // APIコールして成功だったら認証ボタンを閉じる
         // TODO loginの値を見る
-        _ = client.get("https://api.zaim.net/v2/home/user/verify",
-                       success: { [unowned self] response in
-                        self.oauthView.isHidden = true
+        _ = client.request("https://api.zaim.net/v2/home/user/verify", method: .GET,
+                           success: { response in
+                            self.oauthView.isHidden = true
 
-                        let dataString = response.string
-                        print(dataString ?? "")
-            },
-                       failure: { error in
-                        print(error)
-                        self.oauthView.isHidden = false
+                            let dataString = response.string
+                            print(dataString ?? "")
+        },
+                           failure: { error in
+                            print(error)
         }
         )
     }
