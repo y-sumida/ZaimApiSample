@@ -40,6 +40,23 @@ class ViewController: UIViewController {
             return
         }
 
+        // アクセストークンからクライアント生成してAPIコール
+        let defaults = UserDefaults.standard
+        if let token: String = defaults.string(forKey: "oauthToken"), let secret: String = defaults.string(forKey: "oauthTokenSecret") {
+            let client: OAuthSwiftClient = OAuthSwiftClient(consumerKey: consumerKey, consumerSecret: consumerSecret, oauthToken: token, oauthTokenSecret: secret, version: .oauth1)
+
+            _ = client.get("https://api.zaim.net/v2/home/money",
+                           success: { response in
+                            let dataString = response.string
+                            print(dataString ?? "")
+            },
+                           failure: { error in
+                            print(error)
+            }
+            )
+            return
+        }
+
         let oauthswift = OAuth1Swift(
             consumerKey:    consumerKey,
             consumerSecret: consumerSecret,
