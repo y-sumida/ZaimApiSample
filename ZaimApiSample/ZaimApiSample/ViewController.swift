@@ -145,7 +145,7 @@ class ViewController: UIViewController {
                     print(model)
             },
                 onError: {(error: Error) in
-                    print("ng")
+                    print(error.localizedDescription)
             }
             )
             .addDisposableTo(bag)
@@ -163,7 +163,24 @@ class ViewController: UIViewController {
                     self?.tableView.reloadData()
                 },
                 onError: {(error: Error) in
-                    print("ng")
+                    print(error.localizedDescription)
+            }
+            )
+            .addDisposableTo(bag)
+    }
+
+    fileprivate func deleteMoney(id: Int, mode: MoneyMode) {
+        guard isAuthorized.value else { return }
+
+        MoneyDeleteModel.call(client: oauthClient!, id: id, mode: mode)
+            .observeOn(MainScheduler.instance)
+            .subscribe(
+                onNext: {[weak self] model, response in
+                    self?.money.item = (self?.money.item.filter { item in item.id != model.id })!
+                    self?.tableView.reloadData()
+                },
+                onError: {(error: Error) in
+                    print(error.localizedDescription)
             }
             )
             .addDisposableTo(bag)
@@ -181,12 +198,18 @@ class ViewController: UIViewController {
 
 extension ViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let deleteAction =
-            UITableViewRowAction(style: .default, // 標準のスタイル
-            title: "delete"){(action, indexPath) in print("\(indexPath) deleted")}
+        guard let model: MoneyModel = money, money.item.count > indexPath.row else { return nil }
+
+        let item: MoneyModel.Item = model.item[indexPath.row]
+
+        let deleteAction = UITableViewRowAction(style: .default, title: "delete"){ [unowned self] (action, indexPath) in
+                self.deleteMoney(id: item.id, mode: item.mode)
+        }
+
         deleteAction.backgroundColor = UIColor.red
         return [deleteAction]
     }
+
 }
 
 extension ViewController: UITableViewDataSource {
