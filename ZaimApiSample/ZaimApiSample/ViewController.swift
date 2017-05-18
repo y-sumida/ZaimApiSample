@@ -21,6 +21,7 @@ class ViewController: UIViewController {
 
     var oauthswift: OAuthSwift?
     private var oauthClient: OAuthSwiftClient?
+    private var refreshControl = UIRefreshControl()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,6 +41,10 @@ class ViewController: UIViewController {
         }
 
         oauthClient = OAuthSwiftClient(consumerKey: apiKeys.consumerKey, consumerSecret: apiKeys.consumerSecret, oauthToken: token, oauthTokenSecret: secret, version: .oauth1)
+
+        // プルリフレッシュで更新
+        refreshControl.addTarget(self, action: #selector(ViewController.refresh(sender:)), for: .valueChanged)
+        tableView.addSubview(refreshControl)
 
         // 認証チェック
         veryfyUser()
@@ -78,6 +83,13 @@ class ViewController: UIViewController {
                 print(error.description)
         }
         )
+    }
+
+    func refresh(sender: UIRefreshControl) {
+        // 再読込
+        fetchMoney()
+        refreshControl.endRefreshing()
+        tableView.reloadData()
     }
 
     private func readApiKeys() -> (consumerKey: String, consumerSecret: String)? {
