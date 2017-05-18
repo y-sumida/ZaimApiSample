@@ -40,6 +40,7 @@ class ViewController: UIViewController {
             .subscribe(
                 onNext: {model, response in
                     self.oauthView.isHidden = true
+                    self.userNameLabel.text = "ユーザ:\(model.name)"
                     print(model)
                 },
                 onError: {(error: Error) in
