@@ -12,6 +12,7 @@ import RxSwift
 
 class ViewController: UIViewController {
     @IBOutlet weak var oauthView: UIView!
+    @IBOutlet weak var userNameLabel: UILabel!
 
     private let bag: DisposeBag = DisposeBag()
 
@@ -66,7 +67,7 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    @IBAction func tapButton(_ sender: Any) {
+    @IBAction func tapOauthButton(_ sender: Any) {
         // APIKey読み取り
         guard let path: URL = Bundle.main.url(forResource: "ApiKeys", withExtension: "plist") else {
             return
@@ -136,6 +137,15 @@ class ViewController: UIViewController {
         catch {
             return nil
         }
+    }
+
+    @IBAction func tapDeauthButton(_ sender: Any) {
+        // ローカルのトークンを削除して認証用のViewを表示
+        let defaults = UserDefaults.standard
+        defaults.removeObject(forKey: "oauthToken")
+        defaults.removeObject(forKey: "oauthTokenSecret")
+
+        oauthView.isHidden = false
     }
 }
 
