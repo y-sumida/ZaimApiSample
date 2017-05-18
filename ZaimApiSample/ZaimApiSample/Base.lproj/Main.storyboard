@@ -87,6 +87,7 @@
                     </view>
                     <connections>
                         <outlet property="oauthView" destination="e7w-UR-Ayo" id="RjI-Di-E22"/>
+                        <outlet property="tableView" destination="mFe-BO-D24" id="hNe-lf-1Hr"/>
                         <outlet property="userNameLabel" destination="0Uw-pv-v5N" id="krm-Fx-Edt"/>
                     </connections>
                 </viewController>

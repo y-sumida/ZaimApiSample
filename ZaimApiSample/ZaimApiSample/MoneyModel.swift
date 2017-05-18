@@ -45,7 +45,7 @@ class MoneyModel: Mappable {
             id <- map["id"]
             mode <- map["mode"]
             date <- map["date"]
-            ammount <- map["ammount"]
+            ammount <- map["amount"]
         }
     }
 }

@@ -13,13 +13,20 @@ import RxSwift
 class ViewController: UIViewController {
     @IBOutlet weak var oauthView: UIView!
     @IBOutlet weak var userNameLabel: UILabel!
+    @IBOutlet weak var tableView: UITableView!
 
     private let bag: DisposeBag = DisposeBag()
+
+    fileprivate var money: MoneyModel!
 
     var oauthswift: OAuthSwift?
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
 
         oauthView.isHidden = true
 
@@ -53,8 +60,10 @@ class ViewController: UIViewController {
         MoneyModel.call(client: client)
             .observeOn(MainScheduler.instance)
             .subscribe(
-                onNext: {model, response in
+                onNext: {[weak self] model, response in
                     print(model)
+                    self?.money = model
+                    self?.tableView.reloadData()
             },
                 onError: {(error: Error) in
                     print("ng")
@@ -126,3 +135,18 @@ class ViewController: UIViewController {
     }
 }
 
+extension ViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        guard let model: MoneyModel = money else { return 0 }
+        return model.item.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "cell")
+        if let model: MoneyModel = money, money.item.count > indexPath.row {
+            cell.textLabel?.text = "￥\(model.item[indexPath.row].ammount.description)"
+        }
+
+        return cell
+    }
+}
