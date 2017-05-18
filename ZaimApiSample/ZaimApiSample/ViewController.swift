@@ -30,14 +30,14 @@ class ViewController: UIViewController {
 
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        let nib = UINib(nibName: "MoneyCell", bundle: nil)
+        tableView.register(nib, forCellReuseIdentifier: "MoneyCell")
 
         isAuthorized.asObservable()
             .subscribe(onNext: {[unowned self] isAuthorized in
                 self.oauthView.isHidden = isAuthorized
             })
             .disposed(by: bag)
-
 
         // プルリフレッシュで更新
         refreshControl.addTarget(self, action: #selector(ViewController.refresh(sender:)), for: .valueChanged)
@@ -186,9 +186,11 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "cell")
+        let cell: MoneyCell = tableView.dequeueReusableCell(withIdentifier: "MoneyCell") as! MoneyCell
         if let model: MoneyModel = money, money.item.count > indexPath.row {
-            cell.textLabel?.text = "￥\(model.item[indexPath.row].ammount.description)"
+            cell.dateLabel?.text = model.item[indexPath.row].date
+            cell.modeLabel?.text = model.item[indexPath.row].mode.rawValue
+            cell.amountLabel?.text = "￥\(model.item[indexPath.row].ammount.description)"
         }
 
         return cell
