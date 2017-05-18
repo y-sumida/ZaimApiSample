@@ -16,11 +16,13 @@ class ViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
 
     private let bag: DisposeBag = DisposeBag()
+    private let isAuthorized: Variable<Bool> = Variable(true)
 
     fileprivate var money: MoneyModel!
 
-    var oauthswift: OAuthSwift?
+    private var oauthswift: OAuthSwift?
     private var oauthClient: OAuthSwiftClient?
+
     private var refreshControl = UIRefreshControl()
 
     override func viewDidLoad() {
@@ -30,13 +32,17 @@ class ViewController: UIViewController {
         tableView.dataSource = self
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
 
-        oauthView.isHidden = true
+        isAuthorized.asObservable()
+            .subscribe(onNext: {[unowned self] isAuthorized in
+                self.oauthView.isHidden = isAuthorized
+            })
+            .disposed(by: bag)
 
         guard let apiKeys:  (consumerKey: String, consumerSecret: String) = readApiKeys(),
             let token: String = UserDefaults.standard.string(forKey: "oauthToken"),
             let secret: String = UserDefaults.standard.string(forKey: "oauthTokenSecret")
         else {
-            oauthView.isHidden = false
+            isAuthorized.value = false
             return
         }
 
@@ -59,30 +65,7 @@ class ViewController: UIViewController {
     }
 
     @IBAction func tapOauthButton(_ sender: Any) {
-        // APIKey読み取り
-        guard let apiKeys:  (consumerKey: String, consumerSecret: String) = readApiKeys() else { return }
-
-        let oauthswift = OAuth1Swift(
-            consumerKey:    apiKeys.consumerKey,
-            consumerSecret: apiKeys.consumerSecret,
-            requestTokenUrl: "https://api.zaim.net/v2/auth/request",
-            authorizeUrl:    "https://auth.zaim.net/users/auth",
-            accessTokenUrl:  "https://api.zaim.net/v2/auth/access"
-        )
-        self.oauthswift = oauthswift
-        let _ = oauthswift.authorize(
-            withCallbackURL: URL(string: "myzaimapp://oauth-callback")!,
-            success: { [unowned self] credential, response, parameters in
-                self.oauthView.isHidden = true
-
-                let defaults = UserDefaults.standard
-                defaults.setValue(credential.oauthToken, forKey: "oauthToken")
-                defaults.setValue(credential.oauthTokenSecret, forKey: "oauthTokenSecret")
-        },
-            failure: { error in
-                print(error.description)
-        }
-        )
+        authorize()
     }
 
     func refresh(sender: UIRefreshControl) {
@@ -113,14 +96,44 @@ class ViewController: UIViewController {
         }
     }
 
+    private func authorize() {
+        // APIKey読み取り
+        guard let apiKeys:  (consumerKey: String, consumerSecret: String) = readApiKeys() else { return }
+
+        let oauthswift = OAuth1Swift(
+            consumerKey:    apiKeys.consumerKey,
+            consumerSecret: apiKeys.consumerSecret,
+            requestTokenUrl: "https://api.zaim.net/v2/auth/request",
+            authorizeUrl:    "https://auth.zaim.net/users/auth",
+            accessTokenUrl:  "https://api.zaim.net/v2/auth/access"
+        )
+        self.oauthswift = oauthswift
+        let _ = oauthswift.authorize(
+            withCallbackURL: URL(string: "myzaimapp://oauth-callback")!,
+            success: { [unowned self] credential, response, parameters in
+                self.isAuthorized.value = true
+
+                let defaults = UserDefaults.standard
+                defaults.setValue(credential.oauthToken, forKey: "oauthToken")
+                defaults.setValue(credential.oauthTokenSecret, forKey: "oauthTokenSecret")
+
+            },
+            failure: { error in
+                print(error.description)
+        }
+        )
+    }
+
     private func veryfyUser() {
+        guard isAuthorized.value else { return }
+
         // APIコールして成功だったら認証ボタンを閉じる
         // TODO loginの値を見る
         UserVerifyModel.call(client: oauthClient!)
             .observeOn(MainScheduler.instance)
             .subscribe(
                 onNext: {model, response in
-                    self.oauthView.isHidden = true
+                    self.isAuthorized.value = true
                     self.userNameLabel.text = "ユーザ:\(model.name)"
                     print(model)
             },
@@ -132,6 +145,8 @@ class ViewController: UIViewController {
     }
 
     private func fetchMoney() {
+        guard isAuthorized.value else { return }
+
         MoneyModel.call(client: oauthClient!)
             .observeOn(MainScheduler.instance)
             .subscribe(
@@ -153,7 +168,7 @@ class ViewController: UIViewController {
         defaults.removeObject(forKey: "oauthToken")
         defaults.removeObject(forKey: "oauthTokenSecret")
 
-        oauthView.isHidden = false
+        isAuthorized.value = true
     }
 }
 
