@@ -195,7 +195,7 @@ class ViewController: UIViewController {
         defaults.removeObject(forKey: "oauthToken")
         defaults.removeObject(forKey: "oauthTokenSecret")
 
-        isAuthorized.value = true
+        isAuthorized.value = false
     }
 }
 
