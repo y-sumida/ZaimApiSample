@@ -113,6 +113,8 @@ class ViewController: UIViewController {
                 defaults.setValue(credential.oauthTokenSecret, forKey: "oauthTokenSecret")
 
                 self.generateClient()
+                self.veryfyUser()
+                self.fetchMoney()
             },
             failure: { error in
                 print(error.description)
