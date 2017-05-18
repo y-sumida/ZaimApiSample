@@ -179,7 +179,17 @@ class ViewController: UIViewController {
     }
 }
 
-extension ViewController: UITableViewDelegate, UITableViewDataSource {
+extension ViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let deleteAction =
+            UITableViewRowAction(style: .default, // 標準のスタイル
+            title: "delete"){(action, indexPath) in print("\(indexPath) deleted")}
+        deleteAction.backgroundColor = UIColor.red
+        return [deleteAction]
+    }
+}
+
+extension ViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let model: MoneyModel = money else { return 0 }
         return model.item.count
@@ -194,5 +204,8 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         }
 
         return cell
+    }
+
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
     }
 }
