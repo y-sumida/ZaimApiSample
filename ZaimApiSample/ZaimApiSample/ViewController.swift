@@ -48,6 +48,19 @@ class ViewController: UIViewController {
                 }
             )
             .addDisposableTo(bag)
+
+        // 明細取得
+        MoneyModel.call(client: client)
+            .observeOn(MainScheduler.instance)
+            .subscribe(
+                onNext: {model, response in
+                    print(model)
+            },
+                onError: {(error: Error) in
+                    print("ng")
+            }
+            )
+            .addDisposableTo(bag)
     }
 
     override func didReceiveMemoryWarning() {

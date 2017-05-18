@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A92870F31ECDDB4A00E0C867 /* MoneyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92870F21ECDDB4A00E0C867 /* MoneyModel.swift */; };
 		A99955311ECB30B90067ABC8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99955301ECB30B90067ABC8 /* AppDelegate.swift */; };
 		A99955331ECB30B90067ABC8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99955321ECB30B90067ABC8 /* ViewController.swift */; };
 		A99955361ECB30B90067ABC8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A99955341ECB30B90067ABC8 /* Main.storyboard */; };
@@ -24,6 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A92870F21ECDDB4A00E0C867 /* MoneyModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoneyModel.swift; sourceTree = "<group>"; };
 		A999552D1ECB30B90067ABC8 /* ZaimApiSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZaimApiSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A99955301ECB30B90067ABC8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A99955321ECB30B90067ABC8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -83,6 +85,7 @@
 				A999556B1ECC8D9A0067ABC8 /* Requestable.swift */,
 				A999556D1ECC8E010067ABC8 /* OAuthSwift+ObjectMapper+RxSwift.swift */,
 				A999556F1ECC942E0067ABC8 /* UserVerifyModel.swift */,
+				A92870F21ECDDB4A00E0C867 /* MoneyModel.swift */,
 				A99955341ECB30B90067ABC8 /* Main.storyboard */,
 				A99955371ECB30B90067ABC8 /* Assets.xcassets */,
 				A99955391ECB30B90067ABC8 /* LaunchScreen.storyboard */,
@@ -199,6 +202,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A92870F31ECDDB4A00E0C867 /* MoneyModel.swift in Sources */,
 				A999556C1ECC8D9A0067ABC8 /* Requestable.swift in Sources */,
 				A99955701ECC942E0067ABC8 /* UserVerifyModel.swift in Sources */,
 				A99955331ECB30B90067ABC8 /* ViewController.swift in Sources */,
