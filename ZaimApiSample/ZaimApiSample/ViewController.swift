@@ -38,19 +38,13 @@ class ViewController: UIViewController {
             })
             .disposed(by: bag)
 
-        guard let apiKeys:  (consumerKey: String, consumerSecret: String) = readApiKeys(),
-            let token: String = UserDefaults.standard.string(forKey: "oauthToken"),
-            let secret: String = UserDefaults.standard.string(forKey: "oauthTokenSecret")
-        else {
-            isAuthorized.value = false
-            return
-        }
-
-        oauthClient = OAuthSwiftClient(consumerKey: apiKeys.consumerKey, consumerSecret: apiKeys.consumerSecret, oauthToken: token, oauthTokenSecret: secret, version: .oauth1)
 
         // プルリフレッシュで更新
         refreshControl.addTarget(self, action: #selector(ViewController.refresh(sender:)), for: .valueChanged)
         tableView.addSubview(refreshControl)
+
+        // Client生成
+        generateClient()
 
         // 認証チェック
         veryfyUser()
@@ -117,11 +111,24 @@ class ViewController: UIViewController {
                 defaults.setValue(credential.oauthToken, forKey: "oauthToken")
                 defaults.setValue(credential.oauthTokenSecret, forKey: "oauthTokenSecret")
 
+                self.generateClient()
             },
             failure: { error in
                 print(error.description)
         }
         )
+    }
+
+    private func generateClient() {
+        guard let apiKeys:  (consumerKey: String, consumerSecret: String) = readApiKeys(),
+            let token: String = UserDefaults.standard.string(forKey: "oauthToken"),
+            let secret: String = UserDefaults.standard.string(forKey: "oauthTokenSecret")
+            else {
+                isAuthorized.value = false
+                return
+        }
+
+        oauthClient = OAuthSwiftClient(consumerKey: apiKeys.consumerKey, consumerSecret: apiKeys.consumerSecret, oauthToken: token, oauthTokenSecret: secret, version: .oauth1)
     }
 
     private func veryfyUser() {
