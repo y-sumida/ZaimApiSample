@@ -35,25 +35,12 @@ class ViewController: UIViewController {
 
         // APIコールして成功だったら認証ボタンを閉じる
         // TODO loginの値を見る
-        _ = client.request("https://api.zaim.net/v2/home/user/verify", method: .GET,
-                           success: { response in
-                            self.oauthView.isHidden = true
-
-                            let dataString = response.string
-                            print(dataString ?? "")
-        },
-                           failure: { error in
-                            print(error)
-        }
-        )
-
-        // Rx化したクライアントでコールしてみる
-        // TODO ViewModel経由で呼ぶ
         UserVerifyModel.call(client: client)
             .observeOn(MainScheduler.instance)
             .subscribe(
                 onNext: {model, response in
-                    dump(model)
+                    self.oauthView.isHidden = true
+                    print(model)
                 },
                 onError: {(error: Error) in
                     print("ng")
@@ -87,16 +74,6 @@ class ViewController: UIViewController {
                 let defaults = UserDefaults.standard
                 defaults.setValue(credential.oauthToken, forKey: "oauthToken")
                 defaults.setValue(credential.oauthTokenSecret, forKey: "oauthTokenSecret")
-
-                _ = oauthswift.client.get("https://api.zaim.net/v2/home/user/verify",
-                                      success: { response in
-                                        let dataString = response.string
-                                        print(dataString ?? "")
-                },
-                                      failure: { error in
-                                        print(error)
-                }
-                )
         },
             failure: { error in
                 print(error.description)
