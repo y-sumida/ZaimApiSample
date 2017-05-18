@@ -33,15 +33,16 @@ class ViewController: UIViewController {
         let nib = UINib(nibName: "MoneyCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "MoneyCell")
 
+        // プルリフレッシュで更新
+        refreshControl.addTarget(self, action: #selector(ViewController.refresh(sender:)), for: .valueChanged)
+        tableView.addSubview(refreshControl)
+
+        // 認証状態を購読
         isAuthorized.asObservable()
             .subscribe(onNext: {[unowned self] isAuthorized in
                 self.oauthView.isHidden = isAuthorized
             })
             .disposed(by: bag)
-
-        // プルリフレッシュで更新
-        refreshControl.addTarget(self, action: #selector(ViewController.refresh(sender:)), for: .valueChanged)
-        tableView.addSubview(refreshControl)
 
         // Client生成
         generateClient()
