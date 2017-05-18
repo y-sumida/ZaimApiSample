@@ -20,6 +20,7 @@ class ViewController: UIViewController {
     fileprivate var money: MoneyModel!
 
     var oauthswift: OAuthSwift?
+    private var oauthClient: OAuthSwiftClient?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,38 +39,13 @@ class ViewController: UIViewController {
             return
         }
 
-        let client: OAuthSwiftClient = OAuthSwiftClient(consumerKey: apiKeys.consumerKey, consumerSecret: apiKeys.consumerSecret, oauthToken: token, oauthTokenSecret: secret, version: .oauth1)
+        oauthClient = OAuthSwiftClient(consumerKey: apiKeys.consumerKey, consumerSecret: apiKeys.consumerSecret, oauthToken: token, oauthTokenSecret: secret, version: .oauth1)
 
-        // APIコールして成功だったら認証ボタンを閉じる
-        // TODO loginの値を見る
-        UserVerifyModel.call(client: client)
-            .observeOn(MainScheduler.instance)
-            .subscribe(
-                onNext: {model, response in
-                    self.oauthView.isHidden = true
-                    self.userNameLabel.text = "ユーザ:\(model.name)"
-                    print(model)
-                },
-                onError: {(error: Error) in
-                    print("ng")
-                }
-            )
-            .addDisposableTo(bag)
+        // 認証チェック
+        veryfyUser()
 
         // 明細取得
-        MoneyModel.call(client: client)
-            .observeOn(MainScheduler.instance)
-            .subscribe(
-                onNext: {[weak self] model, response in
-                    print(model)
-                    self?.money = model
-                    self?.tableView.reloadData()
-            },
-                onError: {(error: Error) in
-                    print("ng")
-            }
-            )
-            .addDisposableTo(bag)
+        fetchMoney()
     }
 
     override func didReceiveMemoryWarning() {
@@ -123,6 +99,40 @@ class ViewController: UIViewController {
         catch {
             return nil
         }
+    }
+
+    private func veryfyUser() {
+        // APIコールして成功だったら認証ボタンを閉じる
+        // TODO loginの値を見る
+        UserVerifyModel.call(client: oauthClient!)
+            .observeOn(MainScheduler.instance)
+            .subscribe(
+                onNext: {model, response in
+                    self.oauthView.isHidden = true
+                    self.userNameLabel.text = "ユーザ:\(model.name)"
+                    print(model)
+            },
+                onError: {(error: Error) in
+                    print("ng")
+            }
+            )
+            .addDisposableTo(bag)
+    }
+
+    private func fetchMoney() {
+        MoneyModel.call(client: oauthClient!)
+            .observeOn(MainScheduler.instance)
+            .subscribe(
+                onNext: {[weak self] model, response in
+                    print(model)
+                    self?.money = model
+                    self?.tableView.reloadData()
+                },
+                onError: {(error: Error) in
+                    print("ng")
+            }
+            )
+            .addDisposableTo(bag)
     }
 
     @IBAction func tapDeauthButton(_ sender: Any) {
