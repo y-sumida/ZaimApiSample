@@ -69,25 +69,11 @@ class ViewController: UIViewController {
 
     @IBAction func tapOauthButton(_ sender: Any) {
         // APIKey読み取り
-        guard let path: URL = Bundle.main.url(forResource: "ApiKeys", withExtension: "plist") else {
-            return
-        }
-
-        var consumerKey: String = ""
-        var consumerSecret: String = ""
-        do {
-            let data: Data = try Data(contentsOf: path)
-            let keys = try PropertyListSerialization.propertyList(from: data, options: [], format: nil) as? [String: Any]
-            consumerKey = keys?["consumerKey"] as! String
-            consumerSecret = keys?["consumerSecret"] as! String
-        }
-        catch {
-            return
-        }
+        guard let apiKeys:  (consumerKey: String, consumerSecret: String) = readApiKeys() else { return }
 
         let oauthswift = OAuth1Swift(
-            consumerKey:    consumerKey,
-            consumerSecret: consumerSecret,
+            consumerKey:    apiKeys.consumerKey,
+            consumerSecret: apiKeys.consumerSecret,
             requestTokenUrl: "https://api.zaim.net/v2/auth/request",
             authorizeUrl:    "https://auth.zaim.net/users/auth",
             accessTokenUrl:  "https://api.zaim.net/v2/auth/access"
