@@ -66,7 +66,6 @@ class ViewController: UIViewController {
     func refresh(sender: UIRefreshControl) {
         // 再読込
         fetchMoney()
-        refreshControl.endRefreshing()
         tableView.reloadData()
     }
 
@@ -163,9 +162,11 @@ class ViewController: UIViewController {
                 onNext: {[weak self] model, response in
                     print(model)
                     self?.money = model
+                    self?.refreshControl.endRefreshing()
                     self?.tableView.reloadData()
                 },
-                onError: {(error: Error) in
+                onError: {[weak self] (error: Error) in
+                    self?.refreshControl.endRefreshing()
                     print(error.localizedDescription)
             }
             )
