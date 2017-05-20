@@ -214,6 +214,15 @@ extension ViewController: UITableViewDelegate {
         return [deleteAction]
     }
 
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // 編集画面へ遷移
+        // TODO データを渡す
+        let vc:UINavigationController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "EditNavigation") as! UINavigationController
+        vc.modalPresentationStyle = .custom
+        vc.modalTransitionStyle = .coverVertical
+        self.present(vc, animated: true, completion: nil)
+    }
+
 }
 
 extension ViewController: UITableViewDataSource {
