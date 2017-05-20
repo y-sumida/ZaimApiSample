@@ -11,11 +11,6 @@ import ObjectMapper
 import OAuthSwift
 import RxSwift
 
-enum MoneyMode: String {
-    case income = "income"
-    case payment = "payment"
-}
-
 class MoneyModel: Mappable {
     var item: [Item] = []
 
