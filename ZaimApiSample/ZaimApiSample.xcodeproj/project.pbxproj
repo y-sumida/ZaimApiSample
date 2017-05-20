@@ -13,6 +13,8 @@
 		A92871001ECDF27700E0C867 /* MoneyDeleteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92870FF1ECDF27700E0C867 /* MoneyDeleteModel.swift */; };
 		A92871021ED07E8800E0C867 /* ZaimApiCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92871011ED07E8800E0C867 /* ZaimApiCode.swift */; };
 		A92871041ED081AC00E0C867 /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92871031ED081AC00E0C867 /* EditViewController.swift */; };
+		A92871071ED0938D00E0C867 /* TextEditCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92871051ED0938D00E0C867 /* TextEditCell.swift */; };
+		A92871081ED0938D00E0C867 /* TextEditCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A92871061ED0938D00E0C867 /* TextEditCell.xib */; };
 		A99955311ECB30B90067ABC8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99955301ECB30B90067ABC8 /* AppDelegate.swift */; };
 		A99955331ECB30B90067ABC8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99955321ECB30B90067ABC8 /* ViewController.swift */; };
 		A99955361ECB30B90067ABC8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A99955341ECB30B90067ABC8 /* Main.storyboard */; };
@@ -36,6 +38,8 @@
 		A92870FF1ECDF27700E0C867 /* MoneyDeleteModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoneyDeleteModel.swift; sourceTree = "<group>"; };
 		A92871011ED07E8800E0C867 /* ZaimApiCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZaimApiCode.swift; sourceTree = "<group>"; };
 		A92871031ED081AC00E0C867 /* EditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
+		A92871051ED0938D00E0C867 /* TextEditCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextEditCell.swift; sourceTree = "<group>"; };
+		A92871061ED0938D00E0C867 /* TextEditCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextEditCell.xib; sourceTree = "<group>"; };
 		A999552D1ECB30B90067ABC8 /* ZaimApiSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZaimApiSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A99955301ECB30B90067ABC8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A99955321ECB30B90067ABC8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -98,6 +102,8 @@
 				A92870F21ECDDB4A00E0C867 /* MoneyModel.swift */,
 				A92870FF1ECDF27700E0C867 /* MoneyDeleteModel.swift */,
 				A92871031ED081AC00E0C867 /* EditViewController.swift */,
+				A92871051ED0938D00E0C867 /* TextEditCell.swift */,
+				A92871061ED0938D00E0C867 /* TextEditCell.xib */,
 				A92870F41ECDECE900E0C867 /* MoneyCell.xib */,
 				A92870F81ECDED0D00E0C867 /* MoneyCell.swift */,
 				A99955341ECB30B90067ABC8 /* Main.storyboard */,
@@ -184,6 +190,7 @@
 			files = (
 				A999553B1ECB30B90067ABC8 /* LaunchScreen.storyboard in Resources */,
 				A99955471ECB32F90067ABC8 /* ApiKeys.plist in Resources */,
+				A92871081ED0938D00E0C867 /* TextEditCell.xib in Resources */,
 				A99955381ECB30B90067ABC8 /* Assets.xcassets in Resources */,
 				A92870F61ECDECE900E0C867 /* MoneyCell.xib in Resources */,
 				A99955361ECB30B90067ABC8 /* Main.storyboard in Resources */,
@@ -224,6 +231,7 @@
 				A92870F91ECDED0D00E0C867 /* MoneyCell.swift in Sources */,
 				A99955701ECC942E0067ABC8 /* UserVerifyModel.swift in Sources */,
 				A99955331ECB30B90067ABC8 /* ViewController.swift in Sources */,
+				A92871071ED0938D00E0C867 /* TextEditCell.swift in Sources */,
 				A92871001ECDF27700E0C867 /* MoneyDeleteModel.swift in Sources */,
 				A99955311ECB30B90067ABC8 /* AppDelegate.swift in Sources */,
 				A999556E1ECC8E010067ABC8 /* OAuthSwift+ObjectMapper+RxSwift.swift in Sources */,

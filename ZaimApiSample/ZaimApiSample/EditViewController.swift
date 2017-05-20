@@ -23,6 +23,8 @@ class EditViewController: UIViewController {
 
         tableView.delegate = self
         tableView.dataSource = self
+        let textNib = UINib(nibName: "TextEditCell", bundle: nil)
+        tableView.register(textNib, forCellReuseIdentifier: "TextEditCell")
     }
 
     override func didReceiveMemoryWarning() {
@@ -40,14 +42,27 @@ extension EditViewController: UITableViewDelegate {
 extension EditViewController: UITableViewDataSource {
     // TODO セクション数、行数、セルを調整する
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
-    }
-
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 2
     }
 
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if section == 0 {
+            return 1 // 金額
+        }
+        else {
+            return 3 // カテゴリ、メモ、日付
+        }
+    }
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        if indexPath.section == 0 {
+            let cell: TextEditCell = tableView.dequeueReusableCell(withIdentifier: "TextEditCell") as! TextEditCell
+            cell.placeholder = "金額"
+            cell.keyboardType = .numberPad
+            return cell
+        }
+        else {
+            return UITableViewCell()
+        }
     }
 }
