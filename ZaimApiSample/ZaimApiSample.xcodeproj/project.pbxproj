@@ -74,6 +74,53 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A92871091ED09C2E00E0C867 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				A92871031ED081AC00E0C867 /* EditViewController.swift */,
+				A99955321ECB30B90067ABC8 /* ViewController.swift */,
+			);
+			name = ViewController;
+			sourceTree = "<group>";
+		};
+		A928710A1ED09C4600E0C867 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				A999556D1ECC8E010067ABC8 /* OAuthSwift+ObjectMapper+RxSwift.swift */,
+			);
+			name = Extension;
+			sourceTree = "<group>";
+		};
+		A928710B1ED09C5200E0C867 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A92870FF1ECDF27700E0C867 /* MoneyDeleteModel.swift */,
+				A92870F21ECDDB4A00E0C867 /* MoneyModel.swift */,
+				A999556F1ECC942E0067ABC8 /* UserVerifyModel.swift */,
+				A92871011ED07E8800E0C867 /* ZaimApiCode.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		A928710C1ED09C5E00E0C867 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A92870F81ECDED0D00E0C867 /* MoneyCell.swift */,
+				A92870F41ECDECE900E0C867 /* MoneyCell.xib */,
+				A92871051ED0938D00E0C867 /* TextEditCell.swift */,
+				A92871061ED0938D00E0C867 /* TextEditCell.xib */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		A928710D1ED09C7100E0C867 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				A999556B1ECC8D9A0067ABC8 /* Requestable.swift */,
+			);
+			name = Protocol;
+			sourceTree = "<group>";
+		};
 		A99955241ECB30B90067ABC8 = {
 			isa = PBXGroup;
 			children = (
@@ -94,24 +141,17 @@
 		A999552F1ECB30B90067ABC8 /* ZaimApiSample */ = {
 			isa = PBXGroup;
 			children = (
-				A99955301ECB30B90067ABC8 /* AppDelegate.swift */,
-				A99955321ECB30B90067ABC8 /* ViewController.swift */,
-				A999556B1ECC8D9A0067ABC8 /* Requestable.swift */,
-				A999556D1ECC8E010067ABC8 /* OAuthSwift+ObjectMapper+RxSwift.swift */,
-				A999556F1ECC942E0067ABC8 /* UserVerifyModel.swift */,
-				A92870F21ECDDB4A00E0C867 /* MoneyModel.swift */,
-				A92870FF1ECDF27700E0C867 /* MoneyDeleteModel.swift */,
-				A92871031ED081AC00E0C867 /* EditViewController.swift */,
-				A92871051ED0938D00E0C867 /* TextEditCell.swift */,
-				A92871061ED0938D00E0C867 /* TextEditCell.xib */,
-				A92870F41ECDECE900E0C867 /* MoneyCell.xib */,
-				A92870F81ECDED0D00E0C867 /* MoneyCell.swift */,
-				A99955341ECB30B90067ABC8 /* Main.storyboard */,
-				A99955371ECB30B90067ABC8 /* Assets.xcassets */,
-				A99955391ECB30B90067ABC8 /* LaunchScreen.storyboard */,
-				A999553C1ECB30B90067ABC8 /* Info.plist */,
 				A99955461ECB32F90067ABC8 /* ApiKeys.plist */,
-				A92871011ED07E8800E0C867 /* ZaimApiCode.swift */,
+				A99955301ECB30B90067ABC8 /* AppDelegate.swift */,
+				A99955371ECB30B90067ABC8 /* Assets.xcassets */,
+				A928710A1ED09C4600E0C867 /* Extension */,
+				A999553C1ECB30B90067ABC8 /* Info.plist */,
+				A99955391ECB30B90067ABC8 /* LaunchScreen.storyboard */,
+				A99955341ECB30B90067ABC8 /* Main.storyboard */,
+				A928710B1ED09C5200E0C867 /* Model */,
+				A928710D1ED09C7100E0C867 /* Protocol */,
+				A928710C1ED09C5E00E0C867 /* View */,
+				A92871091ED09C2E00E0C867 /* ViewController */,
 			);
 			path = ZaimApiSample;
 			sourceTree = "<group>";
