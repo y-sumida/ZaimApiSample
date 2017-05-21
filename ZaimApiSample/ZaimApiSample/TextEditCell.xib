@@ -18,8 +18,8 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sCj-km-8Zd">
-                        <rect key="frame" x="16" y="0.0" width="304" height="43.5"/>
+                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sCj-km-8Zd">
+                        <rect key="frame" x="16" y="0.0" width="288" height="43.5"/>
                         <nil key="textColor"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <textInputTraits key="textInputTraits"/>
@@ -28,7 +28,7 @@
                 <constraints>
                     <constraint firstItem="sCj-km-8Zd" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="2yZ-vB-Obt"/>
                     <constraint firstItem="sCj-km-8Zd" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="Isx-0T-xBQ"/>
-                    <constraint firstAttribute="trailing" secondItem="sCj-km-8Zd" secondAttribute="trailing" id="iuV-GB-woj"/>
+                    <constraint firstAttribute="trailing" secondItem="sCj-km-8Zd" secondAttribute="trailing" constant="16" id="iuV-GB-woj"/>
                     <constraint firstAttribute="bottom" secondItem="sCj-km-8Zd" secondAttribute="bottom" id="kYC-3Y-W6X"/>
                 </constraints>
             </tableViewCellContentView>

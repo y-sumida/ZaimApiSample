@@ -19,7 +19,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kJj-Va-gEo">
-                        <rect key="frame" x="8" y="0.0" width="304" height="43.5"/>
+                        <rect key="frame" x="8" y="0.0" width="296" height="43.5"/>
                         <nil key="textColor"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <textInputTraits key="textInputTraits"/>
@@ -27,7 +27,7 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="kJj-Va-gEo" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="9Vh-Xo-aM3"/>
-                    <constraint firstAttribute="trailing" secondItem="kJj-Va-gEo" secondAttribute="trailing" constant="8" id="fqD-nN-uwU"/>
+                    <constraint firstAttribute="trailing" secondItem="kJj-Va-gEo" secondAttribute="trailing" constant="16" id="fqD-nN-uwU"/>
                     <constraint firstItem="kJj-Va-gEo" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="jwK-WR-ZlH"/>
                     <constraint firstAttribute="bottom" secondItem="kJj-Va-gEo" secondAttribute="bottom" id="xWX-A8-6i2"/>
                 </constraints>
