@@ -238,9 +238,7 @@ extension ViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: MoneyCell = tableView.dequeueReusableCell(withIdentifier: "MoneyCell") as! MoneyCell
         if viewModel.payments.count > indexPath.row {
-            cell.dateLabel?.text = viewModel.payments[indexPath.row].date.value
-            cell.modeLabel?.text = viewModel.payments[indexPath.row].mode.value.rawValue
-            cell.amountLabel?.text = "￥\(viewModel.payments[indexPath.row].amount.value.description)"
+            cell.viewModel = viewModel.payments[indexPath.row]
         }
 
         return cell
