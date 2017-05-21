@@ -29,6 +29,8 @@ class EditViewController: UIViewController {
         tableView.dataSource = self
         let textNib = UINib(nibName: "TextEditCell", bundle: nil)
         tableView.register(textNib, forCellReuseIdentifier: "TextEditCell")
+        let dateNib = UINib(nibName: "DatePickerCell", bundle: nil)
+        tableView.register(dateNib, forCellReuseIdentifier: "DatePickerCell")
     }
 
     override func didReceiveMemoryWarning() {
@@ -70,7 +72,9 @@ extension EditViewController: UITableViewDataSource {
             return cell
         }
         else {
-            return UITableViewCell()
+            // TODO カテゴリ、メモの処理を追加する
+            let cell: DatePickerCell = tableView.dequeueReusableCell(withIdentifier: "DatePickerCell") as! DatePickerCell
+            return cell
         }
     }
 }
