@@ -7,11 +7,30 @@
 //
 
 import UIKit
+import RxSwift
 
 class DatePickerCell: UITableViewCell, UITextFieldDelegate {
     @IBOutlet weak var textField: UITextField!
 
     private let dateFormatter: DateFormatter = DateFormatter()
+
+    private var bag: DisposeBag!
+    var bindValue: Variable<String>! {
+        didSet {
+            bag = DisposeBag()
+            bindValue.asObservable()
+                .subscribe(onNext: {[weak self] value in
+                    self?.textField.text = value
+                })
+                .disposed(by: bag)
+
+            self.textField.rx.text
+                .bind { string in
+                    self.bindValue.value = string!
+                }
+                .addDisposableTo(bag)
+        }
+    }
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -26,7 +45,7 @@ class DatePickerCell: UITableViewCell, UITextFieldDelegate {
         textField.inputAccessoryView = toolbar
 
         // デフォルトは当日
-        dateFormatter.dateFormat  = "yyyy/M/dd"
+        dateFormatter.dateFormat  = "yyyy-M-dd"
         textField.text = dateFormatter.string(from: Date())
     }
 

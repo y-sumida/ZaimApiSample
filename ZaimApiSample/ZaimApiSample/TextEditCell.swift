@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class TextEditCell: UITableViewCell, UITextFieldDelegate {
     @IBOutlet weak var textField: UITextField!
@@ -21,9 +23,23 @@ class TextEditCell: UITableViewCell, UITextFieldDelegate {
             textField.keyboardType = keyboardType
         }
     }
-    var value: String = "" {
+
+    private var bag: DisposeBag!
+    var bindValue: Variable<Int>! {
         didSet {
-            textField.text = value
+            bag = DisposeBag()
+            bindValue.asObservable()
+                .subscribe(onNext: {[weak self] value in
+                    self?.textField.text = value.description
+                })
+                .disposed(by: bag)
+
+            self.textField.rx.text
+                .bind { string in
+                    self.bindValue.value = Int(string!)!
+                    
+                }
+                .addDisposableTo(bag)
         }
     }
 

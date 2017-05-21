@@ -225,6 +225,7 @@ extension ViewController: UITableViewDelegate {
         // 編集画面へ遷移
         // TODO データを渡す
         let vc: EditViewController  = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "EditViewController") as! EditViewController
+        vc.viewModel = MoneyEditViewModel(money: money.item[indexPath.row])
 
         // ナビゲーション
         let nvc = UINavigationController(rootViewController: vc)

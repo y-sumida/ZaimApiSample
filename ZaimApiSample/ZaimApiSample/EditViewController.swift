@@ -12,6 +12,8 @@ class EditViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var registerButton: UIButton!
 
+    var viewModel: MoneyEditViewModel!
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -85,6 +87,7 @@ extension EditViewController: UITableViewDataSource {
             let cell: TextEditCell = tableView.dequeueReusableCell(withIdentifier: "TextEditCell") as! TextEditCell
             cell.placeholder = "金額"
             cell.keyboardType = .numberPad
+            cell.bindValue = viewModel.amount
             return cell
         }
         else if indexPath.row == 0 {
@@ -93,6 +96,7 @@ extension EditViewController: UITableViewDataSource {
         }
         else {
             let cell: DatePickerCell = tableView.dequeueReusableCell(withIdentifier: "DatePickerCell") as! DatePickerCell
+            cell.bindValue = viewModel.date
             return cell
         }
     }

@@ -20,6 +20,8 @@
 		A92871161ED16B7700E0C867 /* CategorySelectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92871141ED16B7700E0C867 /* CategorySelectCell.swift */; };
 		A92871171ED16B7700E0C867 /* CategorySelectCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A92871151ED16B7700E0C867 /* CategorySelectCell.xib */; };
 		A92871201ED1D22200E0C867 /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A928711F1ED1D22200E0C867 /* CategoriesViewController.swift */; };
+		A92871231ED1D99B00E0C867 /* MoneyEditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92871221ED1D99B00E0C867 /* MoneyEditViewModel.swift */; };
+		A92871251ED1D9AB00E0C867 /* MoneyUpdateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92871241ED1D9AB00E0C867 /* MoneyUpdateModel.swift */; };
 		A99955311ECB30B90067ABC8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99955301ECB30B90067ABC8 /* AppDelegate.swift */; };
 		A99955331ECB30B90067ABC8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99955321ECB30B90067ABC8 /* ViewController.swift */; };
 		A99955361ECB30B90067ABC8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A99955341ECB30B90067ABC8 /* Main.storyboard */; };
@@ -49,6 +51,8 @@
 		A92871141ED16B7700E0C867 /* CategorySelectCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategorySelectCell.swift; sourceTree = "<group>"; };
 		A92871151ED16B7700E0C867 /* CategorySelectCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CategorySelectCell.xib; sourceTree = "<group>"; };
 		A928711F1ED1D22200E0C867 /* CategoriesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
+		A92871221ED1D99B00E0C867 /* MoneyEditViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoneyEditViewModel.swift; sourceTree = "<group>"; };
+		A92871241ED1D9AB00E0C867 /* MoneyUpdateModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoneyUpdateModel.swift; sourceTree = "<group>"; };
 		A999552D1ECB30B90067ABC8 /* ZaimApiSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZaimApiSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A99955301ECB30B90067ABC8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A99955321ECB30B90067ABC8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -103,6 +107,7 @@
 		A928710B1ED09C5200E0C867 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				A92871241ED1D9AB00E0C867 /* MoneyUpdateModel.swift */,
 				A92870FF1ECDF27700E0C867 /* MoneyDeleteModel.swift */,
 				A92870F21ECDDB4A00E0C867 /* MoneyModel.swift */,
 				A999556F1ECC942E0067ABC8 /* UserVerifyModel.swift */,
@@ -132,6 +137,14 @@
 				A999556B1ECC8D9A0067ABC8 /* Requestable.swift */,
 			);
 			name = Protocol;
+			sourceTree = "<group>";
+		};
+		A92871211ED1D98000E0C867 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				A92871221ED1D99B00E0C867 /* MoneyEditViewModel.swift */,
+			);
+			name = ViewModel;
 			sourceTree = "<group>";
 		};
 		A99955241ECB30B90067ABC8 = {
@@ -164,6 +177,7 @@
 				A928710D1ED09C7100E0C867 /* Protocol */,
 				A928710C1ED09C5E00E0C867 /* View */,
 				A92871091ED09C2E00E0C867 /* ViewController */,
+				A92871211ED1D98000E0C867 /* ViewModel */,
 			);
 			path = ZaimApiSample;
 			sourceTree = "<group>";
@@ -283,6 +297,7 @@
 				A92870F31ECDDB4A00E0C867 /* MoneyModel.swift in Sources */,
 				A999556C1ECC8D9A0067ABC8 /* Requestable.swift in Sources */,
 				A92870F91ECDED0D00E0C867 /* MoneyCell.swift in Sources */,
+				A92871231ED1D99B00E0C867 /* MoneyEditViewModel.swift in Sources */,
 				A99955701ECC942E0067ABC8 /* UserVerifyModel.swift in Sources */,
 				A92871161ED16B7700E0C867 /* CategorySelectCell.swift in Sources */,
 				A99955331ECB30B90067ABC8 /* ViewController.swift in Sources */,
@@ -290,6 +305,7 @@
 				A92871001ECDF27700E0C867 /* MoneyDeleteModel.swift in Sources */,
 				A99955311ECB30B90067ABC8 /* AppDelegate.swift in Sources */,
 				A999556E1ECC8E010067ABC8 /* OAuthSwift+ObjectMapper+RxSwift.swift in Sources */,
+				A92871251ED1D9AB00E0C867 /* MoneyUpdateModel.swift in Sources */,
 				A92871021ED07E8800E0C867 /* ZaimApiCode.swift in Sources */,
 				A92871101ED15E4C00E0C867 /* DatePickerCell.swift in Sources */,
 			);
