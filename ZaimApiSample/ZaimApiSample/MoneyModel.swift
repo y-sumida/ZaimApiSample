@@ -49,6 +49,7 @@ struct MoneyRequest: Requestable {
     typealias Response = MoneyModel
     var method: OAuthSwiftHTTPRequest.Method = .GET
     var path: String = "home/money"
+    var parameters: OAuthSwift.Parameters = ["mapping": 1, "mode": MoneyMode.payment.rawValue]
 
     init() {}
 }

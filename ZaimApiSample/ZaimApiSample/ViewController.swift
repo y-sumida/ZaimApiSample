@@ -19,6 +19,7 @@ class ViewController: UIViewController {
     private let isAuthorized: Variable<Bool> = Variable(true)
 
     fileprivate var money: MoneyModel!
+    fileprivate let viewModel: PaymentsViewModel = PaymentsViewModel()
 
     private var oauthswift: OAuthSwift?
     fileprivate var oauthClient: OAuthSwiftClient?
@@ -31,7 +32,7 @@ class ViewController: UIViewController {
         // ナビゲーションバー設定
         if let navi = navigationController {
             navi.setNavigationBarHidden(false, animated: true)
-            navigationItem.title = "明細"
+            navigationItem.title = "出費一覧"
             navigationItem.hidesBackButton = false
         }
 
@@ -57,8 +58,11 @@ class ViewController: UIViewController {
         // 認証チェック
         veryfyUser()
 
+        // データ取得監視
+        bind()
+
         // 明細取得
-        fetchMoney()
+        viewModel.fetch(client: oauthClient!)
     }
 
     override func didReceiveMemoryWarning() {
@@ -72,8 +76,7 @@ class ViewController: UIViewController {
 
     func refresh(sender: UIRefreshControl) {
         // 再読込
-        fetchMoney()
-        tableView.reloadData()
+        viewModel.fetch(client: oauthClient!)
     }
 
     private func readApiKeys() -> (consumerKey: String, consumerSecret: String)? {
@@ -120,7 +123,7 @@ class ViewController: UIViewController {
 
                 self.generateClient()
                 self.veryfyUser()
-                self.fetchMoney()
+                self.viewModel.fetch(client: self.oauthClient!)
             },
             failure: { error in
                 print(error.description)
@@ -160,26 +163,6 @@ class ViewController: UIViewController {
             .addDisposableTo(bag)
     }
 
-    private func fetchMoney() {
-        guard isAuthorized.value else { return }
-
-        MoneyModel.call(client: oauthClient!)
-            .observeOn(MainScheduler.instance)
-            .subscribe(
-                onNext: {[weak self] model, response in
-                    print(model)
-                    self?.money = model
-                    self?.refreshControl.endRefreshing()
-                    self?.tableView.reloadData()
-                },
-                onError: {[weak self] (error: Error) in
-                    self?.refreshControl.endRefreshing()
-                    print(error.localizedDescription)
-            }
-            )
-            .addDisposableTo(bag)
-    }
-
     fileprivate func deleteMoney(id: Int, mode: MoneyMode) {
         guard isAuthorized.value else { return }
 
@@ -205,16 +188,24 @@ class ViewController: UIViewController {
 
         isAuthorized.value = false
     }
+
+    private func bind() {
+        viewModel.finishTrigger.asObservable()
+            .subscribe(onNext: { [weak self] in
+                self?.tableView.reloadData()
+            })
+            .disposed(by: bag)
+    }
 }
 
 extension ViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        guard let model: MoneyModel = money, money.item.count > indexPath.row else { return nil }
+        guard viewModel.payments.count > indexPath.row else { return nil }
 
-        let item: MoneyModel.Item = model.item[indexPath.row]
+        let payment: MoneyEditViewModel = viewModel.payments[indexPath.row]
 
         let deleteAction = UITableViewRowAction(style: .default, title: "delete"){ [unowned self] (action, indexPath) in
-                self.deleteMoney(id: item.id, mode: item.mode)
+                self.deleteMoney(id: payment.id!, mode: payment.mode.value)
         }
 
         deleteAction.backgroundColor = UIColor.red
@@ -222,9 +213,11 @@ extension ViewController: UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard viewModel.payments.count > indexPath.row else { return }
+
         // 編集画面へ遷移
         let vc: EditViewController  = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "EditViewController") as! EditViewController
-        vc.viewModel = MoneyEditViewModel(money: money.item[indexPath.row])
+        vc.viewModel = viewModel.payments[indexPath.row]
         vc.client = oauthClient
 
         // ナビゲーション
@@ -239,16 +232,15 @@ extension ViewController: UITableViewDelegate {
 
 extension ViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let model: MoneyModel = money else { return 0 }
-        return model.item.count
+        return viewModel.payments.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: MoneyCell = tableView.dequeueReusableCell(withIdentifier: "MoneyCell") as! MoneyCell
-        if let model: MoneyModel = money, money.item.count > indexPath.row {
-            cell.dateLabel?.text = model.item[indexPath.row].date
-            cell.modeLabel?.text = model.item[indexPath.row].mode.rawValue
-            cell.amountLabel?.text = "￥\(model.item[indexPath.row].ammount.description)"
+        if viewModel.payments.count > indexPath.row {
+            cell.dateLabel?.text = viewModel.payments[indexPath.row].date.value
+            cell.modeLabel?.text = viewModel.payments[indexPath.row].mode.value.rawValue
+            cell.amountLabel?.text = "￥\(viewModel.payments[indexPath.row].amount.value.description)"
         }
 
         return cell
