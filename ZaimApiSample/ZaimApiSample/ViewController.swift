@@ -21,7 +21,7 @@ class ViewController: UIViewController {
     fileprivate var money: MoneyModel!
 
     private var oauthswift: OAuthSwift?
-    private var oauthClient: OAuthSwiftClient?
+    fileprivate var oauthClient: OAuthSwiftClient?
 
     private var refreshControl = UIRefreshControl()
 
@@ -223,9 +223,9 @@ extension ViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // 編集画面へ遷移
-        // TODO データを渡す
         let vc: EditViewController  = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "EditViewController") as! EditViewController
         vc.viewModel = MoneyEditViewModel(money: money.item[indexPath.row])
+        vc.client = oauthClient
 
         // ナビゲーション
         let nvc = UINavigationController(rootViewController: vc)

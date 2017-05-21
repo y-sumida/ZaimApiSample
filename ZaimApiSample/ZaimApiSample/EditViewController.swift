@@ -7,12 +7,25 @@
 //
 
 import UIKit
+import RxSwift
+import OAuthSwift
 
 class EditViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var registerButton: UIButton!
 
-    var viewModel: MoneyEditViewModel!
+    private let bag: DisposeBag = DisposeBag()
+
+    var viewModel: MoneyEditViewModel! {
+        didSet {
+            bind()
+        }
+    }
+    var client: OAuthSwiftClient!
+
+    deinit {
+        print("Edit deinit")
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,10 +56,20 @@ class EditViewController: UIViewController {
 
     @IBAction func tapRegisterButton(_ sender: Any) {
         // TODO 登録処理
+        viewModel.updateMoney(client: client)
     }
 
     @IBAction func tapCacelButton(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
+    }
+
+    private func bind() {
+        viewModel.finishTrigger.asObservable()
+            .subscribe(onNext: { [weak self] _ in
+                self?.dismiss(animated: true, completion: nil)
+            }
+        )
+        .disposed(by: bag)
     }
 }
 
