@@ -62,7 +62,7 @@ extension EditViewController: UITableViewDataSource {
             return 1 // 金額
         }
         else {
-            return 3 // カテゴリ、メモ、日付
+            return 2 // カテゴリ、日付
         }
     }
 
@@ -78,7 +78,6 @@ extension EditViewController: UITableViewDataSource {
             return cell
         }
         else {
-            // TODO メモの処理を追加する
             let cell: DatePickerCell = tableView.dequeueReusableCell(withIdentifier: "DatePickerCell") as! DatePickerCell
             return cell
         }
