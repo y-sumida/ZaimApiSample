@@ -10,6 +10,7 @@ import UIKit
 
 class EditViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var registerButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,6 +22,9 @@ class EditViewController: UIViewController {
             navigationItem.hidesBackButton = false
         }
 
+        //
+        registerButton.layer.cornerRadius = 4.0
+
         tableView.delegate = self
         tableView.dataSource = self
         let textNib = UINib(nibName: "TextEditCell", bundle: nil)
@@ -29,6 +33,10 @@ class EditViewController: UIViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+
+    @IBAction func tapRegisterButton(_ sender: Any) {
+        // TODO 登録処理
     }
 
     @IBAction func tapCacelButton(_ sender: Any) {

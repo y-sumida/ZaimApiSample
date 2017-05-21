@@ -19,7 +19,6 @@
 		A99955331ECB30B90067ABC8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99955321ECB30B90067ABC8 /* ViewController.swift */; };
 		A99955361ECB30B90067ABC8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A99955341ECB30B90067ABC8 /* Main.storyboard */; };
 		A99955381ECB30B90067ABC8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A99955371ECB30B90067ABC8 /* Assets.xcassets */; };
-		A999553B1ECB30B90067ABC8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A99955391ECB30B90067ABC8 /* LaunchScreen.storyboard */; };
 		A99955441ECB327B0067ABC8 /* OAuthSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A99955431ECB327B0067ABC8 /* OAuthSwift.framework */; };
 		A99955471ECB32F90067ABC8 /* ApiKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = A99955461ECB32F90067ABC8 /* ApiKeys.plist */; };
 		A99955601ECC86130067ABC8 /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A999555F1ECC86130067ABC8 /* RxSwift.framework */; };
@@ -45,7 +44,6 @@
 		A99955321ECB30B90067ABC8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		A99955351ECB30B90067ABC8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A99955371ECB30B90067ABC8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		A999553A1ECB30B90067ABC8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A999553C1ECB30B90067ABC8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A99955431ECB327B0067ABC8 /* OAuthSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OAuthSwift.framework; path = Carthage/Build/iOS/OAuthSwift.framework; sourceTree = "<group>"; };
 		A99955461ECB32F90067ABC8 /* ApiKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ApiKeys.plist; sourceTree = "<group>"; };
@@ -146,7 +144,6 @@
 				A99955371ECB30B90067ABC8 /* Assets.xcassets */,
 				A928710A1ED09C4600E0C867 /* Extension */,
 				A999553C1ECB30B90067ABC8 /* Info.plist */,
-				A99955391ECB30B90067ABC8 /* LaunchScreen.storyboard */,
 				A99955341ECB30B90067ABC8 /* Main.storyboard */,
 				A928710B1ED09C5200E0C867 /* Model */,
 				A928710D1ED09C7100E0C867 /* Protocol */,
@@ -228,7 +225,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A999553B1ECB30B90067ABC8 /* LaunchScreen.storyboard in Resources */,
 				A99955471ECB32F90067ABC8 /* ApiKeys.plist in Resources */,
 				A92871081ED0938D00E0C867 /* TextEditCell.xib in Resources */,
 				A99955381ECB30B90067ABC8 /* Assets.xcassets in Resources */,
@@ -288,14 +284,6 @@
 				A99955351ECB30B90067ABC8 /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		A99955391ECB30B90067ABC8 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				A999553A1ECB30B90067ABC8 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

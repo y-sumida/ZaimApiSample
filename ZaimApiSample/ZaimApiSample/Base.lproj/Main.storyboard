@@ -103,21 +103,36 @@
                         <viewControllerLayoutGuide type="top" id="7yU-Oy-NwP"/>
                         <viewControllerLayoutGuide type="bottom" id="QDT-oo-jT5"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" misplaced="YES" id="moR-KN-BSZ">
+                    <view key="view" contentMode="scaleToFill" id="moR-KN-BSZ">
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="qkb-As-ujS">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="503"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tz3-fd-OyL">
+                                <rect key="frame" x="32" y="517" width="311" height="46"/>
+                                <color key="backgroundColor" red="0.29411764705882354" green="0.63529411764705879" blue="0.17254901960784313" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="46" id="9hU-nZ-BDy"/>
+                                </constraints>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="登録"/>
+                                <connections>
+                                    <action selector="tapRegisterButton:" destination="KbL-z7-ClZ" eventType="touchUpInside" id="fd3-0m-C6x"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="QDT-oo-jT5" firstAttribute="top" secondItem="qkb-As-ujS" secondAttribute="bottom" id="2s8-Dc-d0M"/>
                             <constraint firstAttribute="trailing" secondItem="qkb-As-ujS" secondAttribute="trailing" id="KKU-y0-o3i"/>
+                            <constraint firstItem="Tz3-fd-OyL" firstAttribute="leading" secondItem="moR-KN-BSZ" secondAttribute="leadingMargin" constant="16" id="Ksx-Su-3Mz"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Tz3-fd-OyL" secondAttribute="trailing" constant="16" id="Wmw-KY-KoW"/>
                             <constraint firstItem="qkb-As-ujS" firstAttribute="leading" secondItem="moR-KN-BSZ" secondAttribute="leading" id="fmp-xL-DIh"/>
                             <constraint firstItem="qkb-As-ujS" firstAttribute="top" secondItem="7yU-Oy-NwP" secondAttribute="bottom" id="mee-rU-WZg"/>
+                            <constraint firstItem="QDT-oo-jT5" firstAttribute="top" secondItem="Tz3-fd-OyL" secondAttribute="bottom" constant="40" id="pPU-0B-HNm"/>
+                            <constraint firstItem="Tz3-fd-OyL" firstAttribute="top" secondItem="qkb-As-ujS" secondAttribute="bottom" constant="14" id="q3H-Cu-FlT"/>
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
@@ -129,6 +144,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="registerButton" destination="Tz3-fd-OyL" id="duL-Gu-oIE"/>
                         <outlet property="tableView" destination="qkb-As-ujS" id="Gln-i9-Kpe"/>
                     </connections>
                 </viewController>
