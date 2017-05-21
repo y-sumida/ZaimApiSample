@@ -49,6 +49,20 @@ class EditViewController: UIViewController {
 }
 
 extension EditViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section == 1 && indexPath.row == 0 {
+            // カテゴリ選択へ遷移
+            // TODO データを渡す
+            let vc: CategoriesViewController  = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CategoriesViewController") as! CategoriesViewController
+
+            // ナビゲーション
+            let nvc = UINavigationController(rootViewController: vc)
+            nvc.modalPresentationStyle = .custom
+            nvc.modalTransitionStyle = .coverVertical
+
+            self.present(nvc, animated: true, completion: nil)
+        }
+    }
 }
 
 extension EditViewController: UITableViewDataSource {
