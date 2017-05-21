@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="70R-hd-WG1">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -23,13 +23,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Uw-pv-v5N">
-                                <rect key="frame" x="16" y="20" width="263" height="0.0"/>
+                                <rect key="frame" x="16" y="64" width="263" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rVY-jp-HQS">
-                                <rect key="frame" x="279" y="20" width="80" height="30"/>
+                                <rect key="frame" x="279" y="64" width="80" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="80" id="XbT-wb-Inh"/>
                                 </constraints>
@@ -39,21 +39,21 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="mFe-BO-D24">
-                                <rect key="frame" x="0.0" y="60" width="375" height="607"/>
+                                <rect key="frame" x="0.0" y="104" width="375" height="563"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e7w-UR-Ayo">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xOS-we-kQh">
-                                        <rect key="frame" x="164" y="308" width="46" height="30"/>
+                                        <rect key="frame" x="164" y="286" width="46" height="30"/>
                                         <state key="normal" title="Button"/>
                                         <connections>
                                             <action selector="tapOauthButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Hug-sE-I0B"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="認証してください" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="noK-kI-oXR">
-                                        <rect key="frame" x="118" y="255" width="139" height="21"/>
+                                        <rect key="frame" x="118" y="233" width="139" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -85,6 +85,7 @@
                             <constraint firstItem="rVY-jp-HQS" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="zlW-UY-Q5a"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="BEm-ih-JOx"/>
                     <connections>
                         <outlet property="oauthView" destination="e7w-UR-Ayo" id="RjI-Di-E22"/>
                         <outlet property="tableView" destination="mFe-BO-D24" id="hNe-lf-1Hr"/>
@@ -93,7 +94,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="117.59999999999999" y="88.605697151424295"/>
+            <point key="canvasLocation" x="1056.8" y="88.605697151424295"/>
         </scene>
         <!--Edit View Controller-->
         <scene sceneID="oyG-Pa-WBZ">
@@ -104,15 +105,15 @@
                         <viewControllerLayoutGuide type="bottom" id="QDT-oo-jT5"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="moR-KN-BSZ">
-                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="qkb-As-ujS">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="503"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="547"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tz3-fd-OyL">
-                                <rect key="frame" x="32" y="517" width="311" height="46"/>
+                                <rect key="frame" x="32" y="581" width="311" height="46"/>
                                 <color key="backgroundColor" red="0.29411764705882354" green="0.63529411764705879" blue="0.17254901960784313" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="46" id="9hU-nZ-BDy"/>
@@ -150,25 +151,25 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9qZ-KG-a2v" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3047.1999999999998" y="159.67016491754123"/>
+            <point key="canvasLocation" x="3986.4000000000001" y="158.77061469265368"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="TuP-Qh-On9">
+        <scene sceneID="gyi-Dc-r2u">
             <objects>
-                <navigationController storyboardIdentifier="EditNavigation" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="vUe-zK-mcz" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="70R-hd-WG1" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="iXj-gW-9JG">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ej2-b8-p2O">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="KbL-z7-ClZ" kind="relationship" relationship="rootViewController" id="Hpb-67-iRp"/>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="bUV-s7-CoK"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="tnK-H9-bCQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pmt-bn-Jh9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2108" y="159.67016491754123"/>
+            <point key="canvasLocation" x="117.59999999999999" y="88.605697151424295"/>
         </scene>
     </scenes>
 </document>

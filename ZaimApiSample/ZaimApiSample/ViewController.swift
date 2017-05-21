@@ -28,6 +28,13 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // ナビゲーションバー設定
+        if let navi = navigationController {
+            navi.setNavigationBarHidden(false, animated: true)
+            navigationItem.title = "明細"
+            navigationItem.hidesBackButton = false
+        }
+
         tableView.delegate = self
         tableView.dataSource = self
         let nib = UINib(nibName: "MoneyCell", bundle: nil)
@@ -217,10 +224,14 @@ extension ViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // 編集画面へ遷移
         // TODO データを渡す
-        let vc:UINavigationController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "EditNavigation") as! UINavigationController
-        vc.modalPresentationStyle = .custom
-        vc.modalTransitionStyle = .coverVertical
-        self.present(vc, animated: true, completion: nil)
+        let vc: EditViewController  = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "EditViewController") as! EditViewController
+
+        // ナビゲーション
+        let nvc = UINavigationController(rootViewController: vc)
+        nvc.modalPresentationStyle = .custom
+        nvc.modalTransitionStyle = .coverVertical
+
+        self.present(nvc, animated: true, completion: nil)
     }
 
 }
