@@ -22,7 +22,14 @@ class ViewController: UIViewController {
     fileprivate let viewModel: PaymentsViewModel = PaymentsViewModel()
 
     private var oauthswift: OAuthSwift?
-    fileprivate var oauthClient: OAuthSwiftClient?
+    fileprivate var oauthClient: OAuthSwiftClient? {
+        didSet {
+            if let client: OAuthSwiftClient = oauthClient {
+                // 明細取得
+                self.viewModel.fetch(client: client)
+            }
+        }
+    }
 
     private var refreshControl = UIRefreshControl()
 
@@ -45,12 +52,8 @@ class ViewController: UIViewController {
         refreshControl.addTarget(self, action: #selector(ViewController.refresh(sender:)), for: .valueChanged)
         tableView.addSubview(refreshControl)
 
-        // 認証状態を購読
-        isAuthorized.asObservable()
-            .subscribe(onNext: {[unowned self] isAuthorized in
-                self.oauthView.isHidden = isAuthorized
-            })
-            .disposed(by: bag)
+        // データ取得監視
+        bind()
 
         // Client生成
         generateClient()
@@ -58,11 +61,6 @@ class ViewController: UIViewController {
         // 認証チェック
         veryfyUser()
 
-        // データ取得監視
-        bind()
-
-        // 明細取得
-        viewModel.fetch(client: oauthClient!)
     }
 
     override func didReceiveMemoryWarning() {
@@ -144,11 +142,11 @@ class ViewController: UIViewController {
     }
 
     private func veryfyUser() {
-        guard isAuthorized.value else { return }
+        guard let client: OAuthSwiftClient = oauthClient  else { return }
 
         // APIコールして成功だったら認証ボタンを閉じる
         // TODO loginの値を見る
-        UserVerifyModel.call(client: oauthClient!)
+        UserVerifyModel.call(client: client)
             .observeOn(MainScheduler.instance)
             .subscribe(
                 onNext: {model, response in
@@ -164,9 +162,9 @@ class ViewController: UIViewController {
     }
 
     fileprivate func deleteMoney(id: Int, mode: MoneyMode) {
-        guard isAuthorized.value else { return }
+        guard let client: OAuthSwiftClient = oauthClient  else { return }
 
-        MoneyDeleteModel.call(client: oauthClient!, id: id, mode: mode)
+        MoneyDeleteModel.call(client: client, id: id, mode: mode)
             .observeOn(MainScheduler.instance)
             .subscribe(
                 onNext: {[weak self] model, response in
@@ -193,6 +191,13 @@ class ViewController: UIViewController {
         viewModel.finishTrigger.asObservable()
             .subscribe(onNext: { [weak self] in
                 self?.tableView.reloadData()
+            })
+            .disposed(by: bag)
+
+        // 認証状態を購読
+        isAuthorized.asObservable()
+            .subscribe(onNext: {[unowned self] isAuthorized in
+                self.oauthView.isHidden = isAuthorized
             })
             .disposed(by: bag)
     }
