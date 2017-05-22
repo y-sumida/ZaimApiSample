@@ -18,7 +18,7 @@ class MoneyEditViewModel {
     var categoryId: Variable<PaymentCategory>!
     var genreId: Variable<PaymentGenre>!
 
-    let isUpdateTrigger: PublishSubject<Void> = PublishSubject()
+    let isUpdate: Variable<Bool> = Variable(false)
     let finishTrigger: PublishSubject<Void> = PublishSubject()
 
     private let bag = DisposeBag()
@@ -35,6 +35,8 @@ class MoneyEditViewModel {
         date.value = money.date
         categoryId = Variable(money.categoryId)
         genreId = Variable(money.genreId)
+
+        bind()
     }
 
     func updateMoney(client: OAuthSwiftClient) {
@@ -51,5 +53,18 @@ class MoneyEditViewModel {
             }
             )
             .addDisposableTo(bag)
+    }
+
+    private func bind() {
+        // 更新有無の監視
+        Observable.combineLatest(
+            mode.asObservable(),
+            amount.asObservable(),
+            categoryId.asObservable(),
+            genreId.asObservable())
+            .bind(onNext: {[weak self] (mode, amount, category, genre) -> Void in
+                self?.isUpdate.value = (mode != self?.original.mode || amount != self?.original.ammount || category != self?.original.categoryId || genre != self?.original.genreId)
+            })
+            .disposed(by: bag)
     }
 }

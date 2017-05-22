@@ -16,7 +16,7 @@ class EditViewController: UIViewController {
 
     private let bag: DisposeBag = DisposeBag()
 
-    var viewModel: MoneyEditViewModel! {
+    weak var viewModel: MoneyEditViewModel! {
         didSet {
             bind()
         }
@@ -70,6 +70,14 @@ class EditViewController: UIViewController {
             }
         )
         .disposed(by: bag)
+
+        viewModel.isUpdate.asObservable()
+            .skip(1)
+            .subscribe(onNext: { [weak self] isUpdate in
+                self?.registerButton.isEnabled = isUpdate
+                }
+            )
+            .disposed(by: bag)
     }
 }
 
