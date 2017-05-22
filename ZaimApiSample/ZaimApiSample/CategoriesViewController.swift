@@ -11,7 +11,7 @@ import UIKit
 class CategoriesViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
 
-    fileprivate let categories: [PaymentCategories] = [
+    fileprivate let categories: [PaymentCategory] = [
     .food,
     .dailyGoods,
     .transport,

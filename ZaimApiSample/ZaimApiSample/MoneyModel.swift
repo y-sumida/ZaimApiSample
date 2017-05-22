@@ -31,6 +31,8 @@ class MoneyModel: Mappable {
         var mode: MoneyMode!
         var date: String = ""
         var ammount: Int = 0
+        var categoryId: PaymentCategory!
+        var genreId: PaymentGenre!
 
         required convenience init?(map: Map) {
             self.init()
@@ -41,6 +43,8 @@ class MoneyModel: Mappable {
             mode <- map["mode"]
             date <- map["date"]
             ammount <- map["amount"]
+            categoryId <- map["category_id"]
+            genreId <- map["genre_id"]
         }
     }
 }
