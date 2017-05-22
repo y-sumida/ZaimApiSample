@@ -7,9 +7,18 @@
 //
 
 import UIKit
+import RxSwift
 
 class CategoriesViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
+
+    private var originarlCategoryId: PaymentCategory!
+    var categoryId: Variable<PaymentCategory>! {
+        didSet {
+            originarlCategoryId = categoryId.value
+        }
+    }
+    var genreId: Variable<PaymentGenre>!
 
     fileprivate let categories: [PaymentCategory] = [
     .food,
@@ -50,11 +59,23 @@ class CategoriesViewController: UIViewController {
     }
 
     @IBAction func tapCancelButton(_ sender: Any) {
+        categoryId.value = originarlCategoryId
         self.dismiss(animated: true, completion: nil)
     }
 }
 
 extension CategoriesViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        categoryId.value = categories[indexPath.row]
+
+        // ジャンル選択画面へ遷移
+        let vc: GenresViewController  = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "GenresViewController") as! GenresViewController
+        vc.categoryId = categoryId
+        vc.genreId = genreId
+
+        // ナビゲーション
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
 }
 
 extension CategoriesViewController: UITableViewDataSource {

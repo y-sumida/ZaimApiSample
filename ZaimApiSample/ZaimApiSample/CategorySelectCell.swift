@@ -7,12 +7,26 @@
 //
 
 import UIKit
+import RxSwift
 
 class CategorySelectCell: UITableViewCell {
     @IBOutlet weak var categoryLabel: UILabel!
 
+    private var bag: DisposeBag!
+    var bindValue: Variable<PaymentGenre>! {
+        didSet {
+            bag = DisposeBag()
+            bindValue.asObservable()
+                .subscribe(onNext: {[weak self] value in
+                    self?.categoryLabel.text = value.description
+                })
+                .disposed(by: bag)
+        }
+    }
+
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+
+        categoryLabel.text = "カテゴリ"
     }
 }

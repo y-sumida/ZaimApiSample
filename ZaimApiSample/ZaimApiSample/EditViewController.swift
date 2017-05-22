@@ -77,8 +77,9 @@ extension EditViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 1 && indexPath.row == 0 {
             // カテゴリ選択へ遷移
-            // TODO データを渡す
             let vc: CategoriesViewController  = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CategoriesViewController") as! CategoriesViewController
+            vc.categoryId = viewModel.categoryId
+            vc.genreId = viewModel.genreId
 
             // ナビゲーション
             let nvc = UINavigationController(rootViewController: vc)
@@ -115,7 +116,7 @@ extension EditViewController: UITableViewDataSource {
         }
         else if indexPath.row == 0 {
             let cell: CategorySelectCell = tableView.dequeueReusableCell(withIdentifier: "CategorySelectCell") as! CategorySelectCell
-            cell.categoryLabel.text = viewModel.categoryId.value.description
+            cell.bindValue = viewModel.genreId
             return cell
         }
         else {

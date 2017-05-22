@@ -204,7 +204,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="96x-RA-BFW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5695.1999999999998" y="150.67466266866569"/>
+            <point key="canvasLocation" x="6634.3999999999996" y="150.67466266866569"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="gyi-Dc-r2u">
@@ -223,6 +223,47 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pmt-bn-Jh9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="117.59999999999999" y="88.605697151424295"/>
+        </scene>
+        <!--Genres View Controller-->
+        <scene sceneID="eiY-J5-KrK">
+            <objects>
+                <viewController storyboardIdentifier="GenresViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="mII-KK-lNW" customClass="GenresViewController" customModule="ZaimApiSample" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="naF-Eh-ZSR"/>
+                        <viewControllerLayoutGuide type="bottom" id="VZ5-gh-KcS"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="DZ6-wh-ffM">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Z1o-dL-Hn3">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="VZ5-gh-KcS" firstAttribute="top" secondItem="Z1o-dL-Hn3" secondAttribute="bottom" id="5Zd-dH-LAD"/>
+                            <constraint firstItem="Z1o-dL-Hn3" firstAttribute="leading" secondItem="DZ6-wh-ffM" secondAttribute="leading" id="Fmt-8H-fqu"/>
+                            <constraint firstAttribute="trailing" secondItem="Z1o-dL-Hn3" secondAttribute="trailing" id="daA-2H-bto"/>
+                            <constraint firstItem="Z1o-dL-Hn3" firstAttribute="top" secondItem="naF-Eh-ZSR" secondAttribute="bottom" id="x8F-o1-iSL"/>
+                        </constraints>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
+                    <navigationItem key="navigationItem" id="IH8-w9-xwb">
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="rDm-NA-fSG">
+                            <connections>
+                                <action selector="tapDoneButton:" destination="mII-KK-lNW" id="gVE-5b-xEW"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="Z1o-dL-Hn3" id="Q2T-vp-0mE"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dLN-R4-tkD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6634.3999999999996" y="150.67466266866569"/>
         </scene>
     </scenes>
 </document>
