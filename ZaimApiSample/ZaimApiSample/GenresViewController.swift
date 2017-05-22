@@ -43,8 +43,8 @@ class GenresViewController: UIViewController {
 
         tableView.delegate = self
         tableView.dataSource = self
-        let categoryNib = UINib(nibName: "CategorySelectCell", bundle: nil)
-        tableView.register(categoryNib, forCellReuseIdentifier: "CategorySelectCell")
+        let categoryNib = UINib(nibName: "GenreSelectCell", bundle: nil)
+        tableView.register(categoryNib, forCellReuseIdentifier: "GenreSelectCell")
     }
 
     override func didReceiveMemoryWarning() {
@@ -69,9 +69,8 @@ extension GenresViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        // TODO ジャンル用のセルを作る
-        let cell: CategorySelectCell = tableView.dequeueReusableCell(withIdentifier: "CategorySelectCell") as! CategorySelectCell
-        cell.categoryLabel.text = genres[categoryId.value]?[indexPath.row].description
+        let cell: GenreSelectCell = tableView.dequeueReusableCell(withIdentifier: "GenreSelectCell") as! GenreSelectCell
+        cell.genreLabel.text = genres[categoryId.value]?[indexPath.row].description
         return cell
     }
 }
