@@ -15,6 +15,8 @@ class MoneyEditViewModel {
     var mode: Variable<MoneyMode> = Variable(.payment)
     var amount: Variable<Int> = Variable(0)
     var date: Variable<String> = Variable("")
+    var categoryId: Variable<PaymentCategory>!
+    var genreId: Variable<PaymentGenre>!
 
     let isUpdateTrigger: PublishSubject<Void> = PublishSubject()
     let finishTrigger: PublishSubject<Void> = PublishSubject()
@@ -31,10 +33,12 @@ class MoneyEditViewModel {
         mode.value = money.mode
         amount.value = money.ammount
         date.value = money.date
+        categoryId = Variable(money.categoryId)
+        genreId = Variable(money.genreId)
     }
 
     func updateMoney(client: OAuthSwiftClient) {
-        let parameter: MoneyUpdateParam = MoneyUpdateParam(id: id!, mode: mode.value, amount: amount.value, date: date.value, categoryId: nil, genreId: nil)
+        let parameter: MoneyUpdateParam = MoneyUpdateParam(viewModel: self)
 
         MoneyUpdateModel.call(client: client, parameter: parameter)
             .observeOn(MainScheduler.instance)

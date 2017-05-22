@@ -115,6 +115,7 @@ extension EditViewController: UITableViewDataSource {
         }
         else if indexPath.row == 0 {
             let cell: CategorySelectCell = tableView.dequeueReusableCell(withIdentifier: "CategorySelectCell") as! CategorySelectCell
+            cell.categoryLabel.text = viewModel.categoryId.value.description
             return cell
         }
         else {

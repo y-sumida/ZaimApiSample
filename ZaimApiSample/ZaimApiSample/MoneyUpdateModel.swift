@@ -50,22 +50,12 @@ struct MoneyUpdateRequest: Requestable {
     typealias Response = MoneyUpdateModel
     var method: OAuthSwiftHTTPRequest.Method = .PUT
     var path: String = ""
-    
-    let id: Int
-    let mode: MoneyMode
-    let amount: Int
-    let date: String
 
-    var parameters: OAuthSwift.Parameters {
-        return ["map": 1, "id": id, "amount": amount, "date": date]
-    }
-    
+    var parameters: OAuthSwift.Parameters
+
     init(parameter: MoneyUpdateParam) {
-        id = parameter.id
-        mode = parameter.mode
-        amount = parameter.amount
-        date = parameter.date
-        path = "home/money/\(mode.rawValue)/\(id)"
+        parameters = ["map": 1, "id": parameter.id, "amount": parameter.amount, "date": parameter.date, "category_id": parameter.categoryId.rawValue, "genreId": parameter.genreId.rawValue]
+        path = "home/money/\(parameter.mode.rawValue)/\(parameter.id)"
     }
 }
 
@@ -74,6 +64,15 @@ struct MoneyUpdateParam {
     let mode: MoneyMode
     let amount: Int
     let date : String
-    let categoryId: Int?
-    let genreId: Int?
+    let categoryId: PaymentCategory
+    let genreId: PaymentGenre
+
+    init(viewModel: MoneyEditViewModel) {
+        self.id = viewModel.id!
+        self.mode = viewModel.mode.value
+        self.amount = viewModel.amount.value
+        self.date = viewModel.date.value
+        self.categoryId = viewModel.categoryId.value
+        self.genreId = viewModel.genreId.value
+    }
 }
