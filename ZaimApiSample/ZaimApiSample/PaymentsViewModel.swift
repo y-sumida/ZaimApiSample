@@ -34,5 +34,20 @@ class PaymentsViewModel {
             )
             .addDisposableTo(bag)
     }
+
+    func delete(client: OAuthSwiftClient, id: Int, mode: MoneyMode) {
+        MoneyDeleteModel.call(client: client, id: id, mode: mode)
+            .observeOn(MainScheduler.instance)
+            .subscribe(
+                onNext: {[weak self] model, response in
+                    self?.payments = (self?.payments.filter { item in item.id != model.id })!
+                    self?.finishTrigger.onNext(())
+                },
+                onError: {(error: Error) in
+                    print(error.localizedDescription)
+            }
+            )
+            .addDisposableTo(bag)
+    }
 }
 

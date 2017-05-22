@@ -161,23 +161,6 @@ class ViewController: UIViewController {
             .addDisposableTo(bag)
     }
 
-    fileprivate func deleteMoney(id: Int, mode: MoneyMode) {
-        guard let client: OAuthSwiftClient = oauthClient  else { return }
-
-        MoneyDeleteModel.call(client: client, id: id, mode: mode)
-            .observeOn(MainScheduler.instance)
-            .subscribe(
-                onNext: {[weak self] model, response in
-                    self?.money.item = (self?.money.item.filter { item in item.id != model.id })!
-                    self?.tableView.reloadData()
-                },
-                onError: {(error: Error) in
-                    print(error.localizedDescription)
-            }
-            )
-            .addDisposableTo(bag)
-    }
-
     @IBAction func tapDeauthButton(_ sender: Any) {
         // ローカルのトークンを削除して認証用のViewを表示
         let defaults = UserDefaults.standard
@@ -230,7 +213,7 @@ extension ViewController: UITableViewDelegate {
         let payment: MoneyEditViewModel = viewModel.payments[indexPath.row]
 
         let deleteAction = UITableViewRowAction(style: .default, title: "delete"){ [unowned self] (action, indexPath) in
-                self.deleteMoney(id: payment.id!, mode: payment.mode.value)
+            self.viewModel.delete(client: self.oauthClient!, id: payment.id!, mode: payment.mode.value)
         }
 
         deleteAction.backgroundColor = UIColor.red
