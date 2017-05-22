@@ -85,7 +85,13 @@
                             <constraint firstItem="rVY-jp-HQS" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="zlW-UY-Q5a"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="BEm-ih-JOx"/>
+                    <navigationItem key="navigationItem" id="BEm-ih-JOx">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="p5D-xn-Fmq">
+                            <connections>
+                                <action selector="tapAddButton:" destination="BYZ-38-t0r" id="cou-FW-DsL"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="oauthView" destination="e7w-UR-Ayo" id="RjI-Di-E22"/>
                         <outlet property="tableView" destination="mFe-BO-D24" id="hNe-lf-1Hr"/>

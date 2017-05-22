@@ -72,7 +72,7 @@ struct MoneyUpdateParam {
         self.mode = viewModel.mode.value
         self.amount = viewModel.amount.value
         self.date = viewModel.date.value
-        self.categoryId = viewModel.categoryId.value
-        self.genreId = viewModel.genreId.value
+        self.categoryId = viewModel.categoryId.value!
+        self.genreId = viewModel.genreId.value!
     }
 }

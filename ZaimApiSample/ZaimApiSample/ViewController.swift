@@ -187,6 +187,10 @@ class ViewController: UIViewController {
         isAuthorized.value = false
     }
 
+    @IBAction func tapAddButton(_ sender: Any) {
+        showEditView(viewModel: nil)
+    }
+
     private func bind() {
         viewModel.finishTrigger.asObservable()
             .subscribe(onNext: { [weak self] in
@@ -200,6 +204,22 @@ class ViewController: UIViewController {
                 self.oauthView.isHidden = isAuthorized
             })
             .disposed(by: bag)
+    }
+
+    fileprivate func showEditView(viewModel: MoneyEditViewModel?) {
+        // 編集画面へ遷移
+        let vc: EditViewController  = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "EditViewController") as! EditViewController
+        if let `viewModel`: MoneyEditViewModel = viewModel {
+            vc.viewModel = viewModel
+        }
+        vc.client = oauthClient
+
+        // ナビゲーション
+        let nvc = UINavigationController(rootViewController: vc)
+        nvc.modalPresentationStyle = .custom
+        nvc.modalTransitionStyle = .coverVertical
+
+        self.present(nvc, animated: true, completion: nil)
     }
 }
 
@@ -221,16 +241,7 @@ extension ViewController: UITableViewDelegate {
         guard viewModel.payments.count > indexPath.row else { return }
 
         // 編集画面へ遷移
-        let vc: EditViewController  = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "EditViewController") as! EditViewController
-        vc.viewModel = viewModel.payments[indexPath.row]
-        vc.client = oauthClient
-
-        // ナビゲーション
-        let nvc = UINavigationController(rootViewController: vc)
-        nvc.modalPresentationStyle = .custom
-        nvc.modalTransitionStyle = .coverVertical
-
-        self.present(nvc, animated: true, completion: nil)
+        showEditView(viewModel: viewModel.payments[indexPath.row])
     }
 
 }

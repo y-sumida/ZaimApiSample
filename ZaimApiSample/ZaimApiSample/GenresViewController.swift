@@ -13,8 +13,8 @@ class GenresViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
 
     fileprivate var selectedGenreId: PaymentGenre!
-    var categoryId: Variable<PaymentCategory>!
-    var genreId: Variable<PaymentGenre>!
+    var categoryId: Variable<PaymentCategory?>!
+    var genreId: Variable<PaymentGenre?>!
 
     fileprivate let genres: [PaymentCategory:[PaymentGenre]] = [
         .food: [.groceries, .cafe, .breakfast, .lunch, .dinner, .foodOther],
@@ -59,18 +59,18 @@ class GenresViewController: UIViewController {
 
 extension GenresViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedGenreId = (genres[categoryId.value]?[indexPath.row])!
+        selectedGenreId = (genres[categoryId.value!]?[indexPath.row])!
     }
 }
 
 extension GenresViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return genres[categoryId.value]!.count
+        return genres[categoryId.value!]!.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: GenreSelectCell = tableView.dequeueReusableCell(withIdentifier: "GenreSelectCell") as! GenreSelectCell
-        cell.genreLabel.text = genres[categoryId.value]?[indexPath.row].description
+        cell.genreLabel.text = genres[categoryId.value!]?[indexPath.row].description
         return cell
     }
 }

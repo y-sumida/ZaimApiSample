@@ -13,12 +13,13 @@ class CategorySelectCell: UITableViewCell {
     @IBOutlet weak var categoryLabel: UILabel!
 
     private var bag: DisposeBag!
-    var bindValue: Variable<PaymentGenre>! {
+    var bindValue: Variable<PaymentGenre?>! {
         didSet {
             bag = DisposeBag()
             bindValue.asObservable()
                 .subscribe(onNext: {[weak self] value in
-                    self?.categoryLabel.text = value.description
+                    guard let _ = value else { return }
+                    self?.categoryLabel.text = value?.description
                 })
                 .disposed(by: bag)
         }

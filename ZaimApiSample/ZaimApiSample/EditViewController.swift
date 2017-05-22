@@ -15,8 +15,9 @@ class EditViewController: UIViewController {
     @IBOutlet weak var registerButton: UIButton!
 
     private let bag: DisposeBag = DisposeBag()
+    private var isEditMode: Bool = false
 
-    weak var viewModel: MoneyEditViewModel! {
+    var viewModel: MoneyEditViewModel! {
         didSet {
             bind()
         }
@@ -33,7 +34,15 @@ class EditViewController: UIViewController {
         // ナビゲーションバー設定
         if let navi = navigationController {
             navi.setNavigationBarHidden(false, animated: true)
-            navigationItem.title = "編集"
+            if let _ = viewModel {
+                navigationItem.title = "編集"
+                isEditMode = true
+            }
+            else {
+                navigationItem.title = "登録"
+                isEditMode = false
+                viewModel = MoneyEditViewModel(money: nil)
+            }
             navigationItem.hidesBackButton = false
         }
 
@@ -55,8 +64,12 @@ class EditViewController: UIViewController {
     }
 
     @IBAction func tapRegisterButton(_ sender: Any) {
-        // TODO 登録処理
-        viewModel.updateMoney(client: client)
+        if isEditMode {
+            viewModel.updateMoney(client: client)
+        }
+        else {
+            viewModel.registerMoney(client: client)
+        }
     }
 
     @IBAction func tapCacelButton(_ sender: Any) {
