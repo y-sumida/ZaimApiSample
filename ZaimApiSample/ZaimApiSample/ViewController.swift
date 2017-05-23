@@ -177,6 +177,7 @@ class ViewController: UIViewController {
     private func bind() {
         viewModel.finishTrigger.asObservable()
             .subscribe(onNext: { [weak self] in
+                self?.refreshControl.endRefreshing()
                 self?.tableView.reloadData()
             })
             .disposed(by: bag)
