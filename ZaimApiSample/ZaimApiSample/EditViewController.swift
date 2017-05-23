@@ -36,10 +36,12 @@ class EditViewController: UIViewController {
             navi.setNavigationBarHidden(false, animated: true)
             if let _ = viewModel {
                 navigationItem.title = "編集"
+                registerButton.setTitle("更新する", for: .normal)
                 isEditMode = true
             }
             else {
                 navigationItem.title = "登録"
+                registerButton.setTitle("登録する", for: .normal)
                 isEditMode = false
                 viewModel = MoneyEditViewModel(money: nil)
             }
