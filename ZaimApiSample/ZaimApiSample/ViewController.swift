@@ -17,6 +17,7 @@ class ViewController: UIViewController {
 
     private let bag: DisposeBag = DisposeBag()
     private let isAuthorized: Variable<Bool> = Variable(true)
+    private let registerFinishTrigger: PublishSubject<Void> = PublishSubject()
 
     fileprivate let viewModel: PaymentsViewModel = PaymentsViewModel()
 
@@ -199,6 +200,13 @@ class ViewController: UIViewController {
                 self.oauthView.isHidden = isAuthorized
             })
             .disposed(by: bag)
+
+        // 新規登録後にAPIを呼び直す
+        registerFinishTrigger.asObservable()
+            .subscribe(onNext: { [weak self] in
+                self?.viewModel.fetch(client: (self?.oauthClient)!)
+            })
+            .disposed(by: bag)
     }
 
     fileprivate func showEditView(viewModel: MoneyEditViewModel?) {
@@ -206,6 +214,9 @@ class ViewController: UIViewController {
         let vc: EditViewController  = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "EditViewController") as! EditViewController
         if let `viewModel`: MoneyEditViewModel = viewModel {
             vc.viewModel = viewModel
+        }
+        else {
+            vc.registerFinishTrigger = self.registerFinishTrigger
         }
         vc.client = oauthClient
 

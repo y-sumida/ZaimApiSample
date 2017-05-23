@@ -23,6 +23,7 @@ class EditViewController: UIViewController {
         }
     }
     var client: OAuthSwiftClient!
+    var registerFinishTrigger: PublishSubject<Void>?
 
     deinit {
         print("Edit deinit")
@@ -81,6 +82,9 @@ class EditViewController: UIViewController {
     private func bind() {
         viewModel.finishTrigger.asObservable()
             .subscribe(onNext: { [weak self] _ in
+                if !(self?.isEditMode)! {
+                    self?.registerFinishTrigger?.onNext(())
+                }
                 self?.dismiss(animated: true, completion: nil)
             }
         )
