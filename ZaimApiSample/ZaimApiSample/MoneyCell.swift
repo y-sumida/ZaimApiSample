@@ -38,4 +38,8 @@ class MoneyCell: UITableViewCell {
                 .disposed(by: bag)
         }
     }
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+        self.selectionStyle = UITableViewCellSelectionStyle.none
+    }
 }
