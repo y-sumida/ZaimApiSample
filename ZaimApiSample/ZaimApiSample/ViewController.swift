@@ -62,6 +62,18 @@ class ViewController: UIViewController {
 
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        // 表示前に認証状態を確認
+        guard let _ = UserDefaults.standard.string(forKey: "oauthToken"),
+            let _ = UserDefaults.standard.string(forKey: "oauthTokenSecret")
+            else {
+                isAuthorized.value = false
+                return
+        }
+    }
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
