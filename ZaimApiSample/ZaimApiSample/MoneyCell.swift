@@ -11,8 +11,6 @@ import RxSwift
 import RxCocoa
 
 class MoneyCell: UITableViewCell {
-    // TODO 費目の表示
-
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var genreLabel: UILabel!
     @IBOutlet weak var amountLabel: UILabel!
@@ -23,7 +21,7 @@ class MoneyCell: UITableViewCell {
             bag = DisposeBag()
             viewModel.date.asObservable()
                 .subscribe(onNext: {[weak self] value in
-                    self?.dateLabel.text = value.description
+                    self?.dateLabel.text = value.substring(from: value.index(value.endIndex, offsetBy: -5))
                 })
                 .disposed(by: bag)
 
