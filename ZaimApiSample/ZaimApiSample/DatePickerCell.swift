@@ -21,7 +21,7 @@ class DatePickerCell: UITableViewCell, UITextFieldDelegate {
             bindValue.asObservable()
                 .subscribe(onNext: {[weak self] value in
                     if value.isEmpty {
-                        self?.dateFormatter.dateFormat  = "yyyy-M-d"
+                        self?.dateFormatter.dateFormat  = "yyyy-MM-dd"
                         self?.textField.text = self?.dateFormatter.string(from: Date())
                     }
                     else {
@@ -51,7 +51,7 @@ class DatePickerCell: UITableViewCell, UITextFieldDelegate {
         textField.inputAccessoryView = toolbar
 
         // デフォルトは当日
-        dateFormatter.dateFormat  = "yyyy-M-d"
+        dateFormatter.dateFormat  = "yyyy-MM-dd"
         textField.text = dateFormatter.string(from: Date())
     }
 
