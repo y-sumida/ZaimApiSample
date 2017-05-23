@@ -14,7 +14,7 @@ class MoneyCell: UITableViewCell {
     // TODO 費目の表示
 
     @IBOutlet weak var dateLabel: UILabel!
-    @IBOutlet weak var modeLabel: UILabel!
+    @IBOutlet weak var genreLabel: UILabel!
     @IBOutlet weak var amountLabel: UILabel!
 
     private var bag: DisposeBag!
@@ -27,9 +27,9 @@ class MoneyCell: UITableViewCell {
                 })
                 .disposed(by: bag)
 
-            viewModel.mode.asObservable()
+            viewModel.genreId.asObservable()
                 .subscribe(onNext: {[weak self] value in
-                    self?.modeLabel.text = value.rawValue
+                    self?.genreLabel.text = value?.description
                 })
                 .disposed(by: bag)
 

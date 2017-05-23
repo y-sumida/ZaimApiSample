@@ -53,7 +53,7 @@
             <connections>
                 <outlet property="amountLabel" destination="SWp-Yd-UKU" id="Nfb-2K-cEA"/>
                 <outlet property="dateLabel" destination="Xpf-jc-32t" id="Nio-Dg-8Yk"/>
-                <outlet property="modeLabel" destination="qA7-rH-gEq" id="j6X-wF-jCg"/>
+                <outlet property="genreLabel" destination="qA7-rH-gEq" id="T7S-fN-KS3"/>
             </connections>
         </tableViewCell>
     </objects>
