@@ -53,6 +53,7 @@ class GenresViewController: UIViewController {
 
     @IBAction func tapDoneButton(_ sender: Any) {
         genreId.value = selectedGenreId
+        categoryId.value = selectedGenreId.parentCategory
         self.dismiss(animated: true, completion: nil)
     }
 }

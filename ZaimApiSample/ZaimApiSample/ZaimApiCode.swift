@@ -194,4 +194,8 @@ enum PaymentGenre : Int {
         case .other: return "その他"
         }
     }
+
+    var parentCategory: PaymentCategory {
+       return PaymentCategory(rawValue: self.rawValue / 100)!
+    }
 }
