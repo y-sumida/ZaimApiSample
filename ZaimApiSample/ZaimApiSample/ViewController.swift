@@ -216,29 +216,51 @@ class ViewController: UIViewController {
 
         self.present(nvc, animated: true, completion: nil)
     }
+
+    fileprivate func showDeleteConfirmDialog(payment: MoneyEditViewModel) {
+        let defaultAction: (UIAlertAction) -> Void = { (action: UIAlertAction!) -> Void in
+            self.viewModel.delete(client: self.oauthClient!, id: payment.id!, mode: payment.mode.value)
+        }
+        let cancelAction: (UIAlertAction) -> Void = { (action: UIAlertAction!) -> Void in
+        }
+
+        let alert: UIAlertController = UIAlertController(title: "本当に削除しますか", message: "", preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "削除", style: .destructive, handler: defaultAction))
+        alert.addAction(UIAlertAction(title: "キャンセル", style: .cancel, handler: cancelAction))
+
+        present(alert, animated: true, completion: nil)
+    }
 }
 
 extension ViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        guard viewModel.payments.count > indexPath.row else { return nil }
-
-        let payment: MoneyEditViewModel = viewModel.payments[indexPath.row]
-
-        let deleteAction = UITableViewRowAction(style: .default, title: "delete"){ [unowned self] (action, indexPath) in
-            self.viewModel.delete(client: self.oauthClient!, id: payment.id!, mode: payment.mode.value)
-        }
-
-        deleteAction.backgroundColor = UIColor.red
-        return [deleteAction]
-    }
-
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard viewModel.payments.count > indexPath.row else { return }
 
-        // 編集画面へ遷移
-        showEditView(viewModel: viewModel.payments[indexPath.row])
-    }
+        DispatchQueue.main.async { // こうしないともたつく
+            let payment: MoneyEditViewModel = self.viewModel.payments[indexPath.row]
 
+            let alert: UIAlertController = UIAlertController(title: "メニュー", message: "選択してください", preferredStyle:  UIAlertControllerStyle.actionSheet)
+            let editAction: UIAlertAction = UIAlertAction(title: "編集", style: .default, handler:{ [unowned self]
+                (action: UIAlertAction!) -> Void in
+                self.showEditView(viewModel: payment)
+            })
+
+            let cancelAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: .cancel, handler:{
+                (action: UIAlertAction!) -> Void in
+                print("cancelAction")
+            })
+
+            let deleteAction: UIAlertAction = UIAlertAction(title: "削除", style: .destructive, handler:{ [unowned self]
+                (action: UIAlertAction!) -> Void in
+                self.showDeleteConfirmDialog(payment: payment)
+            })
+
+            alert.addAction(editAction)
+            alert.addAction(deleteAction)
+            alert.addAction(cancelAction)
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
 }
 
 extension ViewController: UITableViewDataSource {
@@ -253,8 +275,5 @@ extension ViewController: UITableViewDataSource {
         }
 
         return cell
-    }
-
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
     }
 }
