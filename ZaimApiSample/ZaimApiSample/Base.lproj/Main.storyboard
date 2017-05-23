@@ -39,9 +39,20 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="mFe-BO-D24">
-                                <rect key="frame" x="0.0" y="104" width="375" height="563"/>
+                                <rect key="frame" x="0.0" y="104" width="375" height="519"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ryI-1N-Dcn">
+                                <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                                <items>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="QDP-3D-mZg"/>
+                                    <barButtonItem systemItem="compose" id="g0o-IL-hG2">
+                                        <connections>
+                                            <action selector="tapAddButton:" destination="BYZ-38-t0r" id="XWF-QH-JsO"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e7w-UR-Ayo">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <subviews>
@@ -71,27 +82,24 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="rVY-jp-HQS" firstAttribute="leading" secondItem="0Uw-pv-v5N" secondAttribute="trailing" id="1q5-cV-wuG"/>
+                            <constraint firstItem="ryI-1N-Dcn" firstAttribute="top" secondItem="mFe-BO-D24" secondAttribute="bottom" id="4tk-w4-Ejc"/>
                             <constraint firstAttribute="trailing" secondItem="mFe-BO-D24" secondAttribute="trailing" id="ArE-QQ-C1Q"/>
                             <constraint firstItem="e7w-UR-Ayo" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="Fv6-Q3-Oxg"/>
                             <constraint firstItem="0Uw-pv-v5N" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="HpQ-p2-lYD"/>
                             <constraint firstAttribute="trailingMargin" secondItem="rVY-jp-HQS" secondAttribute="trailing" id="TVx-WG-Ngp"/>
                             <constraint firstAttribute="trailing" secondItem="e7w-UR-Ayo" secondAttribute="trailing" id="WcV-Xd-YZr"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="ryI-1N-Dcn" secondAttribute="bottom" id="ZOz-Vw-lQg"/>
                             <constraint firstItem="mFe-BO-D24" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="ZSO-Q0-1ja"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="mFe-BO-D24" secondAttribute="bottom" id="dbp-Su-mKq"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="e7w-UR-Ayo" secondAttribute="bottom" id="fjv-K0-AIK"/>
                             <constraint firstItem="0Uw-pv-v5N" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="hAs-YH-bFF"/>
+                            <constraint firstItem="ryI-1N-Dcn" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="q0A-xk-9h2"/>
+                            <constraint firstAttribute="trailing" secondItem="ryI-1N-Dcn" secondAttribute="trailing" id="qjM-qP-ecA"/>
                             <constraint firstItem="e7w-UR-Ayo" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="r0R-Sl-LiG"/>
                             <constraint firstItem="mFe-BO-D24" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="40" id="uvR-ia-Eus"/>
                             <constraint firstItem="rVY-jp-HQS" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="zlW-UY-Q5a"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="BEm-ih-JOx">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="p5D-xn-Fmq">
-                            <connections>
-                                <action selector="tapAddButton:" destination="BYZ-38-t0r" id="cou-FW-DsL"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="BEm-ih-JOx"/>
                     <connections>
                         <outlet property="oauthView" destination="e7w-UR-Ayo" id="RjI-Di-E22"/>
                         <outlet property="tableView" destination="mFe-BO-D24" id="hNe-lf-1Hr"/>
