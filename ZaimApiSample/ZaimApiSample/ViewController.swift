@@ -18,7 +18,6 @@ class ViewController: UIViewController {
     private let bag: DisposeBag = DisposeBag()
     private let isAuthorized: Variable<Bool> = Variable(true)
 
-    fileprivate var money: MoneyModel!
     fileprivate let viewModel: PaymentsViewModel = PaymentsViewModel()
 
     private var oauthswift: OAuthSwift?
