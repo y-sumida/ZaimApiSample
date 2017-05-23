@@ -36,8 +36,9 @@ class TextEditCell: UITableViewCell, UITextFieldDelegate {
 
             self.textField.rx.text
                 .bind { string in
-                    self.bindValue.value = Int(string!)!
-                    
+                    if let value: String = string, let amount: Int = Int(value) {
+                        self.bindValue.value = amount
+                    }
                 }
                 .addDisposableTo(bag)
         }
