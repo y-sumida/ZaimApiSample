@@ -54,7 +54,7 @@ struct MoneyUpdateRequest: Requestable {
     var parameters: OAuthSwift.Parameters
 
     init(parameter: MoneyUpdateParam) {
-        parameters = ["map": 1, "id": parameter.id, "amount": parameter.amount, "date": parameter.date, "category_id": parameter.categoryId.rawValue, "genreId": parameter.genreId.rawValue]
+        parameters = ["map": 1, "id": parameter.id, "amount": parameter.amount, "date": parameter.date, "category_id": parameter.categoryId.rawValue, "genre_id": parameter.genreId.rawValue]
         path = "home/money/\(parameter.mode.rawValue)/\(parameter.id)"
     }
 }
