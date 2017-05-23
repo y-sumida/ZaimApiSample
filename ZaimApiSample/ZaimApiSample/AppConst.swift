@@ -20,9 +20,6 @@ let paymentCategories: [PaymentCategory] = [
         .education,
         .medical,
         .fashion,
-        .automobile,
-        .taxes,
-        .bigOutlay,
         .other
     ]
 

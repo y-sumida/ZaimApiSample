@@ -24,9 +24,6 @@ enum PaymentCategory : Int {
     case education = 109
     case medical = 110
     case fashion = 111
-    case automobile = 112
-    case taxes = 113
-    case bigOutlay = 114
     case other = 199
 
     var description: String {
@@ -42,9 +39,6 @@ enum PaymentCategory : Int {
         case .education: return "教育"
         case .medical: return "医療"
         case .fashion: return "美容・衣服"
-        case .automobile: return "車"
-        case .taxes: return "税金"
-        case .bigOutlay: return "大型出費"
         case .other: return "その他"
         }
     }
@@ -119,7 +113,7 @@ enum PaymentGenre : Int {
     case estheticClinic = 11107
     case laundry = 11108
     case fashionOther = 11199
-    case other = 11499
+    case other = 19999
 
     var description: String {
         switch self {
