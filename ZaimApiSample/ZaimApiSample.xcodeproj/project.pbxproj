@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9420DD7A1ED454C10008BA44 /* MoneyRegisterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9420DD791ED454C10008BA44 /* MoneyRegisterModel.swift */; };
 		A92870F31ECDDB4A00E0C867 /* MoneyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92870F21ECDDB4A00E0C867 /* MoneyModel.swift */; };
 		A92870F61ECDECE900E0C867 /* MoneyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A92870F41ECDECE900E0C867 /* MoneyCell.xib */; };
 		A92870F91ECDED0D00E0C867 /* MoneyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92870F81ECDED0D00E0C867 /* MoneyCell.swift */; };
@@ -42,6 +43,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9420DD791ED454C10008BA44 /* MoneyRegisterModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoneyRegisterModel.swift; sourceTree = "<group>"; };
 		A92870F21ECDDB4A00E0C867 /* MoneyModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoneyModel.swift; sourceTree = "<group>"; };
 		A92870F41ECDECE900E0C867 /* MoneyCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MoneyCell.xib; sourceTree = "<group>"; };
 		A92870F81ECDED0D00E0C867 /* MoneyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoneyCell.swift; sourceTree = "<group>"; };
@@ -116,6 +118,7 @@
 		A928710B1ED09C5200E0C867 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				9420DD791ED454C10008BA44 /* MoneyRegisterModel.swift */,
 				A92871241ED1D9AB00E0C867 /* MoneyUpdateModel.swift */,
 				A92870FF1ECDF27700E0C867 /* MoneyDeleteModel.swift */,
 				A92870F21ECDDB4A00E0C867 /* MoneyModel.swift */,
@@ -306,6 +309,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A928712D1ED3230300E0C867 /* GenresViewController.swift in Sources */,
+				9420DD7A1ED454C10008BA44 /* MoneyRegisterModel.swift in Sources */,
 				A92871041ED081AC00E0C867 /* EditViewController.swift in Sources */,
 				A92871201ED1D22200E0C867 /* CategoriesViewController.swift in Sources */,
 				A92870F31ECDDB4A00E0C867 /* MoneyModel.swift in Sources */,

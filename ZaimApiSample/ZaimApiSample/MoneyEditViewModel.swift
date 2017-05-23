@@ -46,7 +46,19 @@ class MoneyEditViewModel {
     }
 
     func registerMoney(client: OAuthSwiftClient) {
-        // TODO 登録処理
+        let parameter: MoneyRegisterParam = MoneyRegisterParam(viewModel: self)
+
+        MoneyRegisterModel.call(client: client, parameter: parameter)
+            .observeOn(MainScheduler.instance)
+            .subscribe(
+                onNext: {[weak self] model, response in
+                    self?.finishTrigger.onNext(())
+                },
+                onError: {(error: Error) in
+                    print(error.localizedDescription)
+            }
+            )
+            .addDisposableTo(bag)
     }
 
     func updateMoney(client: OAuthSwiftClient) {
