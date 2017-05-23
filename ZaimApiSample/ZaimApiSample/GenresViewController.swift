@@ -16,21 +16,6 @@ class GenresViewController: UIViewController {
     var categoryId: Variable<PaymentCategory?>!
     var genreId: Variable<PaymentGenre?>!
 
-    fileprivate let genres: [PaymentCategory:[PaymentGenre]] = [
-        .food: [.groceries, .cafe, .breakfast, .lunch, .dinner, .foodOther],
-        .dailyGoods: [.consumable, .childRelated, .petRelated, .tobacco, .dailyGoodsOther],
-        .transport: [.train, .taxi, .bus, .airfares, .transportOther],
-        .phoneNet: [.cellPhone, .fixedLinePhones, .internetRelated, .tvLicense, .delivery, .postcardStamps, .phoneNetOther],
-        .utilities: [.water, .electricity, .gas, .utilitiesOther],
-        .home: [.rent, .mortgage, .furniture, .homeElectronics, .reform, .homeInsurance, .homeOther],
-        .socializing: [.party, .gifts, .ceremonialEvents, .socializingOther],
-        .hobbies: [.leisure, .events, .cinema, .music, .cartoon, .books, .games, .hobbiesOther],
-        .education: [.adultTuitionFees, .newspapers, .referenceBook, .examinationFee, .tuition, .studentInsurance,.cramSchool,.educationOther],
-        .medical: [.hospital, .prescription, .lifeInsurance, .medicalInsurance, .medicalOther],
-        .fashion: [.clothes, .accessories, .underwear, .gymHealth, .beautySalon, .cosmetics, .estheticClinic, .laundry, .fashionOther],
-        .other: [.other]
-    ]
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -60,18 +45,18 @@ class GenresViewController: UIViewController {
 
 extension GenresViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedGenreId = (genres[categoryId.value!]?[indexPath.row])!
+        selectedGenreId = (paymentGenres[categoryId.value!]?[indexPath.row])!
     }
 }
 
 extension GenresViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return genres[categoryId.value!]!.count
+        return paymentGenres[categoryId.value!]!.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: GenreSelectCell = tableView.dequeueReusableCell(withIdentifier: "GenreSelectCell") as! GenreSelectCell
-        cell.genreLabel.text = genres[categoryId.value!]?[indexPath.row].description
+        cell.genreLabel.text = paymentGenres[categoryId.value!]?[indexPath.row].description
         return cell
     }
 }
