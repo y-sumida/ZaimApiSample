@@ -61,6 +61,9 @@ class DatePickerCell: UITableViewCell, UITextFieldDelegate {
         let datePicker            = UIDatePicker()
         datePicker.datePickerMode = UIDatePickerMode.date
         textField.inputView          = datePicker
+        if let dateString: String = textField.text, let date: Date = dateFormatter.date(from: dateString) {
+            datePicker.setDate(date, animated: true)
+        }
         datePicker.addTarget(self, action: #selector(self.dateChanged), for: UIControlEvents.valueChanged)
     }
 
