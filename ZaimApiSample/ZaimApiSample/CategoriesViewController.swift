@@ -13,12 +13,17 @@ class CategoriesViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
 
     private var originarlCategoryId: PaymentCategory!
+    private var originarlGenreId: PaymentGenre!
     var categoryId: Variable<PaymentCategory?>! {
         didSet {
             originarlCategoryId = categoryId.value
         }
     }
-    var genreId: Variable<PaymentGenre?>!
+    var genreId: Variable<PaymentGenre?>! {
+        didSet {
+            originarlGenreId = genreId.value
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,6 +47,7 @@ class CategoriesViewController: UIViewController {
 
     @IBAction func tapCancelButton(_ sender: Any) {
         categoryId.value = originarlCategoryId
+        genreId.value = originarlGenreId
         self.dismiss(animated: true, completion: nil)
     }
 }

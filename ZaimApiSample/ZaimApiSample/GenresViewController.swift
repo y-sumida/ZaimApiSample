@@ -11,10 +11,25 @@ import RxSwift
 
 class GenresViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var doneButton: UIBarButtonItem!
 
-    fileprivate var selectedGenreId: PaymentGenre!
+    private let bag: DisposeBag = DisposeBag()
+
     var categoryId: Variable<PaymentCategory?>!
-    var genreId: Variable<PaymentGenre?>!
+    var genreId: Variable<PaymentGenre?>! {
+        didSet {
+            genreId.asObservable()
+                .subscribe(onNext: {[weak self] value in
+                    // 選択されたらenable
+                    self?.doneButton.isEnabled = true
+                })
+                .disposed(by: bag)
+        }
+    }
+
+    deinit {
+        print("Genres deinit")
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +40,9 @@ class GenresViewController: UIViewController {
             navigationItem.title = "ジャンル"
             navigationItem.hidesBackButton = false
         }
+
+        // 完了ボタンdisable
+        doneButton.isEnabled = false
 
         tableView.delegate = self
         tableView.dataSource = self
@@ -37,15 +55,14 @@ class GenresViewController: UIViewController {
     }
 
     @IBAction func tapDoneButton(_ sender: Any) {
-        genreId.value = selectedGenreId
-        categoryId.value = selectedGenreId.parentCategory
+        categoryId.value = genreId.value?.parentCategory
         self.dismiss(animated: true, completion: nil)
     }
 }
 
 extension GenresViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedGenreId = (paymentGenres[categoryId.value!]?[indexPath.row])!
+        genreId.value = (paymentGenres[categoryId.value!]?[indexPath.row])!
     }
 }
 
