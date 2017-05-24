@@ -29,6 +29,7 @@ class TextEditCell: UITableViewCell, UITextFieldDelegate {
         didSet {
             bag = DisposeBag()
             bindValue.asObservable()
+                .distinctUntilChanged()
                 .subscribe(onNext: {[weak self] value in
                     self?.textField.text = value.description
                 })

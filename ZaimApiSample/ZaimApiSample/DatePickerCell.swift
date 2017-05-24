@@ -19,6 +19,7 @@ class DatePickerCell: UITableViewCell, UITextFieldDelegate {
         didSet {
             bag = DisposeBag()
             bindValue.asObservable()
+                .distinctUntilChanged()
                 .subscribe(onNext: {[weak self] value in
                     if value.isEmpty {
                         self?.dateFormatter.dateFormat  = "yyyy-MM-dd"
