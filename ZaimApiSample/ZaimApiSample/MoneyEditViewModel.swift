@@ -68,6 +68,11 @@ class MoneyEditViewModel {
             .observeOn(MainScheduler.instance)
             .subscribe(
                 onNext: {[weak self] model, response in
+                    self?.original.ammount = (self?.amount.value)!
+                    self?.original.mode = self?.mode.value
+                    self?.original.date = (self?.date.value)!
+                    self?.original.categoryId = self?.categoryId.value
+                    self?.original.genreId = self?.genreId.value
                     self?.finishTrigger.onNext(())
                 },
                 onError: {(error: Error) in
