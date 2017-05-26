@@ -95,7 +95,7 @@ class MoneyEditViewModel {
                     self?.isUpdate.value = category != nil && genre != nil
                 }
                 else {
-                    self?.isUpdate.value = (mode != self?.original.mode || amount != self?.original.ammount || date != self?.original.date || category != self?.original.categoryId || genre != self?.original.genreId)
+                    self?.isUpdate.value = (mode != self?.original.mode || amount != self?.original.ammount || date != self?.original.date || genre != self?.original.genreId)
                 }
             })
             .disposed(by: bag)
