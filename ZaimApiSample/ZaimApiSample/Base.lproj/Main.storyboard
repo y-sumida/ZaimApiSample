@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="70R-hd-WG1">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="70R-hd-WG1">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -112,7 +112,14 @@
                             <constraint firstAttribute="trailing" secondItem="92K-eb-FiO" secondAttribute="trailing" id="rK7-9D-cGN"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="BEm-ih-JOx"/>
+                    <navigationItem key="navigationItem" id="BEm-ih-JOx">
+                        <barButtonItem key="rightBarButtonItem" image="ic-user" id="ubW-Qg-0H0">
+                            <color key="tintColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="tapProfileButton:" destination="BYZ-38-t0r" id="frJ-FG-An0"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="oauthView" destination="e7w-UR-Ayo" id="RjI-Di-E22"/>
                         <outlet property="tableView" destination="mFe-BO-D24" id="hNe-lf-1Hr"/>
@@ -122,6 +129,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1056.8" y="88.605697151424295"/>
+        </scene>
+        <!--Profile View Controller-->
+        <scene sceneID="DA2-lP-Rsz">
+            <objects>
+                <viewController storyboardIdentifier="ProfileViewController" id="byd-3d-TDf" customClass="ProfileViewController" customModule="ZaimApiSample" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="vcW-VS-iHV"/>
+                        <viewControllerLayoutGuide type="bottom" id="KDw-ar-hMM"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="SLg-Qx-kEn">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EWe-vN-tCP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1838" y="89"/>
         </scene>
         <!--Edit View Controller-->
         <scene sceneID="oyG-Pa-WBZ">
@@ -294,4 +319,7 @@
             <point key="canvasLocation" x="6634.3999999999996" y="150.67466266866569"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="ic-user" width="24" height="24"/>
+    </resources>
 </document>

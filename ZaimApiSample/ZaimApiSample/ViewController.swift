@@ -186,6 +186,12 @@ class ViewController: UIViewController {
         showEditView(viewModel: nil)
     }
 
+    @IBAction func tapProfileButton(_ sender: Any) {
+        let vc: ProfileViewController  = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ProfileViewController") as! ProfileViewController
+
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+
     private func bind() {
         viewModel.finishTrigger.asObservable()
             .subscribe(onNext: { [weak self] in

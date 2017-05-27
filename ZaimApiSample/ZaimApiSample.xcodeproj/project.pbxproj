@@ -41,6 +41,7 @@
 		A999556C1ECC8D9A0067ABC8 /* Requestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A999556B1ECC8D9A0067ABC8 /* Requestable.swift */; };
 		A999556E1ECC8E010067ABC8 /* OAuthSwift+ObjectMapper+RxSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = A999556D1ECC8E010067ABC8 /* OAuthSwift+ObjectMapper+RxSwift.swift */; };
 		A99955701ECC942E0067ABC8 /* UserVerifyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A999556F1ECC942E0067ABC8 /* UserVerifyModel.swift */; };
+		A9F306061ED9C1C60040C6B3 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F306051ED9C1C60040C6B3 /* ProfileViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -80,6 +81,7 @@
 		A999556B1ECC8D9A0067ABC8 /* Requestable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Requestable.swift; sourceTree = "<group>"; };
 		A999556D1ECC8E010067ABC8 /* OAuthSwift+ObjectMapper+RxSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "OAuthSwift+ObjectMapper+RxSwift.swift"; sourceTree = "<group>"; };
 		A999556F1ECC942E0067ABC8 /* UserVerifyModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserVerifyModel.swift; sourceTree = "<group>"; };
+		A9F306051ED9C1C60040C6B3 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +106,7 @@
 				A928711F1ED1D22200E0C867 /* CategoriesViewController.swift */,
 				A92871031ED081AC00E0C867 /* EditViewController.swift */,
 				A928712C1ED3230300E0C867 /* GenresViewController.swift */,
+				A9F306051ED9C1C60040C6B3 /* ProfileViewController.swift */,
 				A99955321ECB30B90067ABC8 /* ViewController.swift */,
 			);
 			name = ViewController;
@@ -317,6 +320,7 @@
 				9420DD7C1ED4563D0008BA44 /* AppConst.swift in Sources */,
 				A92871201ED1D22200E0C867 /* CategoriesViewController.swift in Sources */,
 				A92870F31ECDDB4A00E0C867 /* MoneyModel.swift in Sources */,
+				A9F306061ED9C1C60040C6B3 /* ProfileViewController.swift in Sources */,
 				A999556C1ECC8D9A0067ABC8 /* Requestable.swift in Sources */,
 				A92870F91ECDED0D00E0C867 /* MoneyCell.swift in Sources */,
 				A92871231ED1D99B00E0C867 /* MoneyEditViewModel.swift in Sources */,
