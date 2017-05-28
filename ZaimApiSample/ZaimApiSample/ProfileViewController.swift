@@ -12,6 +12,7 @@ import RxSwift
 
 class ProfileViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var deauthButton: UIButton!
 
     fileprivate let sectionTitles:[String] = ["ユーザー名", "入力回数", "連続入力日数"]
 
@@ -26,6 +27,8 @@ class ProfileViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+
+        deauthButton.layer.cornerRadius = 4.0
 
         bind()
 
@@ -45,6 +48,15 @@ class ProfileViewController: UIViewController {
             })
             .disposed(by: bag)
 
+    }
+
+    @IBAction func tapDeauthButton(_ sender: Any) {
+        // ローカルのトークンを削除して初期画面に戻す
+        let defaults = UserDefaults.standard
+        defaults.removeObject(forKey: "oauthToken")
+        defaults.removeObject(forKey: "oauthTokenSecret")
+
+        self.navigationController?.popViewController(animated: true)
     }
 }
 

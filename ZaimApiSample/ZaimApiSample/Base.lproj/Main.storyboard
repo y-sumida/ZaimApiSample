@@ -143,26 +143,55 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="alK-to-Wye">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="553"/>
+                                <color key="backgroundColor" red="0.94117647058823528" green="0.74901960784313726" blue="0.43529411764705883" alpha="0.14999999999999999" colorSpace="calibratedRGB"/>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lg3-TM-aYA">
+                                <rect key="frame" x="0.0" y="573" width="375" height="94"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d3U-Fq-dI4">
+                                        <rect key="frame" x="32" y="0.0" width="311" height="46"/>
+                                        <color key="backgroundColor" red="0.29411764709999999" green="0.63529411759999999" blue="0.17254901959999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="46" id="1kv-SR-Mv7"/>
+                                        </constraints>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <state key="normal" title="認証解除"/>
+                                        <connections>
+                                            <action selector="tapDeauthButton:" destination="byd-3d-TDf" eventType="touchUpInside" id="h3d-rI-jQI"/>
+                                            <action selector="tapRegisterButton:" destination="KbL-z7-ClZ" eventType="touchUpInside" id="Ian-Og-nyA"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.94117647059999998" green="0.74901960779999999" blue="0.43529411759999997" alpha="0.14999999999999999" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="d3U-Fq-dI4" firstAttribute="leading" secondItem="lg3-TM-aYA" secondAttribute="leading" constant="32" id="FM8-iV-3fx"/>
+                                    <constraint firstItem="d3U-Fq-dI4" firstAttribute="top" secondItem="lg3-TM-aYA" secondAttribute="top" id="Qvx-nr-vgO"/>
+                                    <constraint firstAttribute="trailing" secondItem="d3U-Fq-dI4" secondAttribute="trailing" constant="32" id="aJS-NY-RjA"/>
+                                    <constraint firstAttribute="bottom" secondItem="d3U-Fq-dI4" secondAttribute="bottom" constant="48" id="rdX-Dt-9ks"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="KDw-ar-hMM" firstAttribute="top" secondItem="lg3-TM-aYA" secondAttribute="bottom" id="Fox-L8-Ag8"/>
+                            <constraint firstAttribute="trailing" secondItem="lg3-TM-aYA" secondAttribute="trailing" id="MU6-Z3-Er0"/>
                             <constraint firstItem="alK-to-Wye" firstAttribute="leading" secondItem="SLg-Qx-kEn" secondAttribute="leading" id="NYe-SY-xnr"/>
                             <constraint firstAttribute="trailing" secondItem="alK-to-Wye" secondAttribute="trailing" id="aMB-aS-Rh5"/>
-                            <constraint firstItem="KDw-ar-hMM" firstAttribute="top" secondItem="alK-to-Wye" secondAttribute="bottom" id="m4V-jq-Jpc"/>
+                            <constraint firstItem="lg3-TM-aYA" firstAttribute="leading" secondItem="SLg-Qx-kEn" secondAttribute="leading" id="iku-Au-Drd"/>
+                            <constraint firstItem="lg3-TM-aYA" firstAttribute="top" secondItem="alK-to-Wye" secondAttribute="bottom" id="m30-55-PMY"/>
                             <constraint firstItem="alK-to-Wye" firstAttribute="top" secondItem="vcW-VS-iHV" secondAttribute="bottom" id="txX-zv-X0g"/>
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <connections>
+                        <outlet property="deauthButton" destination="d3U-Fq-dI4" id="bCG-Xz-fng"/>
                         <outlet property="tableView" destination="alK-to-Wye" id="xcB-wo-g5F"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EWe-vN-tCP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1838" y="89"/>
+            <point key="canvasLocation" x="1837.5999999999999" y="88.605697151424295"/>
         </scene>
         <!--Edit View Controller-->
         <scene sceneID="oyG-Pa-WBZ">
