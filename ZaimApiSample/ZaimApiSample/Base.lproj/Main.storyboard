@@ -12,7 +12,7 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="ZaimApiSample" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="BYZ-38-t0r" customClass="ViewController" customModule="ZaimApiSample" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -21,40 +21,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="92K-eb-FiO">
-                                <rect key="frame" x="0.0" y="64" width="375" height="44"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Uw-pv-v5N">
-                                        <rect key="frame" x="16" y="12" width="0.0" height="20"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="20" id="PGS-SM-vYG"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                        <color key="textColor" red="0.14901960784313725" green="0.14901960784313725" blue="0.14901960784313725" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rVY-jp-HQS">
-                                        <rect key="frame" x="279" y="7" width="80" height="30"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="80" id="XbT-wb-Inh"/>
-                                        </constraints>
-                                        <state key="normal" title="認証解除"/>
-                                        <connections>
-                                            <action selector="tapDeauthButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="lEw-8H-x4i"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" red="0.94117647058823528" green="0.74901960784313726" blue="0.43529411764705883" alpha="0.14999999999999999" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstItem="0Uw-pv-v5N" firstAttribute="leading" secondItem="92K-eb-FiO" secondAttribute="leading" constant="16" id="0jB-5A-kGn"/>
-                                    <constraint firstAttribute="trailing" secondItem="rVY-jp-HQS" secondAttribute="trailing" constant="16" id="Kis-Hj-FMb"/>
-                                    <constraint firstAttribute="height" constant="44" id="VUf-iw-qiI"/>
-                                    <constraint firstItem="0Uw-pv-v5N" firstAttribute="centerY" secondItem="92K-eb-FiO" secondAttribute="centerY" id="jjL-21-i2v"/>
-                                    <constraint firstItem="rVY-jp-HQS" firstAttribute="centerY" secondItem="92K-eb-FiO" secondAttribute="centerY" id="u0E-Hw-z4W"/>
-                                </constraints>
-                            </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="mFe-BO-D24">
-                                <rect key="frame" x="0.0" y="108" width="375" height="515"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="559"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ryI-1N-Dcn">
@@ -96,12 +64,9 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="92K-eb-FiO" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="4Kh-L5-Q1w"/>
                             <constraint firstItem="ryI-1N-Dcn" firstAttribute="top" secondItem="mFe-BO-D24" secondAttribute="bottom" id="4tk-w4-Ejc"/>
                             <constraint firstAttribute="trailing" secondItem="mFe-BO-D24" secondAttribute="trailing" id="ArE-QQ-C1Q"/>
                             <constraint firstItem="e7w-UR-Ayo" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="Fv6-Q3-Oxg"/>
-                            <constraint firstItem="mFe-BO-D24" firstAttribute="top" secondItem="92K-eb-FiO" secondAttribute="bottom" id="QZu-Nm-YAB"/>
-                            <constraint firstItem="92K-eb-FiO" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="V1r-xg-Lyo"/>
                             <constraint firstAttribute="trailing" secondItem="e7w-UR-Ayo" secondAttribute="trailing" id="WcV-Xd-YZr"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="ryI-1N-Dcn" secondAttribute="bottom" id="ZOz-Vw-lQg"/>
                             <constraint firstItem="mFe-BO-D24" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="ZSO-Q0-1ja"/>
@@ -109,7 +74,7 @@
                             <constraint firstItem="ryI-1N-Dcn" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="q0A-xk-9h2"/>
                             <constraint firstAttribute="trailing" secondItem="ryI-1N-Dcn" secondAttribute="trailing" id="qjM-qP-ecA"/>
                             <constraint firstItem="e7w-UR-Ayo" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="r0R-Sl-LiG"/>
-                            <constraint firstAttribute="trailing" secondItem="92K-eb-FiO" secondAttribute="trailing" id="rK7-9D-cGN"/>
+                            <constraint firstItem="mFe-BO-D24" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="ytl-LE-A3G"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="BEm-ih-JOx">
@@ -123,7 +88,6 @@
                     <connections>
                         <outlet property="oauthView" destination="e7w-UR-Ayo" id="RjI-Di-E22"/>
                         <outlet property="tableView" destination="mFe-BO-D24" id="hNe-lf-1Hr"/>
-                        <outlet property="userNameLabel" destination="0Uw-pv-v5N" id="krm-Fx-Edt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -133,7 +97,7 @@
         <!--Profile View Controller-->
         <scene sceneID="DA2-lP-Rsz">
             <objects>
-                <viewController storyboardIdentifier="ProfileViewController" id="byd-3d-TDf" customClass="ProfileViewController" customModule="ZaimApiSample" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ProfileViewController" automaticallyAdjustsScrollViewInsets="NO" id="byd-3d-TDf" customClass="ProfileViewController" customModule="ZaimApiSample" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="vcW-VS-iHV"/>
                         <viewControllerLayoutGuide type="bottom" id="KDw-ar-hMM"/>
@@ -183,7 +147,6 @@
                             <constraint firstItem="alK-to-Wye" firstAttribute="top" secondItem="vcW-VS-iHV" secondAttribute="bottom" id="txX-zv-X0g"/>
                         </constraints>
                     </view>
-                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <connections>
                         <outlet property="deauthButton" destination="d3U-Fq-dI4" id="bCG-Xz-fng"/>
                         <outlet property="tableView" destination="alK-to-Wye" id="xcB-wo-g5F"/>

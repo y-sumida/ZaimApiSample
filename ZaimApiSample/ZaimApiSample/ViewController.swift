@@ -12,7 +12,6 @@ import RxSwift
 
 class ViewController: UIViewController {
     @IBOutlet weak var oauthView: UIView!
-    @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
 
     private let bag: DisposeBag = DisposeBag()
@@ -57,10 +56,6 @@ class ViewController: UIViewController {
 
         // Client生成
         generateClient()
-
-        // 認証チェック
-        veryfyUser()
-
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -132,7 +127,6 @@ class ViewController: UIViewController {
                 defaults.setValue(credential.oauthTokenSecret, forKey: "oauthTokenSecret")
 
                 self.generateClient()
-                self.veryfyUser()
                 self.viewModel.fetch(client: self.oauthClient!)
             },
             failure: { error in
@@ -151,35 +145,6 @@ class ViewController: UIViewController {
         }
 
         oauthClient = OAuthSwiftClient(consumerKey: apiKeys.consumerKey, consumerSecret: apiKeys.consumerSecret, oauthToken: token, oauthTokenSecret: secret, version: .oauth1)
-    }
-
-    private func veryfyUser() {
-        guard let client: OAuthSwiftClient = oauthClient  else { return }
-
-        // APIコールして成功だったら認証ボタンを閉じる
-        // TODO loginの値を見る
-        UserVerifyModel.call(client: client)
-            .observeOn(MainScheduler.instance)
-            .subscribe(
-                onNext: {model, response in
-                    self.isAuthorized.value = true
-                    self.userNameLabel.text = "ユーザ:\(model.name)"
-                    print(model)
-            },
-                onError: {(error: Error) in
-                    print(error.localizedDescription)
-            }
-            )
-            .addDisposableTo(bag)
-    }
-
-    @IBAction func tapDeauthButton(_ sender: Any) {
-        // ローカルのトークンを削除して認証用のViewを表示
-        let defaults = UserDefaults.standard
-        defaults.removeObject(forKey: "oauthToken")
-        defaults.removeObject(forKey: "oauthTokenSecret")
-
-        isAuthorized.value = false
     }
 
     @IBAction func tapAddButton(_ sender: Any) {
