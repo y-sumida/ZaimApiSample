@@ -189,6 +189,7 @@ class ViewController: UIViewController {
     @IBAction func tapProfileButton(_ sender: Any) {
         let vc: ProfileViewController  = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ProfileViewController") as! ProfileViewController
 
+        vc.oauthClient = oauthClient
         self.navigationController?.pushViewController(vc, animated: true)
     }
 

@@ -14,6 +14,8 @@ import RxSwift
 class UserVerifyModel: Mappable {
     var id: String = ""
     var name: String = ""
+    var inputCount: Int = 0
+    var dayCount: Int = 0
 
     required convenience init?(map: Map) {
         self.init()
@@ -22,6 +24,8 @@ class UserVerifyModel: Mappable {
     func mapping(map: Map) {
         id <- map["me.id"]
         name <- map["me.name"]
+        inputCount <- map["me.input_count"]
+        dayCount <- map["me.day_count"]
     }
 
     static func call(client: OAuthSwiftClient) -> Observable<(UserVerifyModel, HTTPURLResponse)> {
