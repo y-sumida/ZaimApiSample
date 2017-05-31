@@ -179,6 +179,13 @@ class ViewController: UIViewController {
                 self?.viewModel.fetch(client: (self?.oauthClient)!)
             })
             .disposed(by: bag)
+
+        // 最下端まで到達したか
+        tableView.rx.reachedBottom.asObservable()
+            .subscribe(onNext: {
+                print("reached bottom")
+            })
+            .disposed(by: bag)
     }
 
     fileprivate func showEditView(viewModel: MoneyEditViewModel?) {

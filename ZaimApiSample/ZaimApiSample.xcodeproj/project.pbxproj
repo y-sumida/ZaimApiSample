@@ -42,6 +42,7 @@
 		A999556E1ECC8E010067ABC8 /* OAuthSwift+ObjectMapper+RxSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = A999556D1ECC8E010067ABC8 /* OAuthSwift+ObjectMapper+RxSwift.swift */; };
 		A99955701ECC942E0067ABC8 /* UserVerifyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A999556F1ECC942E0067ABC8 /* UserVerifyModel.swift */; };
 		A9D349BC1EDB13C900B846AD /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D349BB1EDB13C900B846AD /* ProfileViewModel.swift */; };
+		A9D349BE1EDEFE4100B846AD /* UIScrollView+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D349BD1EDEFE4100B846AD /* UIScrollView+Rx.swift */; };
 		A9F306061ED9C1C60040C6B3 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F306051ED9C1C60040C6B3 /* ProfileViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -83,6 +84,7 @@
 		A999556D1ECC8E010067ABC8 /* OAuthSwift+ObjectMapper+RxSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "OAuthSwift+ObjectMapper+RxSwift.swift"; sourceTree = "<group>"; };
 		A999556F1ECC942E0067ABC8 /* UserVerifyModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserVerifyModel.swift; sourceTree = "<group>"; };
 		A9D349BB1EDB13C900B846AD /* ProfileViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		A9D349BD1EDEFE4100B846AD /* UIScrollView+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIScrollView+Rx.swift"; sourceTree = "<group>"; };
 		A9F306051ED9C1C60040C6B3 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -118,6 +120,7 @@
 			isa = PBXGroup;
 			children = (
 				A999556D1ECC8E010067ABC8 /* OAuthSwift+ObjectMapper+RxSwift.swift */,
+				A9D349BD1EDEFE4100B846AD /* UIScrollView+Rx.swift */,
 			);
 			name = Extension;
 			sourceTree = "<group>";
@@ -330,6 +333,7 @@
 				A99955701ECC942E0067ABC8 /* UserVerifyModel.swift in Sources */,
 				A92871301ED333AB00E0C867 /* GenreSelectCell.swift in Sources */,
 				A92871161ED16B7700E0C867 /* CategorySelectCell.swift in Sources */,
+				A9D349BE1EDEFE4100B846AD /* UIScrollView+Rx.swift in Sources */,
 				A99955331ECB30B90067ABC8 /* ViewController.swift in Sources */,
 				A92871071ED0938D00E0C867 /* TextEditCell.swift in Sources */,
 				A9D349BC1EDB13C900B846AD /* ProfileViewModel.swift in Sources */,
