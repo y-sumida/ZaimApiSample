@@ -22,7 +22,7 @@ class MoneyModel: Mappable {
         item <- map["money"]
     }
 
-    static func call(client: OAuthSwiftClient) -> Observable<(MoneyModel, HTTPURLResponse)> {
+    static func call(client: OAuthSwiftClient, page: Int = 1) -> Observable<(MoneyModel, HTTPURLResponse)> {
         return client.rx_responseObject(request: MoneyRequest())
     }
 
@@ -53,7 +53,9 @@ struct MoneyRequest: Requestable {
     typealias Response = MoneyModel
     var method: OAuthSwiftHTTPRequest.Method = .GET
     var path: String = "home/money"
-    var parameters: OAuthSwift.Parameters = ["mapping": 1, "mode": MoneyMode.payment.rawValue, "limit": 100, "page": 1]
+    var parameters: OAuthSwift.Parameters = [:]
 
-    init() {}
+    init(page: Int = 1) {
+        parameters = ["mapping": 1, "mode": MoneyMode.payment.rawValue, "limit": 100, "page": page]
+    }
 }
