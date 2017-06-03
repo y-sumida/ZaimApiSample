@@ -22,7 +22,13 @@ class PaymentsViewModel {
             .observeOn(MainScheduler.instance)
             .subscribe(
                 onNext: {[weak self] model, response in
-                    self?.payments = model.item.map { return MoneyEditViewModel(money: $0) }
+                    if page == 1 {
+                        self?.payments = model.item.map { return MoneyEditViewModel(money: $0) }
+                    }
+                    else {
+                        self?.payments += model.item.map { return MoneyEditViewModel(money: $0) }
+                    }
+
                     self?.finishTrigger.onNext(())
                 },
                 onError: {[weak self] (error: Error) in
