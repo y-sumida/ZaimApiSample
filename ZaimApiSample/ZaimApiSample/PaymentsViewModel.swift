@@ -17,8 +17,8 @@ class PaymentsViewModel {
 
     var payments: [MoneyEditViewModel] = []
 
-    func fetch(client: OAuthSwiftClient) {
-        MoneyModel.call(client: client)
+    func fetch(client: OAuthSwiftClient, page: Int = 1) {
+        MoneyModel.call(client: client, page: page)
             .observeOn(MainScheduler.instance)
             .subscribe(
                 onNext: {[weak self] model, response in
