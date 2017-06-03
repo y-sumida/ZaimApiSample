@@ -14,7 +14,6 @@ class PaymentsViewModel {
     let finishTrigger: PublishSubject<Void> = PublishSubject()
 
     private let bag = DisposeBag()
-    private var model: MoneyModel!
 
     var payments: [MoneyEditViewModel] = []
 
@@ -23,8 +22,6 @@ class PaymentsViewModel {
             .observeOn(MainScheduler.instance)
             .subscribe(
                 onNext: {[weak self] model, response in
-                    dump(model)
-                    self?.model = model
                     self?.payments = model.item.map { return MoneyEditViewModel(money: $0) }
                     self?.finishTrigger.onNext(())
                 },
