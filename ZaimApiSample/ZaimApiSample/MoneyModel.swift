@@ -56,6 +56,6 @@ struct MoneyRequest: Requestable {
     var parameters: OAuthSwift.Parameters = [:]
 
     init(page: Int = 1) {
-        parameters = ["mapping": 1, "mode": MoneyMode.payment.rawValue, "limit": 100, "page": page]
+        parameters = ["mapping": 1, "mode": MoneyMode.payment.rawValue, "limit": 20, "page": page]
     }
 }
