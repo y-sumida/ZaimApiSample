@@ -23,7 +23,7 @@ class MoneyModel: Mappable {
     }
 
     static func call(client: OAuthSwiftClient, page: Int = 1) -> Observable<(MoneyModel, HTTPURLResponse)> {
-        return client.rx_responseObject(request: MoneyRequest())
+        return client.rx_responseObject(request: MoneyRequest(page: page))
     }
 
     class Item: Mappable {
