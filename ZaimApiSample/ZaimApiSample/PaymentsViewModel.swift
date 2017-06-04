@@ -15,20 +15,35 @@ class PaymentsViewModel {
 
     private let bag = DisposeBag()
 
+    private var page: Int = 1
+
     var payments: [MoneyEditViewModel] = []
 
-    func fetch(client: OAuthSwiftClient, page: Int = 1) {
+    func fetch(client: OAuthSwiftClient) {
+        page = 1
+
         MoneyModel.call(client: client, page: page)
             .observeOn(MainScheduler.instance)
             .subscribe(
                 onNext: {[weak self] model, response in
-                    if page == 1 {
-                        self?.payments = model.item.map { return MoneyEditViewModel(money: $0) }
-                    }
-                    else {
-                        self?.payments += model.item.map { return MoneyEditViewModel(money: $0) }
-                    }
+                    self?.payments = model.item.map { return MoneyEditViewModel(money: $0) }
+                    self?.finishTrigger.onNext(())
+                },
+                onError: {[weak self] (error: Error) in
+                    print(error.localizedDescription)
+                }
+            )
+            .addDisposableTo(bag)
+    }
 
+    func moreFetch(client: OAuthSwiftClient) {
+        page += 1
+
+        MoneyModel.call(client: client, page: page)
+            .observeOn(MainScheduler.instance)
+            .subscribe(
+                onNext: {[weak self] model, response in
+                    self?.payments += model.item.map { return MoneyEditViewModel(money: $0) }
                     self?.finishTrigger.onNext(())
                 },
                 onError: {[weak self] (error: Error) in

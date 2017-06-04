@@ -182,8 +182,8 @@ class ViewController: UIViewController {
 
         // 最下端まで到達したか
         tableView.rx.reachedBottom.asObservable()
-            .subscribe(onNext: {
-                print("reached bottom")
+            .subscribe(onNext: { [weak self] in
+                self?.viewModel.moreFetch(client: (self?.oauthClient)!)
             })
             .disposed(by: bag)
     }
