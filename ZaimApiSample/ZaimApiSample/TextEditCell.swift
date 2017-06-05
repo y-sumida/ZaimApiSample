@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class TextEditCell: UITableViewCell, UITextFieldDelegate {
+class TextEditCell: UITableViewCell {
     @IBOutlet weak var textField: UITextField!
 
     var placeholder: String = "" {
@@ -71,7 +71,9 @@ class TextEditCell: UITableViewCell, UITextFieldDelegate {
         keyboardType = .default
         textField.isUserInteractionEnabled = true
     }
+}
 
+extension TextEditCell: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool{
         textField.resignFirstResponder()
         return true
