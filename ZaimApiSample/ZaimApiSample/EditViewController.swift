@@ -25,6 +25,8 @@ class EditViewController: UIViewController {
     var client: OAuthSwiftClient!
     var registerFinishTrigger: PublishSubject<Void>?
 
+    fileprivate let sectionTitles:[String] = ["金額", "カテゴリー", "日付"]
+
     deinit {
         print("Edit deinit")
     }
@@ -119,37 +121,36 @@ extension EditViewController: UITableViewDelegate {
 }
 
 extension EditViewController: UITableViewDataSource {
-    // TODO セクション数、行数、セルを調整する
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return sectionTitles.count
+    }
+
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return sectionTitles[section]
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
-            return 1 // 金額
-        }
-        else {
-            return 2 // カテゴリ、日付
-        }
+        return 1
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.section == 0 {
+        switch indexPath.section {
+        case 0:
             let cell: TextEditCell = tableView.dequeueReusableCell(withIdentifier: "TextEditCell") as! TextEditCell
             cell.placeholder = "金額"
             cell.keyboardType = .numberPad
             cell.bindValue = viewModel.amount
             return cell
-        }
-        else if indexPath.row == 0 {
+        case 1:
             let cell: CategorySelectCell = tableView.dequeueReusableCell(withIdentifier: "CategorySelectCell") as! CategorySelectCell
             cell.bindValue = viewModel.genreId
             return cell
-        }
-        else {
+        case 2:
             let cell: DatePickerCell = tableView.dequeueReusableCell(withIdentifier: "DatePickerCell") as! DatePickerCell
             cell.bindValue = viewModel.date
             return cell
+        default:
+            return UITableViewCell()
         }
     }
 }
