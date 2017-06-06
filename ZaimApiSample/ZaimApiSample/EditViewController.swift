@@ -62,6 +62,19 @@ class EditViewController: UIViewController {
         tableView.register(categoryNib, forCellReuseIdentifier: "CategorySelectCell")
         let dateNib = UINib(nibName: "DatePickerCell", bundle: nil)
         tableView.register(dateNib, forCellReuseIdentifier: "DatePickerCell")
+
+        // キーボードイベント検知
+        NotificationCenter.default.rx.notification(NSNotification.Name.UIKeyboardWillShow, object: nil)
+            .bind { [unowned self] notification in
+                self.keyboardWillShow(notification)
+            }
+            .addDisposableTo(bag)
+
+        NotificationCenter.default.rx.notification(NSNotification.Name.UIKeyboardWillHide, object: nil)
+            .bind { [unowned self] notification in
+                self.keyboardWillHide(notification)
+            }
+            .addDisposableTo(bag)
     }
 
     override func didReceiveMemoryWarning() {
@@ -99,6 +112,38 @@ class EditViewController: UIViewController {
                 }
             )
             .disposed(by: bag)
+    }
+
+    func keyboardWillShow(_ notification: Notification) {
+        if let userInfo = notification.userInfo,
+            let firstResponder: UIResponder = self.view.searchFirstResponder(),
+            let textField: UITextField = firstResponder as? UITextField,
+            let keyboardFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as AnyObject).cgRectValue, let animationDuration = (userInfo[UIKeyboardAnimationDurationUserInfoKey] as AnyObject).doubleValue {
+
+            tableView.contentInset = UIEdgeInsets.zero
+            tableView.scrollIndicatorInsets = UIEdgeInsets.zero
+
+            let convertedKeyboardFrame: CGRect = tableView.convert(keyboardFrame, from: nil)
+            let convertedTextFieldFrame: CGRect = textField.convert(textField.frame, to: tableView)
+
+            let offsetY: CGFloat = convertedTextFieldFrame.maxY - convertedKeyboardFrame.minY
+            if offsetY > 0 {
+                UIView.beginAnimations("ResizeForKeyboard", context: nil)
+                UIView.setAnimationDuration(animationDuration)
+
+                let contentInsets = UIEdgeInsetsMake(0, 0, offsetY, 0)
+                tableView.contentInset = contentInsets
+                tableView.scrollIndicatorInsets = contentInsets
+                tableView.contentOffset = CGPoint(x: 0, y: tableView.contentOffset.y + offsetY)
+
+                UIView.commitAnimations()
+            }
+        }
+    }
+
+    func keyboardWillHide(_ notification: Notification) {
+        tableView.contentInset = UIEdgeInsets.zero
+        tableView.scrollIndicatorInsets = UIEdgeInsets.zero
     }
 }
 
