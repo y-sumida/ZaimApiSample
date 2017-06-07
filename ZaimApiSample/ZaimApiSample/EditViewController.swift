@@ -63,18 +63,37 @@ class EditViewController: UIViewController {
         let dateNib = UINib(nibName: "DatePickerCell", bundle: nil)
         tableView.register(dateNib, forCellReuseIdentifier: "DatePickerCell")
 
+        // キーボード外をタップしたときにキーボードを閉じる
+        let tapGesture: UITapGestureRecognizer = UITapGestureRecognizer()
+        tapGesture.cancelsTouchesInView = false
+
+        self.view.addGestureRecognizer(tapGesture)
+
+        tapGesture.rx.event.subscribe { [unowned self] _ in
+            self.view.endEditing(true)
+            }.disposed(by: bag)
+
         // キーボードイベント検知
         NotificationCenter.default.rx.notification(NSNotification.Name.UIKeyboardWillShow, object: nil)
             .bind { [unowned self] notification in
+                tapGesture.cancelsTouchesInView = true
                 self.keyboardWillShow(notification)
             }
-            .addDisposableTo(bag)
+            .disposed(by: bag)
 
         NotificationCenter.default.rx.notification(NSNotification.Name.UIKeyboardWillHide, object: nil)
             .bind { [unowned self] notification in
                 self.keyboardWillHide(notification)
             }
-            .addDisposableTo(bag)
+            .disposed(by: bag)
+
+        NotificationCenter.default.rx.notification(NSNotification.Name.UIKeyboardDidHide, object: nil)
+            .bind { _ in
+                // キーボードが消えたら、didSelectRowAtを検知できるように
+                tapGesture.cancelsTouchesInView = false
+            }
+            .disposed(by: bag)
+
     }
 
     override func didReceiveMemoryWarning() {
