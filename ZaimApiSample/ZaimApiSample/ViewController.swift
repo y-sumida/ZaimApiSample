@@ -127,7 +127,6 @@ class ViewController: UIViewController {
                 defaults.setValue(credential.oauthTokenSecret, forKey: "oauthTokenSecret")
 
                 self.generateClient()
-                self.viewModel.fetch(client: self.oauthClient!, isRefresh: true)
             },
             failure: { error in
                 print(error.description)

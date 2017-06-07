@@ -47,28 +47,6 @@ class PaymentsViewModel {
             .addDisposableTo(bag)
     }
 
-    func moreFetch(client: OAuthSwiftClient) {
-        guard hasNext else { return }
-
-        page += 1
-
-        MoneyModel.call(client: client, page: page)
-            .observeOn(MainScheduler.instance)
-            .subscribe(
-                onNext: {[weak self] model, response in
-                    self?.payments += model.item.map { return MoneyEditViewModel(money: $0) }
-                    if model.item.count < defaultApiPageLimit {
-                        self?.hasNext = false
-                    }
-                    self?.finishTrigger.onNext(())
-                },
-                onError: {[weak self] (error: Error) in
-                    print(error.localizedDescription)
-                }
-            )
-            .addDisposableTo(bag)
-    }
-
     func delete(client: OAuthSwiftClient, id: Int, mode: MoneyMode) {
         MoneyDeleteModel.call(client: client, id: id, mode: mode)
             .observeOn(MainScheduler.instance)
