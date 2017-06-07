@@ -16,6 +16,7 @@ class PaymentsViewModel {
     private let bag = DisposeBag()
 
     private var page: Int = 1
+    private var hasNext: Bool = true
 
     var payments: [MoneyEditViewModel] = []
 
@@ -27,6 +28,9 @@ class PaymentsViewModel {
             .subscribe(
                 onNext: {[weak self] model, response in
                     self?.payments = model.item.map { return MoneyEditViewModel(money: $0) }
+                    if model.item.count < defaultApiPageLimit {
+                        self?.hasNext = false
+                    }
                     self?.finishTrigger.onNext(())
                 },
                 onError: {[weak self] (error: Error) in
@@ -37,6 +41,8 @@ class PaymentsViewModel {
     }
 
     func moreFetch(client: OAuthSwiftClient) {
+        guard hasNext else { return }
+
         page += 1
 
         MoneyModel.call(client: client, page: page)
@@ -44,6 +50,9 @@ class PaymentsViewModel {
             .subscribe(
                 onNext: {[weak self] model, response in
                     self?.payments += model.item.map { return MoneyEditViewModel(money: $0) }
+                    if model.item.count < defaultApiPageLimit {
+                        self?.hasNext = false
+                    }
                     self?.finishTrigger.onNext(())
                 },
                 onError: {[weak self] (error: Error) in

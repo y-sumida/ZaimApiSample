@@ -8,6 +8,8 @@
 
 import Foundation
 
+let defaultApiPageLimit: Int = 20
+
 let paymentCategories: [PaymentCategory] = [
         .food,
         .dailyGoods,
