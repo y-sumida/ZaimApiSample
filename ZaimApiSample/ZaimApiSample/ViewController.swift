@@ -25,7 +25,7 @@ class ViewController: UIViewController {
         didSet {
             if let client: OAuthSwiftClient = oauthClient {
                 // 明細取得
-                self.viewModel.fetch(client: client)
+                self.viewModel.fetch(client: client, isRefresh: true)
             }
         }
     }
@@ -81,7 +81,7 @@ class ViewController: UIViewController {
 
     func refresh(sender: UIRefreshControl) {
         // 再読込
-        viewModel.fetch(client: oauthClient!)
+        viewModel.fetch(client: oauthClient!, isRefresh: true)
     }
 
     private func readApiKeys() -> (consumerKey: String, consumerSecret: String)? {
@@ -127,7 +127,7 @@ class ViewController: UIViewController {
                 defaults.setValue(credential.oauthTokenSecret, forKey: "oauthTokenSecret")
 
                 self.generateClient()
-                self.viewModel.fetch(client: self.oauthClient!)
+                self.viewModel.fetch(client: self.oauthClient!, isRefresh: true)
             },
             failure: { error in
                 print(error.description)
@@ -176,14 +176,14 @@ class ViewController: UIViewController {
         // 新規登録後にAPIを呼び直す
         registerFinishTrigger.asObservable()
             .subscribe(onNext: { [weak self] in
-                self?.viewModel.fetch(client: (self?.oauthClient)!)
+                self?.viewModel.fetch(client: (self?.oauthClient)!, isRefresh: true)
             })
             .disposed(by: bag)
 
         // 最下端まで到達したか
         tableView.rx.reachedBottom.asObservable()
             .subscribe(onNext: { [weak self] in
-                self?.viewModel.moreFetch(client: (self?.oauthClient)!)
+                self?.viewModel.fetch(client: (self?.oauthClient)!, isRefresh: false)
             })
             .disposed(by: bag)
     }

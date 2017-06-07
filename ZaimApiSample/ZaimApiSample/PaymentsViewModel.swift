@@ -20,17 +20,24 @@ class PaymentsViewModel {
 
     var payments: [MoneyEditViewModel] = []
 
-    func fetch(client: OAuthSwiftClient) {
-        page = 1
+    func fetch(client: OAuthSwiftClient, isRefresh: Bool = false) {
+        if isRefresh {
+            page = 1
+            payments.removeAll()
+            hasNext = true
+        }
+
+        guard hasNext else { return }
 
         MoneyModel.call(client: client, page: page)
             .observeOn(MainScheduler.instance)
             .subscribe(
                 onNext: {[weak self] model, response in
-                    self?.payments = model.item.map { return MoneyEditViewModel(money: $0) }
+                    self?.payments += model.item.map { return MoneyEditViewModel(money: $0) }
                     if model.item.count < defaultApiPageLimit {
                         self?.hasNext = false
                     }
+                    self?.page += 1
                     self?.finishTrigger.onNext(())
                 },
                 onError: {[weak self] (error: Error) in
