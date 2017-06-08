@@ -19,6 +19,7 @@ class PaymentsViewModel {
     private var hasNext: Bool = true
 
     var payments: [MoneyEditViewModel] = []
+    var observablePayments: Variable<[MoneyEditViewModel]> = Variable([])
 
     func fetch(client: OAuthSwiftClient, isRefresh: Bool = false) {
         if isRefresh {
@@ -34,6 +35,7 @@ class PaymentsViewModel {
             .subscribe(
                 onNext: {[weak self] model, response in
                     self?.payments += model.item.map { return MoneyEditViewModel(money: $0) }
+                    self?.observablePayments.value = (self?.payments)!
                     if model.item.count < defaultApiPageLimit {
                         self?.hasNext = false
                     }
