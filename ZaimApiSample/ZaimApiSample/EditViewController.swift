@@ -34,66 +34,13 @@ class EditViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // ナビゲーションバー設定
-        if let navi = navigationController {
-            navi.setNavigationBarHidden(false, animated: true)
-            if let _ = viewModel {
-                navigationItem.title = "編集"
-                registerButton.setTitle("更新する", for: .normal)
-                isEditMode = true
-            }
-            else {
-                navigationItem.title = "登録"
-                registerButton.setTitle("登録する", for: .normal)
-                isEditMode = false
-                viewModel = MoneyEditViewModel(money: nil)
-            }
-            navigationItem.hidesBackButton = false
-        }
-
-        //
         registerButton.layer.cornerRadius = 4.0
 
-        tableView.delegate = self
-        tableView.dataSource = self
-        let textNib = UINib(nibName: "TextEditCell", bundle: nil)
-        tableView.register(textNib, forCellReuseIdentifier: "TextEditCell")
-        let categoryNib = UINib(nibName: "CategorySelectCell", bundle: nil)
-        tableView.register(categoryNib, forCellReuseIdentifier: "CategorySelectCell")
-        let dateNib = UINib(nibName: "DatePickerCell", bundle: nil)
-        tableView.register(dateNib, forCellReuseIdentifier: "DatePickerCell")
+        configureNavigation()
 
-        // キーボード外をタップしたときにキーボードを閉じる
-        let tapGesture: UITapGestureRecognizer = UITapGestureRecognizer()
-        tapGesture.cancelsTouchesInView = false
+        configureTableView()
 
-        self.view.addGestureRecognizer(tapGesture)
-
-        tapGesture.rx.event.subscribe { [unowned self] _ in
-            self.view.endEditing(true)
-            }.disposed(by: bag)
-
-        // キーボードイベント検知
-        NotificationCenter.default.rx.notification(NSNotification.Name.UIKeyboardWillShow, object: nil)
-            .bind { [unowned self] notification in
-                tapGesture.cancelsTouchesInView = true
-                self.keyboardWillShow(notification)
-            }
-            .disposed(by: bag)
-
-        NotificationCenter.default.rx.notification(NSNotification.Name.UIKeyboardWillHide, object: nil)
-            .bind { [unowned self] notification in
-                self.keyboardWillHide(notification)
-            }
-            .disposed(by: bag)
-
-        NotificationCenter.default.rx.notification(NSNotification.Name.UIKeyboardDidHide, object: nil)
-            .bind { _ in
-                // キーボードが消えたら、didSelectRowAtを検知できるように
-                tapGesture.cancelsTouchesInView = false
-            }
-            .disposed(by: bag)
-
+        configureKeyboard()
     }
 
     override func didReceiveMemoryWarning() {
@@ -131,6 +78,70 @@ class EditViewController: UIViewController {
                 }
             )
             .disposed(by: bag)
+    }
+
+    private func configureTableView() {
+        tableView.delegate = self
+        tableView.dataSource = self
+        let textNib = UINib(nibName: "TextEditCell", bundle: nil)
+        tableView.register(textNib, forCellReuseIdentifier: "TextEditCell")
+        let categoryNib = UINib(nibName: "CategorySelectCell", bundle: nil)
+        tableView.register(categoryNib, forCellReuseIdentifier: "CategorySelectCell")
+        let dateNib = UINib(nibName: "DatePickerCell", bundle: nil)
+        tableView.register(dateNib, forCellReuseIdentifier: "DatePickerCell")
+    }
+
+    private func configureNavigation() {
+        // ナビゲーションバー設定
+        if let navi = navigationController {
+            navi.setNavigationBarHidden(false, animated: true)
+            if let _ = viewModel {
+                navigationItem.title = "編集"
+                registerButton.setTitle("更新する", for: .normal)
+                isEditMode = true
+            }
+            else {
+                navigationItem.title = "登録"
+                registerButton.setTitle("登録する", for: .normal)
+                isEditMode = false
+                viewModel = MoneyEditViewModel(money: nil)
+            }
+            navigationItem.hidesBackButton = false
+        }
+    }
+
+    private func configureKeyboard() {
+        // キーボード外をタップしたときにキーボードを閉じる
+        let tapGesture: UITapGestureRecognizer = UITapGestureRecognizer()
+        tapGesture.cancelsTouchesInView = false
+
+        self.view.addGestureRecognizer(tapGesture)
+
+        tapGesture.rx.event.subscribe { [unowned self] _ in
+            self.view.endEditing(true)
+            }.disposed(by: bag)
+
+        // キーボードイベント検知
+        NotificationCenter.default.rx.notification(NSNotification.Name.UIKeyboardWillShow, object: nil)
+            .bind { [unowned self] notification in
+                tapGesture.cancelsTouchesInView = true
+                self.keyboardWillShow(notification)
+            }
+            .disposed(by: bag)
+
+        NotificationCenter.default.rx.notification(NSNotification.Name.UIKeyboardWillHide, object: nil)
+            .bind { [unowned self] notification in
+                self.keyboardWillHide(notification)
+            }
+            .disposed(by: bag)
+
+        NotificationCenter.default.rx.notification(NSNotification.Name.UIKeyboardDidHide, object: nil)
+            .bind { _ in
+                // キーボードが消えたら、didSelectRowAtを検知できるように
+                tapGesture.cancelsTouchesInView = false
+            }
+            .disposed(by: bag)
+
     }
 
     func keyboardWillShow(_ notification: Notification) {
