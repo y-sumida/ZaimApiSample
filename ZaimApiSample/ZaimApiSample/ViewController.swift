@@ -42,8 +42,6 @@ class ViewController: UIViewController {
             navigationItem.hidesBackButton = false
         }
 
-        //tableView.delegate = self
-        //tableView.dataSource = self
         let nib = UINib(nibName: "MoneyCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "MoneyCell")
 
@@ -158,23 +156,20 @@ class ViewController: UIViewController {
     }
 
     private func bind() {
+        // viewModelとTableViewをバインド
         viewModel.observablePayments.asObservable()
             .bind(to: tableView.rx.items(cellIdentifier: "MoneyCell", cellType: MoneyCell.self)) { (row, element, cell) in
-                // row: Int …… アイテムのインデックス
-                // element: Item …… アイテムのインスタンス
-                // cell: UITableViewCell …… セルのインスタンス
-                
-                // ここでセルの中身を設定する
+
                 cell.viewModel = element
             }
             .disposed(by: bag)
 
+        // didSelectRowAt相当
         tableView.rx.itemSelected
             .subscribe(onNext: { [weak self] indexPath in
                 self?.didSelectRowAt(indexPath: indexPath)
             })
             .disposed(by: bag)
-
 
         viewModel.finishTrigger.asObservable()
             .subscribe(onNext: { [weak self] in
@@ -265,49 +260,3 @@ class ViewController: UIViewController {
         }
     }
 }
-
-//extension ViewController: UITableViewDelegate {
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        guard viewModel.payments.count > indexPath.row else { return }
-//
-//        DispatchQueue.main.async { // こうしないともたつく
-//            let payment: MoneyEditViewModel = self.viewModel.payments[indexPath.row]
-//
-//            let alert: UIAlertController = UIAlertController(title: "メニュー", message: "選択してください", preferredStyle:  UIAlertControllerStyle.actionSheet)
-//            let editAction: UIAlertAction = UIAlertAction(title: "編集", style: .default, handler:{ [unowned self]
-//                (action: UIAlertAction!) -> Void in
-//                self.showEditView(viewModel: payment)
-//            })
-//
-//            let cancelAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: .cancel, handler:{
-//                (action: UIAlertAction!) -> Void in
-//                print("cancelAction")
-//            })
-//
-//            let deleteAction: UIAlertAction = UIAlertAction(title: "削除", style: .destructive, handler:{ [unowned self]
-//                (action: UIAlertAction!) -> Void in
-//                self.showDeleteConfirmDialog(payment: payment)
-//            })
-//
-//            alert.addAction(editAction)
-//            alert.addAction(deleteAction)
-//            alert.addAction(cancelAction)
-//            self.present(alert, animated: true, completion: nil)
-//        }
-//    }
-//}
-
-//extension ViewController: UITableViewDataSource {
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return viewModel.payments.count
-//    }
-//
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell: MoneyCell = tableView.dequeueReusableCell(withIdentifier: "MoneyCell") as! MoneyCell
-//        if viewModel.payments.count > indexPath.row {
-//            cell.viewModel = viewModel.payments[indexPath.row]
-//        }
-//
-//        return cell
-//    }
-//}
