@@ -50,9 +50,13 @@ extension OAuthSwiftClient {
     
     private func showResponseLog(response: OAuthSwiftResponse) {
         print("RESPONSE--------------------")
-        print("url \(String(describing: (response.request?.url?.absoluteString)))")
+        if let url: String = response.request?.url?.absoluteString {
+            print("url \(url)")
+        }
         print("status \(response.response.statusCode)")
-        print("data \(String(describing: response.dataString()))")
+        if let data: String = response.dataString() {
+            print("data \(data)")
+        }
         print("---------------------------")
     }
     
