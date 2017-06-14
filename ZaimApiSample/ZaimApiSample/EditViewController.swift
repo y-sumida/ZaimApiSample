@@ -179,7 +179,7 @@ class EditViewController: UIViewController {
 
 extension EditViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.section == 1 && indexPath.row == 0 {
+        if indexPath.section == 1 {
             // カテゴリ選択へ遷移
             let vc: CategoriesViewController  = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CategoriesViewController") as! CategoriesViewController
             vc.categoryId = viewModel.categoryId
