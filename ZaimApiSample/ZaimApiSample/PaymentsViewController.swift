@@ -18,10 +18,10 @@ class PaymentsViewController: UIViewController {
     private let isAuthorized: Variable<Bool> = Variable(true)
     private let registerFinishTrigger: PublishSubject<Void> = PublishSubject()
 
-    fileprivate let viewModel: PaymentsViewModel = PaymentsViewModel()
+    private let viewModel: PaymentsViewModel = PaymentsViewModel()
 
     private var oauthswift: OAuthSwift?
-    fileprivate var oauthClient: OAuthSwiftClient? {
+    private var oauthClient: OAuthSwiftClient? {
         didSet {
             if let client: OAuthSwiftClient = oauthClient {
                 // 明細取得
@@ -200,7 +200,7 @@ class PaymentsViewController: UIViewController {
             .disposed(by: bag)
     }
 
-    fileprivate func showEditView(viewModel: MoneyEditViewModel?) {
+    private func showEditView(viewModel: MoneyEditViewModel?) {
         // 編集画面へ遷移
         let vc: EditViewController  = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "EditViewController") as! EditViewController
         if let `viewModel`: MoneyEditViewModel = viewModel {
@@ -219,7 +219,7 @@ class PaymentsViewController: UIViewController {
         self.present(nvc, animated: true, completion: nil)
     }
 
-    fileprivate func showDeleteConfirmDialog(payment: MoneyEditViewModel) {
+    private func showDeleteConfirmDialog(payment: MoneyEditViewModel) {
         let defaultAction: (UIAlertAction) -> Void = { (action: UIAlertAction!) -> Void in
             self.viewModel.delete(client: self.oauthClient!, id: payment.id!, mode: payment.mode.value)
         }
