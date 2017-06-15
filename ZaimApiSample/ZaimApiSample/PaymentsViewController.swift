@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  PaymentsViewController.swift
 //  ZaimApiSample
 //
 //  Created by Yuki Sumida on 2017/05/16.
@@ -10,7 +10,7 @@ import UIKit
 import OAuthSwift
 import RxSwift
 
-class ViewController: UIViewController {
+class PaymentsViewController: UIViewController {
     @IBOutlet weak var oauthView: UIView!
     @IBOutlet weak var tableView: UITableView!
 
@@ -46,7 +46,7 @@ class ViewController: UIViewController {
         tableView.register(nib, forCellReuseIdentifier: "MoneyCell")
 
         // プルリフレッシュで更新
-        refreshControl.addTarget(self, action: #selector(ViewController.refresh(sender:)), for: .valueChanged)
+        refreshControl.addTarget(self, action: #selector(PaymentsViewController.refresh(sender:)), for: .valueChanged)
         tableView.addSubview(refreshControl)
 
         // データ取得監視
