@@ -32,8 +32,7 @@ class ProfileViewModel {
             },
                 onError: {(error: Error) in
                     print(error.localizedDescription)
-            }
-            )
-            .addDisposableTo(bag)
+            })
+            .disposed(by: bag)
     }
 }

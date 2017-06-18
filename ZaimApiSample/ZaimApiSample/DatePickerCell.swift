@@ -35,7 +35,7 @@ class DatePickerCell: UITableViewCell, UITextFieldDelegate {
                 .bind { string in
                     self.bindValue.value = string!
                 }
-                .addDisposableTo(bag)
+                .disposed(by: bag)
         }
     }
 

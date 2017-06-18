@@ -56,9 +56,8 @@ class MoneyEditViewModel {
                 },
                 onError: {(error: Error) in
                     print(error.localizedDescription)
-            }
-            )
-            .addDisposableTo(bag)
+            })
+            .disposed(by: bag)
     }
 
     func updateMoney(client: OAuthSwiftClient) {
@@ -77,9 +76,8 @@ class MoneyEditViewModel {
                 },
                 onError: {(error: Error) in
                     print(error.localizedDescription)
-            }
-            )
-            .addDisposableTo(bag)
+            })
+            .disposed(by: bag)
     }
 
     private func bind() {

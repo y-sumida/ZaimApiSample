@@ -44,9 +44,8 @@ class PaymentsViewModel {
                 },
                 onError: {[weak self] (error: Error) in
                     print(error.localizedDescription)
-                }
-            )
-            .addDisposableTo(bag)
+            })
+            .disposed(by: bag)
     }
 
     func delete(client: OAuthSwiftClient, id: Int, mode: MoneyMode) {
@@ -59,9 +58,8 @@ class PaymentsViewModel {
                 },
                 onError: {(error: Error) in
                     print(error.localizedDescription)
-            }
-            )
-            .addDisposableTo(bag)
+            })
+            .disposed(by: bag)
     }
 }
 

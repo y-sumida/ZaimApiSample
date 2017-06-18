@@ -41,7 +41,7 @@ class TextEditCell: UITableViewCell {
                         self.bindValue.value = amount
                     }
                 }
-                .addDisposableTo(bag)
+                .disposed(by: bag)
         }
     }
 
