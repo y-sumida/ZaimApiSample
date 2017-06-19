@@ -235,7 +235,7 @@ class PaymentsViewController: UIViewController {
 
     private func didSelectRowAt(indexPath: IndexPath) {
         DispatchQueue.main.async { // こうしないともたつく
-            let payment: MoneyEditViewModel = self.viewModel.payments[indexPath.row]
+            let payment: MoneyEditViewModel = self.viewModel.observablePayments.value[indexPath.row]
 
             let alert: UIAlertController = UIAlertController(title: "メニュー", message: "選択してください", preferredStyle:  UIAlertControllerStyle.actionSheet)
             let editAction: UIAlertAction = UIAlertAction(title: "編集", style: .default, handler:{ [unowned self]
