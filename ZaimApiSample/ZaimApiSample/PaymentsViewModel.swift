@@ -18,6 +18,8 @@ class PaymentsViewModel {
     private var page: Int = 1
     private var hasNext: Bool = true
 
+    let isLoading: Variable<Bool> = Variable(false)
+
     var observablePayments: Variable<[MoneyEditViewModel]> = Variable([])
 
     func fetch(client: OAuthSwiftClient, isRefresh: Bool = false) {
@@ -29,19 +31,27 @@ class PaymentsViewModel {
 
         guard hasNext else { return }
 
-        MoneyModel.call(client: client, page: page)
+        Observable.zip(isLoading.asObservable(), MoneyModel.call(client: client, page: page)) { (isLoding: $0, result: $1) }
+            .filter { (isloding, result) in
+                !isloding
+            }
+            .do(onNext: { [unowned self] tuple in
+                self.isLoading.value = true
+            })
             .observeOn(MainScheduler.instance)
             .subscribe(
-                onNext: {[weak self] model, response in
-                    self?.observablePayments.value += model.item.map { return MoneyEditViewModel(money: $0) }
-                    if model.item.count < defaultApiPageLimit {
+                onNext: {[weak self] (isLoding, response) in
+                    self?.observablePayments.value += response.0.item.map { return MoneyEditViewModel(money: $0) }
+                    if response.0.item.count < defaultApiPageLimit {
                         self?.hasNext = false
                     }
                     self?.page += 1
+                    self?.isLoading.value = false
                     self?.finishTrigger.onNext(())
                 },
-                onError: {[weak self] (error: Error) in
+                onError: { [weak self] (error: Error) in
                     print(error.localizedDescription)
+                    self?.isLoading.value = false
             })
             .disposed(by: bag)
     }
