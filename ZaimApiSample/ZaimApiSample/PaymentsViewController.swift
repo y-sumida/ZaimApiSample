@@ -198,6 +198,14 @@ class PaymentsViewController: UIViewController {
                 self?.viewModel.fetch(client: (self?.oauthClient)!, isRefresh: false)
             })
             .disposed(by: bag)
+
+        // ロード中はTableView非表示
+        viewModel.isLoading.asDriver()
+            .do(onNext: { [weak self] in
+                self?.tableView.isHidden = $0
+            })
+            .drive(UIApplication.shared.rx.isNetworkActivityIndicatorVisible)
+            .addDisposableTo(bag)
     }
 
     private func showEditView(viewModel: MoneyEditViewModel?) {
