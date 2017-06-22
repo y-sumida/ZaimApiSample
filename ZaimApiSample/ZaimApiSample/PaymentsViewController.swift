@@ -13,6 +13,8 @@ import RxSwift
 class PaymentsViewController: UIViewController {
     @IBOutlet weak var oauthView: UIView!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var footerView: UIView!
+    @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
 
     private let bag: DisposeBag = DisposeBag()
     private let isAuthorized: Variable<Bool> = Variable(true)
@@ -205,7 +207,12 @@ class PaymentsViewController: UIViewController {
                 self?.tableView.isHidden = $0
             })
             .drive(UIApplication.shared.rx.isNetworkActivityIndicatorVisible)
-            .addDisposableTo(bag)
+            .disposed(by: bag)
+
+        // ローディングアイコン
+        viewModel.isLoading.asDriver()
+            .drive(activityIndicatorView.rx.isAnimating)
+            .disposed(by: bag)
     }
 
     private func showEditView(viewModel: MoneyEditViewModel?) {
