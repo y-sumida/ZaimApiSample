@@ -201,14 +201,6 @@ class PaymentsViewController: UIViewController {
             })
             .disposed(by: bag)
 
-        // ロード中はTableView非表示
-        viewModel.isLoading.asDriver()
-            .do(onNext: { [weak self] in
-                self?.tableView.isHidden = $0
-            })
-            .drive(UIApplication.shared.rx.isNetworkActivityIndicatorVisible)
-            .disposed(by: bag)
-
         // ローディングアイコン
         viewModel.isLoading.asDriver()
             .drive(activityIndicatorView.rx.isAnimating)

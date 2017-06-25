@@ -31,13 +31,12 @@ class PaymentsViewModel {
 
         guard hasNext else { return }
 
+        // これだとローディングアイコンが動く
+        // TODO Rxのオペレータでなんとかしたい
+        guard !isLoading.value else { return }
+        isLoading.value = true
+
         Observable.zip(isLoading.asObservable(), MoneyModel.call(client: client, page: page)) { (isLoding: $0, result: $1) }
-            .filter { (isloding, result) in
-                !isloding
-            }
-            .do(onNext: { [unowned self] tuple in
-                self.isLoading.value = true
-            })
             .observeOn(MainScheduler.instance)
             .subscribe(
                 onNext: {[weak self] (isLoding, response) in
