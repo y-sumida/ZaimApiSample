@@ -22,6 +22,9 @@ class PaymentsViewModel {
 
     var observablePayments: Variable<[MoneyEditViewModel]> = Variable([])
 
+    private var client: OAuthSwiftClient!
+    private var trigger = PublishSubject<(client: OAuthSwiftClient, page: Int)>()
+
     func fetch(client: OAuthSwiftClient, isRefresh: Bool = false) {
         if isRefresh {
             page = 1
@@ -31,15 +34,45 @@ class PaymentsViewModel {
 
         guard hasNext else { return }
 
+        self.client = client
+
         // これだとローディングアイコンが動く
         // TODO Rxのオペレータでなんとかしたい
-        guard !isLoading.value else { return }
-        isLoading.value = true
+        //guard !isLoading.value else { return }
+        //isLoading.value = true
 
-        Observable.zip(isLoading.asObservable(), MoneyModel.call(client: client, page: page)) { (isLoding: $0, result: $1) }
+        let fetchTrigger: PublishSubject<Void> = PublishSubject<Void>()
+
+        fetchTrigger
+            .map { [unowned self] _ in
+                (client: self.client, page: 1)
+            }
+            .bind(to: trigger)
+            .disposed(by: bag)
+
+        let observable: Observable = isLoading.asObservable()
+            .sample(trigger)
+            .flatMap { [unowned self] loading -> Observable<(client: OAuthSwiftClient, page: Int)> in
+                if !loading {
+                    self.page += 1
+                    return Observable.of((client: self.client, page: self.page))
+                }
+                else {
+                    return Observable.empty()
+                }
+            }
+            .shareReplay(1)
+
+        observable
+            .do(onNext: { [weak self] (response, isLoading) in
+                self?.isLoading.value = true
+            })
+            .flatMap { tuple in
+                MoneyModel.call(client: tuple.client, page: tuple.page)
+            }
             .observeOn(MainScheduler.instance)
             .subscribe(
-                onNext: {[weak self] (isLoding, response) in
+                onNext: {[weak self] response in
                     self?.observablePayments.value += response.0.item.map { return MoneyEditViewModel(money: $0) }
                     if response.0.item.count < defaultApiPageLimit {
                         self?.hasNext = false
@@ -53,6 +86,8 @@ class PaymentsViewModel {
                     self?.isLoading.value = false
             })
             .disposed(by: bag)
+
+        fetchTrigger.onNext(())
     }
 
     func delete(client: OAuthSwiftClient, id: Int, mode: MoneyMode) {
