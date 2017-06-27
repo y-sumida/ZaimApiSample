@@ -23,7 +23,6 @@ class PaymentsViewModel {
     var observablePayments: Variable<[MoneyEditViewModel]> = Variable([])
 
     private var client: OAuthSwiftClient!
-    private var trigger = PublishSubject<(client: OAuthSwiftClient, page: Int)>()
 
     func fetch(client: OAuthSwiftClient, isRefresh: Bool = false) {
         if isRefresh {
@@ -44,14 +43,10 @@ class PaymentsViewModel {
         let fetchTrigger: PublishSubject<Void> = PublishSubject<Void>()
 
         fetchTrigger
-            .map { [unowned self] _ in
-                (client: self.client, page: 1)
-            }
-            .bind(to: trigger)
-            .disposed(by: bag)
-
-        let observable: Observable = isLoading.asObservable()
-            .sample(trigger)
+            .withLatestFrom(isLoading.asObservable())
+//            .filter { isLoading in
+//               !isLoading
+//            }
             .flatMap { [unowned self] loading -> Observable<(client: OAuthSwiftClient, page: Int)> in
                 if !loading {
                     self.page += 1
@@ -61,9 +56,6 @@ class PaymentsViewModel {
                     return Observable.empty()
                 }
             }
-            .shareReplay(1)
-
-        observable
             .do(onNext: { [weak self] (response, isLoading) in
                 self?.isLoading.value = true
             })
