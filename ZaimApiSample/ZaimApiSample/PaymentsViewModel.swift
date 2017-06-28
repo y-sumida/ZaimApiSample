@@ -37,7 +37,6 @@ class PaymentsViewModel {
             }
             .flatMap { [unowned self] isLoading, hasNext -> Observable<(client: OAuthSwiftClient, page: Int)> in
                 if !isLoading && hasNext {
-                    self.page += 1
                     return Observable.of((client: client, page: self.page))
                 }
                 else {
