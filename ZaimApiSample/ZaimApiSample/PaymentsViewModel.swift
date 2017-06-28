@@ -35,18 +35,10 @@ class PaymentsViewModel {
 
         self.client = client
 
-        // これだとローディングアイコンが動く
-        // TODO Rxのオペレータでなんとかしたい
-        //guard !isLoading.value else { return }
-        //isLoading.value = true
-
         let fetchTrigger: PublishSubject<Void> = PublishSubject<Void>()
 
         fetchTrigger
             .withLatestFrom(isLoading.asObservable())
-//            .filter { isLoading in
-//               !isLoading
-//            }
             .flatMap { [unowned self] loading -> Observable<(client: OAuthSwiftClient, page: Int)> in
                 if !loading {
                     self.page += 1
