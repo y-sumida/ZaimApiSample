@@ -205,6 +205,12 @@ class PaymentsViewController: UIViewController {
         viewModel.isLoading.asDriver()
             .drive(activityIndicatorView.rx.isAnimating)
             .disposed(by: bag)
+
+        viewModel.isLoading.asObservable()
+            .subscribe(onNext: { [weak self] isLoading in
+                self?.footerView.isHidden = !isLoading
+            })
+            .disposed(by: bag)
     }
 
     private func showEditView(viewModel: MoneyEditViewModel?) {
