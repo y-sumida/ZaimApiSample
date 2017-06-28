@@ -16,33 +16,29 @@ class PaymentsViewModel {
     private let bag = DisposeBag()
 
     private var page: Int = 1
-    private var hasNext: Bool = true
-
+    private let hasNext: Variable<Bool> = Variable(true)
     let isLoading: Variable<Bool> = Variable(false)
 
     var observablePayments: Variable<[MoneyEditViewModel]> = Variable([])
 
-    private var client: OAuthSwiftClient!
-
     func fetch(client: OAuthSwiftClient, isRefresh: Bool = false) {
         if isRefresh {
             page = 1
-            hasNext = true
+            hasNext.value = true
             observablePayments.value.removeAll()
         }
-
-        guard hasNext else { return }
-
-        self.client = client
 
         let fetchTrigger: PublishSubject<Void> = PublishSubject<Void>()
 
         fetchTrigger
             .withLatestFrom(isLoading.asObservable())
-            .flatMap { [unowned self] loading -> Observable<(client: OAuthSwiftClient, page: Int)> in
-                if !loading {
+            .withLatestFrom(hasNext.asObservable()) { isLoading, hasNext in
+                (isLoading: isLoading, hasNext: hasNext)
+            }
+            .flatMap { [unowned self] isLoading, hasNext -> Observable<(client: OAuthSwiftClient, page: Int)> in
+                if !isLoading && hasNext {
                     self.page += 1
-                    return Observable.of((client: self.client, page: self.page))
+                    return Observable.of((client: client, page: self.page))
                 }
                 else {
                     return Observable.empty()
@@ -59,7 +55,7 @@ class PaymentsViewModel {
                 onNext: {[weak self] response in
                     self?.observablePayments.value += response.0.item.map { return MoneyEditViewModel(money: $0) }
                     if response.0.item.count < defaultApiPageLimit {
-                        self?.hasNext = false
+                        self?.hasNext.value = false
                     }
                     self?.page += 1
                     self?.isLoading.value = false
