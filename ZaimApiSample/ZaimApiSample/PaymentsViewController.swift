@@ -48,7 +48,6 @@ class PaymentsViewController: UIViewController {
         tableView.register(nib, forCellReuseIdentifier: "MoneyCell")
 
         // プルリフレッシュで更新
-        refreshControl.addTarget(self, action: #selector(PaymentsViewController.refresh(sender:)), for: .valueChanged)
         tableView.addSubview(refreshControl)
 
         // データ取得監視
@@ -209,6 +208,13 @@ class PaymentsViewController: UIViewController {
         viewModel.isLoading.asObservable()
             .subscribe(onNext: { [weak self] isLoading in
                 self?.footerView.isHidden = !isLoading
+            })
+            .disposed(by: bag)
+
+        // プルリフレッシュ
+        refreshControl.rx.controlEvent(.valueChanged)
+            .subscribe(onNext: { [unowned self] in
+                self.refresh(sender: self.refreshControl)
             })
             .disposed(by: bag)
     }
