@@ -53,9 +53,7 @@ class PaymentsViewModel {
             .subscribe(
                 onNext: {[weak self] response in
                     self?.observablePayments.value += response.0.item.map { return MoneyEditViewModel(money: $0) }
-                    if response.0.item.count < defaultApiPageLimit {
-                        self?.hasNext.value = false
-                    }
+                    self?.hasNext.value = response.0.item.count == defaultApiPageLimit
                     self?.page += 1
                     self?.isLoading.value = false
                     self?.finishTrigger.onNext(())
