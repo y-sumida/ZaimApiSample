@@ -21,7 +21,7 @@ class MoneyCell: UITableViewCell {
             bag = DisposeBag()
             viewModel.date.asObservable()
                 .subscribe(onNext: {[weak self] value in
-                    self?.dateLabel.text = value.substring(from: value.index(value.endIndex, offsetBy: -5))
+                    self?.dateLabel.text = String(value[value.index(value.endIndex, offsetBy: -5)...])
                 })
                 .disposed(by: bag)
 
