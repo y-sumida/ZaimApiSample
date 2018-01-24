@@ -67,11 +67,11 @@ class DatePickerCell: UITableViewCell, UITextFieldDelegate {
         datePicker.addTarget(self, action: #selector(self.dateChanged), for: UIControlEvents.valueChanged)
     }
 
-    func dateChanged(sender: UIDatePicker) {
+    @objc func dateChanged(sender: UIDatePicker) {
         textField.text = dateFormatter.string(from: sender.date)
     }
 
-    func closePicker() {
+    @objc func closePicker() {
         textField.resignFirstResponder()
     }
 }

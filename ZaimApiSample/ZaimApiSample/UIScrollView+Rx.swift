@@ -21,7 +21,7 @@ extension Reactive where Base: UIScrollView {
                     return Observable.empty()
                 }
 
-                return y > threshold ? Observable.just() : Observable.empty()
+                return y > threshold ? Observable.just(Void()) : Observable.empty()
         }
 
         return ControlEvent(events: observable)

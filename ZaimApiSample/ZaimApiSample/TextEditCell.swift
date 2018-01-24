@@ -79,7 +79,7 @@ extension TextEditCell: UITextFieldDelegate {
         return true
     }
 
-    func closeKeyboard() {
+    @objc func closeKeyboard() {
         textField.resignFirstResponder()
     }
 }

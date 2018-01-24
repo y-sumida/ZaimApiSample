@@ -26,7 +26,7 @@ extension OAuthSwiftClient {
                     self.showResponseLog(response: response)
                     let json = try! response.jsonObject()
                     let model: T.Response = Mapper<T.Response>().map(JSON: json as! [String : Any])!
-                    observer.on(.next(model, response.response))
+                    observer.onNext((model, response.response))
                     observer.on(.completed)
             },
                 failure: { error in
