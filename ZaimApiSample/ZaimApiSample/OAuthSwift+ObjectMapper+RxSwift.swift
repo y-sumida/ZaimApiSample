@@ -39,7 +39,32 @@ extension OAuthSwiftClient {
             }
         }
     }
-    
+
+    func rx_responseObject2<T: Requestable2>(request: T) -> Observable<(T.Response, HTTPURLResponse)> {
+        // TODO エラー処理
+        return Observable.create { (observer: AnyObserver<(T.Response, HTTPURLResponse)>) -> Disposable in
+            let handle: OAuthSwiftRequestHandle?  = self.request(
+                "\(request.baseURL)\(request.path)",
+                method: request.method,
+                parameters: request.parameters,
+                success: { response in
+                    self.showResponseLog(response: response)
+                    let jsonDecoder = JSONDecoder()
+                    let model: T.Response = try! jsonDecoder.decode(T.Response.self, from: response.data)
+                    observer.onNext((model, response.response))
+                    observer.on(.completed)
+            },
+                failure: { error in
+                    observer.onError(error)
+            }
+            )
+
+            return Disposables.create {
+                handle?.cancel()
+            }
+        }
+    }
+
     private func showRequestLog<T: Requestable>(request: T) {
         print("REQUEST--------------------")
         print("url \(request.baseURL)/\(request.path))")
