@@ -11,29 +11,28 @@ import ObjectMapper
 import OAuthSwift
 import RxSwift
 
-class UserVerifyModel: Mappable {
-    var id: String = ""
-    var name: String = ""
-    var inputCount: Int = 0
-    var dayCount: Int = 0
+class UserVerifyModel: Codable {
+    struct Me: Codable {
+        var id: Int = 0
+        var name: String = ""
+        var inputCount: Int = 0
+        var dayCount: Int = 0
 
-    required convenience init?(map: Map) {
-        self.init()
+        private enum CodingKeys: String, CodingKey {
+            case id
+            case name
+            case inputCount = "input_count"
+            case dayCount = "day_count"
+        }
     }
-
-    func mapping(map: Map) {
-        id <- map["me.id"]
-        name <- map["me.name"]
-        inputCount <- map["me.input_count"]
-        dayCount <- map["me.day_count"]
-    }
+    let me: Me
 
     static func call(client: OAuthSwiftClient) -> Observable<(UserVerifyModel, HTTPURLResponse)> {
-        return client.rx_responseObject(request: UserVerifyRequest())
+        return client.rx_responseObject2(request: UserVerifyRequest())
     }
 }
 
-struct UserVerifyRequest: Requestable {
+struct UserVerifyRequest: Requestable2 {
     typealias Response = UserVerifyModel
     var method: OAuthSwiftHTTPRequest.Method = .GET
     var path: String = "home/user/verify"
