@@ -12,23 +12,18 @@ import ObjectMapper
 import OAuthSwift
 import RxSwift
 
-class MoneyRegisterModel: Mappable {
-    var id: Int!
-
-    required convenience init?(map: Map) {
-        self.init()
+class MoneyRegisterModel: Codable {
+    struct Money: Codable {
+        var id: Int = 0
     }
-
-    func mapping(map: Map) {
-        id <- map["money.id"]
-    }
+    let money: Money
 
     static func call(client: OAuthSwiftClient, parameter: MoneyRegisterParam) -> Observable<(MoneyRegisterModel, HTTPURLResponse)> {
-        return client.rx_responseObject(request: MoneyRegisterRequest(parameter: parameter))
+        return client.rx_responseObject2(request: MoneyRegisterRequest(parameter: parameter))
     }
 }
 
-struct MoneyRegisterRequest: Requestable {
+struct MoneyRegisterRequest: Requestable2 {
     typealias Response = MoneyRegisterModel
     var method: OAuthSwiftHTTPRequest.Method = .POST
     var path: String = "home/money/payment"
