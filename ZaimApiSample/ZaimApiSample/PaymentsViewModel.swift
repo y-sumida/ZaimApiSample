@@ -72,7 +72,7 @@ class PaymentsViewModel {
             .observeOn(MainScheduler.instance)
             .subscribe(
                 onNext: {[weak self] model, response in
-                    self?.observablePayments.value = (self?.observablePayments.value.filter { item in item.id != model.id })!
+                    self?.observablePayments.value = (self?.observablePayments.value.filter { item in item.id != model.money.id })!
                     self?.finishTrigger.onNext(())
                 },
                 onError: {(error: Error) in

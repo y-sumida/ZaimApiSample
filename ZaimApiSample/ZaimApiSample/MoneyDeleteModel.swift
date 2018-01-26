@@ -11,25 +11,20 @@ import ObjectMapper
 import OAuthSwift
 import RxSwift
 
-class MoneyDeleteModel: Mappable {
-    var id: Int!
-    var modified: String = ""
+class MoneyDeleteModel: Codable {
 
-    required convenience init?(map: Map) {
-        self.init()
+    struct Money: Codable {
+        var id: Int = 0
+        var modified: String = ""
     }
-
-    func mapping(map: Map) {
-        id <- map["money.id"]
-        modified <- map["money.modified"]
-    }
+    let money: Money
 
     static func call(client: OAuthSwiftClient, id: Int, mode: MoneyMode) -> Observable<(MoneyDeleteModel, HTTPURLResponse)> {
-        return client.rx_responseObject(request: MoneyDeleteRequest(id: id, mode: mode))
+        return client.rx_responseObject2(request: MoneyDeleteRequest(id: id, mode: mode))
     }
 }
 
-struct MoneyDeleteRequest: Requestable {
+struct MoneyDeleteRequest: Requestable2 {
     typealias Response = MoneyDeleteModel
     var method: OAuthSwiftHTTPRequest.Method = .DELETE
     var path: String = ""
