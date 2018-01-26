@@ -26,24 +26,6 @@ class MoneyUpdateModel: Mappable {
     static func call(client: OAuthSwiftClient, parameter: MoneyUpdateParam) -> Observable<(MoneyUpdateModel, HTTPURLResponse)> {
         return client.rx_responseObject(request: MoneyUpdateRequest(parameter: parameter))
     }
-    
-    class Item: Mappable {
-        var id: Int!
-        var mode: MoneyMode!
-        var date: String = ""
-        var ammount: Int = 0
-        
-        required convenience init?(map: Map) {
-            self.init()
-        }
-        
-        func mapping(map: Map) {
-            id <- map["id"]
-            mode <- map["mode"]
-            date <- map["date"]
-            ammount <- map["amount"]
-        }
-    }
 }
 
 struct MoneyUpdateRequest: Requestable {
