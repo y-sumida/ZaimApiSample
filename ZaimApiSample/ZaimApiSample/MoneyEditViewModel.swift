@@ -32,7 +32,7 @@ class MoneyEditViewModel {
 
             id = money.id
             mode.value = money.mode
-            amount.value = money.ammount
+            amount.value = money.amount
             date.value = money.date
             categoryId = Variable(money.categoryId)
             genreId = Variable(money.genreId)
@@ -67,7 +67,7 @@ class MoneyEditViewModel {
             .observeOn(MainScheduler.instance)
             .subscribe(
                 onNext: {[weak self] model, response in
-                    self?.original.ammount = (self?.amount.value)!
+                    self?.original.amount = (self?.amount.value)!
                     self?.original.mode = self?.mode.value
                     self?.original.date = (self?.date.value)!
                     self?.original.categoryId = self?.categoryId.value
@@ -93,7 +93,7 @@ class MoneyEditViewModel {
                     self?.isUpdate.value = category != nil && genre != nil
                 }
                 else {
-                    self?.isUpdate.value = (mode != self?.original.mode || amount != self?.original.ammount || date != self?.original.date || genre != self?.original.genreId)
+                    self?.isUpdate.value = (mode != self?.original.mode || amount != self?.original.amount || date != self?.original.date || genre != self?.original.genreId)
                 }
             })
             .disposed(by: bag)

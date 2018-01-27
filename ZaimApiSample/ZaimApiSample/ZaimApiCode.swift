@@ -7,12 +7,12 @@
 //  Copyright © 2017年 Yuki Sumida. All rights reserved.
 //
 
-enum MoneyMode: String {
+enum MoneyMode: String, Codable {
     case income = "income"
     case payment = "payment"
 }
 
-enum PaymentCategory : Int {
+enum PaymentCategory : Int, Codable {
     case food = 101
     case dailyGoods = 102
     case transport = 103
@@ -44,7 +44,7 @@ enum PaymentCategory : Int {
     }
 }
 
-enum PaymentGenre : Int {
+enum PaymentGenre : Int, Codable {
     case groceries = 10101
     case cafe = 10102
     case breakfast = 10103

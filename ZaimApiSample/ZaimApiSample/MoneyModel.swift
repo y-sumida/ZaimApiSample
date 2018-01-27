@@ -6,50 +6,39 @@
 //  Copyright © 2017年 Yuki Sumida. All rights reserved.
 //
 
-import Foundation
-import ObjectMapper
 import OAuthSwift
 import RxSwift
 
-class MoneyModel: Mappable {
-    var item: [Item] = []
-
-    required convenience init?(map: Map) {
-        self.init()
+class MoneyModel: Codable {
+    struct Money: Codable {
+        var item: [Item]
     }
-
-    func mapping(map: Map) {
-        item <- map["money"]
-    }
+    let money: Money
 
     static func call(client: OAuthSwiftClient, page: Int = 1) -> Observable<(MoneyModel, HTTPURLResponse)> {
-        return client.rx_responseObject(request: MoneyRequest(page: page))
+        return client.rx_responseObject2(request: MoneyRequest(page: page))
     }
 
-    class Item: Mappable {
-        var id: Int!
+    struct Item: Codable {
+        var id: Int
         var mode: MoneyMode!
-        var date: String = ""
-        var ammount: Int = 0
+        var date: String
+        var amount: Int
         var categoryId: PaymentCategory!
         var genreId: PaymentGenre!
 
-        required convenience init?(map: Map) {
-            self.init()
-        }
-
-        func mapping(map: Map) {
-            id <- map["id"]
-            mode <- map["mode"]
-            date <- map["date"]
-            ammount <- map["amount"]
-            categoryId <- map["category_id"]
-            genreId <- map["genre_id"]
+        private enum CodingKeys: String, CodingKey {
+            case id
+            case mode
+            case date
+            case amount
+            case categoryId = "category_id"
+            case genreId = "genre_id"
         }
     }
 }
 
-struct MoneyRequest: Requestable {
+struct MoneyRequest: Requestable2 {
     typealias Response = MoneyModel
     var method: OAuthSwiftHTTPRequest.Method = .GET
     var path: String = "home/money"
