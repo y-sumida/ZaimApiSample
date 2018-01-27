@@ -12,23 +12,18 @@ import ObjectMapper
 import OAuthSwift
 import RxSwift
 
-class MoneyUpdateModel: Mappable {
-    var id: Int!
-    
-    required convenience init?(map: Map) {
-        self.init()
+class MoneyUpdateModel: Codable {
+    struct Money: Codable {
+        var id: Int = 0
     }
-    
-    func mapping(map: Map) {
-        id <- map["money.id"]
-    }
-    
+    let money: Money
+
     static func call(client: OAuthSwiftClient, parameter: MoneyUpdateParam) -> Observable<(MoneyUpdateModel, HTTPURLResponse)> {
-        return client.rx_responseObject(request: MoneyUpdateRequest(parameter: parameter))
+        return client.rx_responseObject2(request: MoneyUpdateRequest(parameter: parameter))
     }
 }
 
-struct MoneyUpdateRequest: Requestable {
+struct MoneyUpdateRequest: Requestable2 {
     typealias Response = MoneyUpdateModel
     var method: OAuthSwiftHTTPRequest.Method = .PUT
     var path: String = ""
