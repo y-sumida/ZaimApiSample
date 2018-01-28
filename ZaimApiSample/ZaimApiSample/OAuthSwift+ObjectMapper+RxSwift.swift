@@ -41,6 +41,8 @@ extension OAuthSwiftClient {
     }
 
     func rx_responseObject2<T: Requestable2>(request: T) -> Observable<(T.Response, HTTPURLResponse)> {
+        showRequestLog2(request: request)
+
         // TODO エラー処理
         return Observable.create { (observer: AnyObserver<(T.Response, HTTPURLResponse)>) -> Disposable in
             let handle: OAuthSwiftRequestHandle?  = self.request(
@@ -73,6 +75,14 @@ extension OAuthSwiftClient {
         print("---------------------------")
     }
     
+    private func showRequestLog2<T: Requestable2>(request: T) {
+        print("REQUEST--------------------")
+        print("url \(request.baseURL)/\(request.path))")
+        print("method \(request.method.rawValue)")
+        print("parameters \(request.parameters)")
+        print("---------------------------")
+    }
+
     private func showResponseLog(response: OAuthSwiftResponse) {
         print("RESPONSE--------------------")
         if let url: String = response.request?.url?.absoluteString {
