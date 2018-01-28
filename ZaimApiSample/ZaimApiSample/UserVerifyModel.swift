@@ -30,7 +30,7 @@ class UserVerifyModel: Codable {
     }
 }
 
-struct UserVerifyRequest: Requestable2 {
+struct UserVerifyRequest: Requestable {
     typealias Response = UserVerifyModel
     var method: OAuthSwiftHTTPRequest.Method = .GET
     var path: String = "home/user/verify"

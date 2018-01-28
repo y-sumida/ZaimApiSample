@@ -20,7 +20,7 @@ class MoneyRegisterModel: Codable {
     }
 }
 
-struct MoneyRegisterRequest: Requestable2 {
+struct MoneyRegisterRequest: Requestable {
     typealias Response = MoneyRegisterModel
     var method: OAuthSwiftHTTPRequest.Method = .POST
     var path: String = "home/money/payment"

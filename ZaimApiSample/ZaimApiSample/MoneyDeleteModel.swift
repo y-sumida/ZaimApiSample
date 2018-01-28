@@ -22,7 +22,7 @@ class MoneyDeleteModel: Codable {
     }
 }
 
-struct MoneyDeleteRequest: Requestable2 {
+struct MoneyDeleteRequest: Requestable {
     typealias Response = MoneyDeleteModel
     var method: OAuthSwiftHTTPRequest.Method = .DELETE
     var path: String = ""

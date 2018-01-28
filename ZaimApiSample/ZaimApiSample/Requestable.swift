@@ -8,8 +8,7 @@
 
 import OAuthSwift
 
-// Temporary for ObjectMapper to Codable
-protocol Requestable2 {
+protocol Requestable {
     associatedtype Response: Codable
     var baseURL: String { get }
     var path: String { get }
@@ -17,7 +16,7 @@ protocol Requestable2 {
     var parameters: OAuthSwift.Parameters { get }
 }
 
-extension Requestable2 {
+extension Requestable {
     var baseURL: String {
         return "https://api.zaim.net/v2/"
     }

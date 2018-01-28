@@ -20,7 +20,7 @@ class MoneyUpdateModel: Codable {
     }
 }
 
-struct MoneyUpdateRequest: Requestable2 {
+struct MoneyUpdateRequest: Requestable {
     typealias Response = MoneyUpdateModel
     var method: OAuthSwiftHTTPRequest.Method = .PUT
     var path: String = ""

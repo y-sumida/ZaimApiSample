@@ -38,7 +38,7 @@ class MoneyModel: Codable {
     }
 }
 
-struct MoneyRequest: Requestable2 {
+struct MoneyRequest: Requestable {
     typealias Response = MoneyModel
     var method: OAuthSwiftHTTPRequest.Method = .GET
     var path: String = "home/money"
