@@ -6,8 +6,6 @@
 //  Copyright © 2017年 Yuki Sumida. All rights reserved.
 //
 
-import Foundation
-import ObjectMapper
 import OAuthSwift
 import RxSwift
 
