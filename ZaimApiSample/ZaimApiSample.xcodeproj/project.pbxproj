@@ -38,7 +38,6 @@
 		A99955601ECC86130067ABC8 /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A999555F1ECC86130067ABC8 /* RxSwift.framework */; };
 		A99955621ECC86170067ABC8 /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A99955611ECC86170067ABC8 /* RxCocoa.framework */; };
 		A99955641ECC861A0067ABC8 /* RxBlocking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A99955631ECC861A0067ABC8 /* RxBlocking.framework */; };
-		A99955661ECC861F0067ABC8 /* ObjectMapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A99955651ECC861F0067ABC8 /* ObjectMapper.framework */; };
 		A999556C1ECC8D9A0067ABC8 /* Requestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A999556B1ECC8D9A0067ABC8 /* Requestable.swift */; };
 		A999556E1ECC8E010067ABC8 /* OAuthSwift+ObjectMapper+RxSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = A999556D1ECC8E010067ABC8 /* OAuthSwift+ObjectMapper+RxSwift.swift */; };
 		A99955701ECC942E0067ABC8 /* UserVerifyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A999556F1ECC942E0067ABC8 /* UserVerifyModel.swift */; };
@@ -99,7 +98,6 @@
 				A99955601ECC86130067ABC8 /* RxSwift.framework in Frameworks */,
 				A99955621ECC86170067ABC8 /* RxCocoa.framework in Frameworks */,
 				A99955641ECC861A0067ABC8 /* RxBlocking.framework in Frameworks */,
-				A99955661ECC861F0067ABC8 /* ObjectMapper.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
