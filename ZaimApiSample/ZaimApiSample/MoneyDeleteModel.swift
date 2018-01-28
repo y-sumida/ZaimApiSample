@@ -18,7 +18,7 @@ class MoneyDeleteModel: Codable {
     let money: Money
 
     static func call(client: OAuthSwiftClient, id: Int, mode: MoneyMode) -> Observable<(MoneyDeleteModel, HTTPURLResponse)> {
-        return client.rx_responseObject2(request: MoneyDeleteRequest(id: id, mode: mode))
+        return client.rx_responseObject(request: MoneyDeleteRequest(id: id, mode: mode))
     }
 }
 

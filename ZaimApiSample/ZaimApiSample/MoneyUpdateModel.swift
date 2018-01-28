@@ -16,7 +16,7 @@ class MoneyUpdateModel: Codable {
     let money: Money
 
     static func call(client: OAuthSwiftClient, parameter: MoneyUpdateParam) -> Observable<(MoneyUpdateModel, HTTPURLResponse)> {
-        return client.rx_responseObject2(request: MoneyUpdateRequest(parameter: parameter))
+        return client.rx_responseObject(request: MoneyUpdateRequest(parameter: parameter))
     }
 }
 

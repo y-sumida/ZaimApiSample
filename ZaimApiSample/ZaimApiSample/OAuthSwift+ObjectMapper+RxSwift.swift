@@ -11,7 +11,7 @@ import RxSwift
 
 extension OAuthSwiftClient {
 
-    func rx_responseObject2<T: Requestable>(request: T) -> Observable<(T.Response, HTTPURLResponse)> {
+    func rx_responseObject<T: Requestable>(request: T) -> Observable<(T.Response, HTTPURLResponse)> {
         showRequestLog(request: request)
 
         // TODO エラー処理

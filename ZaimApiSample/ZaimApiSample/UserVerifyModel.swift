@@ -26,7 +26,7 @@ class UserVerifyModel: Codable {
     let me: Me
 
     static func call(client: OAuthSwiftClient) -> Observable<(UserVerifyModel, HTTPURLResponse)> {
-        return client.rx_responseObject2(request: UserVerifyRequest())
+        return client.rx_responseObject(request: UserVerifyRequest())
     }
 }
 
