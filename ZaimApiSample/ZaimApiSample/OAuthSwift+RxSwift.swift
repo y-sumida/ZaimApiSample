@@ -1,5 +1,5 @@
 //
-//  OAuthSwift+ObjectMapper+RxSwift.swift
+//  OAuthSwift+RxSwift.swift
 //  ZaimApiSample
 //
 //  Created by Yuki Sumida on 2017/05/17.

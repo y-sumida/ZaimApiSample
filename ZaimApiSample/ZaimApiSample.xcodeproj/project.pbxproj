@@ -39,7 +39,7 @@
 		A99955621ECC86170067ABC8 /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A99955611ECC86170067ABC8 /* RxCocoa.framework */; };
 		A99955641ECC861A0067ABC8 /* RxBlocking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A99955631ECC861A0067ABC8 /* RxBlocking.framework */; };
 		A999556C1ECC8D9A0067ABC8 /* Requestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A999556B1ECC8D9A0067ABC8 /* Requestable.swift */; };
-		A999556E1ECC8E010067ABC8 /* OAuthSwift+ObjectMapper+RxSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = A999556D1ECC8E010067ABC8 /* OAuthSwift+ObjectMapper+RxSwift.swift */; };
+		A999556E1ECC8E010067ABC8 /* OAuthSwift+RxSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = A999556D1ECC8E010067ABC8 /* OAuthSwift+RxSwift.swift */; };
 		A99955701ECC942E0067ABC8 /* UserVerifyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A999556F1ECC942E0067ABC8 /* UserVerifyModel.swift */; };
 		A9D349BC1EDB13C900B846AD /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D349BB1EDB13C900B846AD /* ProfileViewModel.swift */; };
 		A9D349BE1EDEFE4100B846AD /* UIScrollView+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D349BD1EDEFE4100B846AD /* UIScrollView+Rx.swift */; };
@@ -82,7 +82,7 @@
 		A99955631ECC861A0067ABC8 /* RxBlocking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxBlocking.framework; path = Carthage/Build/iOS/RxBlocking.framework; sourceTree = "<group>"; };
 		A99955651ECC861F0067ABC8 /* ObjectMapper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ObjectMapper.framework; path = Carthage/Build/iOS/ObjectMapper.framework; sourceTree = "<group>"; };
 		A999556B1ECC8D9A0067ABC8 /* Requestable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Requestable.swift; sourceTree = "<group>"; };
-		A999556D1ECC8E010067ABC8 /* OAuthSwift+ObjectMapper+RxSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "OAuthSwift+ObjectMapper+RxSwift.swift"; sourceTree = "<group>"; };
+		A999556D1ECC8E010067ABC8 /* OAuthSwift+RxSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "OAuthSwift+RxSwift.swift"; sourceTree = "<group>"; };
 		A999556F1ECC942E0067ABC8 /* UserVerifyModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserVerifyModel.swift; sourceTree = "<group>"; };
 		A9D349BB1EDB13C900B846AD /* ProfileViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		A9D349BD1EDEFE4100B846AD /* UIScrollView+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIScrollView+Rx.swift"; sourceTree = "<group>"; };
@@ -119,7 +119,7 @@
 		A928710A1ED09C4600E0C867 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				A999556D1ECC8E010067ABC8 /* OAuthSwift+ObjectMapper+RxSwift.swift */,
+				A999556D1ECC8E010067ABC8 /* OAuthSwift+RxSwift.swift */,
 				A9D349BD1EDEFE4100B846AD /* UIScrollView+Rx.swift */,
 				A970EA411EE6ECC600D5388B /* UIViewExtension.swift */,
 			);
@@ -340,7 +340,7 @@
 				A9D349BC1EDB13C900B846AD /* ProfileViewModel.swift in Sources */,
 				A92871001ECDF27700E0C867 /* MoneyDeleteModel.swift in Sources */,
 				A99955311ECB30B90067ABC8 /* AppDelegate.swift in Sources */,
-				A999556E1ECC8E010067ABC8 /* OAuthSwift+ObjectMapper+RxSwift.swift in Sources */,
+				A999556E1ECC8E010067ABC8 /* OAuthSwift+RxSwift.swift in Sources */,
 				A970EA421EE6ECC600D5388B /* UIViewExtension.swift in Sources */,
 				A92871251ED1D9AB00E0C867 /* MoneyUpdateModel.swift in Sources */,
 				A928712B1ED1E3F100E0C867 /* PaymentsViewModel.swift in Sources */,
