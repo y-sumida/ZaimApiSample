@@ -1,8 +1,9 @@
 # ZaimApiSample
 ZaimのAPIを使ってみる
 
-## Xcode
-- Version 8.3.2 (8E2002)
+## バージョン
+- Swift 4.0
+- Xcode Version 9.0.1 (9A1004)
 
 ## ライブラリ
 Carthageを使います
