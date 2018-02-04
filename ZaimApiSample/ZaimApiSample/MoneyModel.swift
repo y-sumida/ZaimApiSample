@@ -10,16 +10,13 @@ import OAuthSwift
 import RxSwift
 
 class MoneyModel: Codable {
-    struct Money: Codable {
-        var item: [Item]
-    }
-    let money: Money
+    var money: [Money]
 
     static func call(client: OAuthSwiftClient, page: Int = 1) -> Observable<(MoneyModel, HTTPURLResponse)> {
         return client.rx_responseObject(request: MoneyRequest(page: page))
     }
 
-    struct Item: Codable {
+    struct Money: Codable {
         var id: Int
         var mode: MoneyMode!
         var date: String

@@ -22,12 +22,12 @@ class MoneyEditViewModel {
     let finishTrigger: PublishSubject<Void> = PublishSubject()
 
     private let bag = DisposeBag()
-    private var original: MoneyModel.Item!
+    private var original: MoneyModel.Money!
 
-    convenience init (money: MoneyModel.Item? = nil) {
+    convenience init (money: MoneyModel.Money? = nil) {
         self.init()
 
-        if let `money`: MoneyModel.Item = money {
+        if let `money`: MoneyModel.Money = money {
             original = money
 
             id = money.id

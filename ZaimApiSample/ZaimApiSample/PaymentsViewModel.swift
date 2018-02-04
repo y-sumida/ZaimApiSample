@@ -52,8 +52,8 @@ class PaymentsViewModel {
             .observeOn(MainScheduler.instance)
             .subscribe(
                 onNext: {[weak self] response in
-                    self?.observablePayments.value += response.0.money.item.map { return MoneyEditViewModel(money: $0) }
-                    self?.hasNext.value = response.0.money.item.count == defaultApiPageLimit
+                    self?.observablePayments.value += response.0.money.map { return MoneyEditViewModel(money: $0) }
+                    self?.hasNext.value = response.0.money.count == defaultApiPageLimit
                     self?.page += 1
                     self?.isLoading.value = false
                     self?.finishTrigger.onNext(())
