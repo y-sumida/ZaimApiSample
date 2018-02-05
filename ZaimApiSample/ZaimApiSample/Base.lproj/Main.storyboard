@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="70R-hd-WG1">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="70R-hd-WG1">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -24,8 +24,8 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="mFe-BO-D24">
                                 <rect key="frame" x="0.0" y="64" width="375" height="559"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <view key="tableFooterView" contentMode="scaleToFill" id="SNZ-hB-ays">
-                                    <rect key="frame" x="0.0" y="72" width="375" height="42"/>
+                                <view key="tableFooterView" contentMode="scaleToFill" restorationIdentifier="footer" id="SNZ-hB-ays">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="42"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="NCl-fN-L1R">
@@ -38,16 +38,6 @@
                                         <constraint firstItem="NCl-fN-L1R" firstAttribute="centerX" secondItem="SNZ-hB-ays" secondAttribute="centerX" id="xIl-cf-ZJa"/>
                                     </constraints>
                                 </view>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="jBK-JK-pNh">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jBK-JK-pNh" id="veI-UU-qv5">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
                             </tableView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ryI-1N-Dcn">
                                 <rect key="frame" x="0.0" y="623" width="375" height="44"/>
@@ -155,7 +145,7 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.94117647059999998" green="0.74901960779999999" blue="0.43529411759999997" alpha="0.14999999999999999" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstItem="d3U-Fq-dI4" firstAttribute="leading" secondItem="lg3-TM-aYA" secondAttribute="leading" constant="32" id="FM8-iV-3fx"/>
+                                    <constraint firstItem="d3U-Fq-dI4" firstAttribute="leading" relation="lessThanOrEqual" secondItem="lg3-TM-aYA" secondAttribute="leading" constant="32" id="FM8-iV-3fx"/>
                                     <constraint firstItem="d3U-Fq-dI4" firstAttribute="top" secondItem="lg3-TM-aYA" secondAttribute="top" id="Qvx-nr-vgO"/>
                                     <constraint firstAttribute="trailing" secondItem="d3U-Fq-dI4" secondAttribute="trailing" constant="32" id="aJS-NY-RjA"/>
                                     <constraint firstAttribute="bottom" secondItem="d3U-Fq-dI4" secondAttribute="bottom" constant="48" id="rdX-Dt-9ks"/>
@@ -219,7 +209,7 @@
                                     <constraint firstAttribute="trailing" secondItem="Tz3-fd-OyL" secondAttribute="trailing" constant="32" id="9FR-pE-MAW"/>
                                     <constraint firstItem="Tz3-fd-OyL" firstAttribute="top" secondItem="Tp3-Os-nyQ" secondAttribute="top" id="MpB-it-9oy"/>
                                     <constraint firstAttribute="bottom" secondItem="Tz3-fd-OyL" secondAttribute="bottom" constant="48" id="VNo-VE-Rei"/>
-                                    <constraint firstItem="Tz3-fd-OyL" firstAttribute="leading" secondItem="Tp3-Os-nyQ" secondAttribute="leading" constant="32" id="mCA-Cq-Nky"/>
+                                    <constraint firstItem="Tz3-fd-OyL" firstAttribute="leading" relation="lessThanOrEqual" secondItem="Tp3-Os-nyQ" secondAttribute="leading" constant="32" id="mCA-Cq-Nky"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -298,7 +288,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="70R-hd-WG1" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ej2-b8-p2O">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
