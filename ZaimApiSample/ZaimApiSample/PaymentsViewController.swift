@@ -276,6 +276,20 @@ extension PaymentsViewController: UITableViewDelegate {
             self.showDeleteConfirmDialog(payment: payment)
         }
     }
+    @available(iOS 11.0, *)
+    func tableView(_ tableView: UITableView,
+                   leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration?
+    {
+        let action = UIContextualAction(style: .normal, title: "編集", handler: {[unowned self] (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
+            if self.viewModel.payments.count > indexPath.row {
+                let payment = self.viewModel.payments[indexPath.row]
+                self.showEditView(viewModel: payment)
+            }
+            success(true)
+        })
+        action.backgroundColor = .blue
+        return UISwipeActionsConfiguration(actions: [action])
+    }
 }
 
 extension PaymentsViewController: UITableViewDataSource {
