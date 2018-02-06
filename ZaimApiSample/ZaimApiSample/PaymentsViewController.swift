@@ -269,6 +269,13 @@ extension PaymentsViewController: UITableViewDelegate {
             self.present(alert, animated: true, completion: nil)
         }
     }
+
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete, viewModel.payments.count > indexPath.row {
+            let payment = viewModel.payments[indexPath.row]
+            self.showDeleteConfirmDialog(payment: payment)
+        }
+    }
 }
 
 extension PaymentsViewController: UITableViewDataSource {
