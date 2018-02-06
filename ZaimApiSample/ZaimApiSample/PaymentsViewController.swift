@@ -44,6 +44,8 @@ class PaymentsViewController: UIViewController {
             navigationItem.hidesBackButton = false
         }
 
+        tableView.delegate = self
+        tableView.dataSource = self
         let nib = UINib(nibName: "MoneyCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "MoneyCell")
 
@@ -157,21 +159,6 @@ class PaymentsViewController: UIViewController {
     }
 
     private func bind() {
-        // viewModelとTableViewをバインド
-        viewModel.observablePayments.asObservable()
-            .bind(to: tableView.rx.items(cellIdentifier: "MoneyCell", cellType: MoneyCell.self)) { (row, element, cell) in
-
-                cell.viewModel = element
-            }
-            .disposed(by: bag)
-
-        // didSelectRowAt相当
-        tableView.rx.itemSelected
-            .subscribe(onNext: { [weak self] indexPath in
-                self?.didSelectRowAt(indexPath: indexPath)
-            })
-            .disposed(by: bag)
-
         viewModel.finishTrigger.asObservable()
             .subscribe(onNext: { [weak self] in
                 self?.refreshControl.endRefreshing()
@@ -251,10 +238,14 @@ class PaymentsViewController: UIViewController {
 
         present(alert, animated: true, completion: nil)
     }
+}
 
-    private func didSelectRowAt(indexPath: IndexPath) {
+extension PaymentsViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard viewModel.payments.count > indexPath.row else { return }
+
         DispatchQueue.main.async { // こうしないともたつく
-            let payment: MoneyEditViewModel = self.viewModel.observablePayments.value[indexPath.row]
+            let payment: MoneyEditViewModel = self.viewModel.payments[indexPath.row]
 
             let alert: UIAlertController = UIAlertController(title: "メニュー", message: "選択してください", preferredStyle:  UIAlertControllerStyle.actionSheet)
             let editAction: UIAlertAction = UIAlertAction(title: "編集", style: .default, handler:{ [unowned self]
@@ -277,5 +268,20 @@ class PaymentsViewController: UIViewController {
             alert.addAction(cancelAction)
             self.present(alert, animated: true, completion: nil)
         }
+    }
+}
+
+extension PaymentsViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return viewModel.payments.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell: MoneyCell = tableView.dequeueReusableCell(withIdentifier: "MoneyCell") as! MoneyCell
+        if viewModel.payments.count > indexPath.row {
+            cell.viewModel = viewModel.payments[indexPath.row]
+        }
+
+        return cell
     }
 }

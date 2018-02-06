@@ -19,13 +19,13 @@ class PaymentsViewModel {
     private let hasNext: Variable<Bool> = Variable(true)
     let isLoading: Variable<Bool> = Variable(false)
 
-    var observablePayments: Variable<[MoneyEditViewModel]> = Variable([])
+    var payments: [MoneyEditViewModel] = []
 
     func fetch(client: OAuthSwiftClient, isRefresh: Bool = false) {
         if isRefresh {
             page = 1
             hasNext.value = true
-            observablePayments.value.removeAll()
+            payments.removeAll()
         }
 
         let fetchTrigger: PublishSubject<Void> = PublishSubject<Void>()
@@ -51,9 +51,11 @@ class PaymentsViewModel {
             }
             .observeOn(MainScheduler.instance)
             .subscribe(
-                onNext: {[weak self] response in
-                    self?.observablePayments.value += response.0.money.map { return MoneyEditViewModel(money: $0) }
-                    self?.hasNext.value = response.0.money.count == defaultApiPageLimit
+                onNext: {[weak self] model, response in
+                    self?.payments += model.money.map { return MoneyEditViewModel(money: $0) }
+                    if model.money.count < defaultApiPageLimit {
+                        self?.hasNext.value = false
+                    }
                     self?.page += 1
                     self?.isLoading.value = false
                     self?.finishTrigger.onNext(())
@@ -72,7 +74,7 @@ class PaymentsViewModel {
             .observeOn(MainScheduler.instance)
             .subscribe(
                 onNext: {[weak self] model, response in
-                    self?.observablePayments.value = (self?.observablePayments.value.filter { item in item.id != model.money.id })!
+                    self?.payments = (self?.payments.filter { item in item.id != model.money.id })!
                     self?.finishTrigger.onNext(())
                 },
                 onError: {(error: Error) in
