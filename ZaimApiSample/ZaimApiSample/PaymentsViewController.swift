@@ -270,25 +270,28 @@ extension PaymentsViewController: UITableViewDelegate {
         }
     }
 
+    func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
+        return "削除"
+    }
+
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete, viewModel.payments.count > indexPath.row {
             let payment = viewModel.payments[indexPath.row]
             self.showDeleteConfirmDialog(payment: payment)
         }
     }
+
     @available(iOS 11.0, *)
-    func tableView(_ tableView: UITableView,
-                   leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration?
-    {
-        let action = UIContextualAction(style: .normal, title: "編集", handler: {[unowned self] (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let deleteAction = UIContextualAction(style: .normal, title:  "削除", handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
             if self.viewModel.payments.count > indexPath.row {
                 let payment = self.viewModel.payments[indexPath.row]
-                self.showEditView(viewModel: payment)
+                self.showDeleteConfirmDialog(payment: payment)
             }
             success(true)
         })
-        action.backgroundColor = .blue
-        return UISwipeActionsConfiguration(actions: [action])
+        deleteAction.backgroundColor = .red
+        return UISwipeActionsConfiguration(actions: [deleteAction])
     }
 }
 
