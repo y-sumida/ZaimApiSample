@@ -243,31 +243,8 @@ class PaymentsViewController: UIViewController {
 extension PaymentsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard viewModel.payments.count > indexPath.row else { return }
-
-        DispatchQueue.main.async { // こうしないともたつく
-            let payment: MoneyEditViewModel = self.viewModel.payments[indexPath.row]
-
-            let alert: UIAlertController = UIAlertController(title: "メニュー", message: "選択してください", preferredStyle:  UIAlertControllerStyle.actionSheet)
-            let editAction: UIAlertAction = UIAlertAction(title: "編集", style: .default, handler:{ [unowned self]
-                (action: UIAlertAction!) -> Void in
-                self.showEditView(viewModel: payment)
-            })
-
-            let cancelAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: .cancel, handler:{
-                (action: UIAlertAction!) -> Void in
-                print("cancelAction")
-            })
-
-            let deleteAction: UIAlertAction = UIAlertAction(title: "削除", style: .destructive, handler:{ [unowned self]
-                (action: UIAlertAction!) -> Void in
-                self.showDeleteConfirmDialog(payment: payment)
-            })
-
-            alert.addAction(editAction)
-            alert.addAction(deleteAction)
-            alert.addAction(cancelAction)
-            self.present(alert, animated: true, completion: nil)
-        }
+        let payment: MoneyEditViewModel = self.viewModel.payments[indexPath.row]
+        self.showEditView(viewModel: payment)
     }
 
     func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
