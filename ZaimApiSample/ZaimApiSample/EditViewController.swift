@@ -43,6 +43,10 @@ class EditViewController: UIViewController {
         configureTableView()
 
         configureKeyboard()
+
+        if #available(iOS 11.0, *) {
+            tableView.contentInsetAdjustmentBehavior = .never
+        }
     }
 
     override func didReceiveMemoryWarning() {

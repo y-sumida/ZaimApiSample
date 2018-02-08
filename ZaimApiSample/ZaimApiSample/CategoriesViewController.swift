@@ -39,6 +39,17 @@ class CategoriesViewController: UIViewController {
         tableView.dataSource = self
         let categoryNib = UINib(nibName: "CategorySelectCell", bundle: nil)
         tableView.register(categoryNib, forCellReuseIdentifier: "CategorySelectCell")
+
+        if #available(iOS 11.0, *) {
+            tableView.contentInsetAdjustmentBehavior = .never
+        }
+    }
+
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        if #available(iOS 11.0, *) {
+            tableView.contentInset.bottom = view.safeAreaInsets.bottom
+        }
     }
 
     override func didReceiveMemoryWarning() {
