@@ -216,6 +216,11 @@ class PaymentsViewController: UIViewController {
             vc.registerFinishTrigger = self.registerFinishTrigger
         }
         vc.client = oauthClient
+        vc.dismissAction = {[unowned self] in
+            if let indexPathForSelectedRow = self.tableView.indexPathForSelectedRow {
+                self.tableView.deselectRow(at: indexPathForSelectedRow, animated: false)
+            }
+        }
 
         // ナビゲーション
         let nvc = UINavigationController(rootViewController: vc)
