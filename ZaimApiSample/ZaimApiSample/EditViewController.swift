@@ -25,6 +25,8 @@ class EditViewController: UIViewController {
     var client: OAuthSwiftClient!
     var registerFinishTrigger: PublishSubject<Void>?
 
+    var dismissAction: (() -> Void)?
+
     fileprivate let sectionTitles:[String] = ["金額", "カテゴリー", "日付"]
 
     deinit {
@@ -57,7 +59,7 @@ class EditViewController: UIViewController {
     }
 
     @IBAction func tapCacelButton(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
+        self.dismiss(animated: true, completion: dismissAction)
     }
 
     private func bind() {
@@ -66,7 +68,7 @@ class EditViewController: UIViewController {
                 if !(self?.isEditMode)! {
                     self?.registerFinishTrigger?.onNext(())
                 }
-                self?.dismiss(animated: true, completion: nil)
+                self?.dismiss(animated: true, completion: self?.dismissAction)
             }
         )
         .disposed(by: bag)
