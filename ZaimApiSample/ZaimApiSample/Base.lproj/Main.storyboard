@@ -326,15 +326,8 @@
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
-                    <navigationItem key="navigationItem" id="IH8-w9-xwb">
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="rDm-NA-fSG">
-                            <connections>
-                                <action selector="tapDoneButton:" destination="mII-KK-lNW" id="gVE-5b-xEW"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="IH8-w9-xwb"/>
                     <connections>
-                        <outlet property="doneButton" destination="rDm-NA-fSG" id="cJx-bX-lap"/>
                         <outlet property="tableView" destination="Z1o-dL-Hn3" id="Q2T-vp-0mE"/>
                     </connections>
                 </viewController>
