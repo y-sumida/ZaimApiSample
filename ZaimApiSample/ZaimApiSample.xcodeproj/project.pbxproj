@@ -32,6 +32,7 @@
 		A94E48DA202F214C003D3190 /* Realm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A981E6CD202F2025008A026B /* Realm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A94E48DB202F214C003D3190 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A981E6CB202F2019008A026B /* RealmSwift.framework */; };
 		A94E48DC202F214C003D3190 /* RealmSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A981E6CB202F2019008A026B /* RealmSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A94E48DF2031D7C7003D3190 /* CategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94E48DE2031D7C7003D3190 /* CategoryModel.swift */; };
 		A970EA421EE6ECC600D5388B /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A970EA411EE6ECC600D5388B /* UIViewExtension.swift */; };
 		A99955311ECB30B90067ABC8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99955301ECB30B90067ABC8 /* AppDelegate.swift */; };
 		A99955331ECB30B90067ABC8 /* PaymentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99955321ECB30B90067ABC8 /* PaymentsViewController.swift */; };
@@ -87,6 +88,7 @@
 		A928712C1ED3230300E0C867 /* GenresViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenresViewController.swift; sourceTree = "<group>"; };
 		A928712E1ED333AB00E0C867 /* GenreSelectCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenreSelectCell.swift; sourceTree = "<group>"; };
 		A928712F1ED333AB00E0C867 /* GenreSelectCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GenreSelectCell.xib; sourceTree = "<group>"; };
+		A94E48DE2031D7C7003D3190 /* CategoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryModel.swift; sourceTree = "<group>"; };
 		A970EA411EE6ECC600D5388B /* UIViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		A981E6CB202F2019008A026B /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = Carthage/Build/iOS/RealmSwift.framework; sourceTree = "<group>"; };
 		A981E6CD202F2025008A026B /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = Carthage/Build/iOS/Realm.framework; sourceTree = "<group>"; };
@@ -152,10 +154,11 @@
 		A928710B1ED09C5200E0C867 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				9420DD791ED454C10008BA44 /* MoneyRegisterModel.swift */,
-				A92871241ED1D9AB00E0C867 /* MoneyUpdateModel.swift */,
+				A94E48DE2031D7C7003D3190 /* CategoryModel.swift */,
 				A92870FF1ECDF27700E0C867 /* MoneyDeleteModel.swift */,
 				A92870F21ECDDB4A00E0C867 /* MoneyModel.swift */,
+				9420DD791ED454C10008BA44 /* MoneyRegisterModel.swift */,
+				A92871241ED1D9AB00E0C867 /* MoneyUpdateModel.swift */,
 				A999556F1ECC942E0067ABC8 /* UserVerifyModel.swift */,
 				A92871011ED07E8800E0C867 /* ZaimApiCode.swift */,
 			);
@@ -360,6 +363,7 @@
 				A99955701ECC942E0067ABC8 /* UserVerifyModel.swift in Sources */,
 				A92871301ED333AB00E0C867 /* GenreSelectCell.swift in Sources */,
 				A92871161ED16B7700E0C867 /* CategorySelectCell.swift in Sources */,
+				A94E48DF2031D7C7003D3190 /* CategoryModel.swift in Sources */,
 				A9D349BE1EDEFE4100B846AD /* UIScrollView+Rx.swift in Sources */,
 				A99955331ECB30B90067ABC8 /* PaymentsViewController.swift in Sources */,
 				A92871071ED0938D00E0C867 /* TextEditCell.swift in Sources */,
