@@ -9,6 +9,7 @@
 import UIKit
 import OAuthSwift
 import RxSwift
+import RealmSwift
 
 class PaymentsViewController: UIViewController {
     @IBOutlet weak var oauthView: UIView!
@@ -57,6 +58,9 @@ class PaymentsViewController: UIViewController {
 
         // Client生成
         generateClient()
+
+        // TODO 認証チェック含めてAppDelegateに移す
+        getCategories()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -145,6 +149,26 @@ class PaymentsViewController: UIViewController {
         }
 
         oauthClient = OAuthSwiftClient(consumerKey: apiKeys.consumerKey, consumerSecret: apiKeys.consumerSecret, oauthToken: token, oauthTokenSecret: secret, version: .oauth1)
+    }
+
+    private func getCategories() {
+        guard let client = oauthClient else { return }
+        CategoriesModel.call(client: client)
+            .subscribe(
+                onNext: {model, response in
+                    let realm = try! Realm()
+                    try! realm.write {
+                        realm.deleteAll()
+                        for category in model.categories {
+                            realm.add(category)
+                        }
+                    }
+                    print(realm.objects(Category.self))
+            },
+                onError: {(error: Error) in
+                    print(error.localizedDescription)
+            })
+            .disposed(by: bag)
     }
 
     @IBAction func tapAddButton(_ sender: Any) {
