@@ -40,7 +40,7 @@ extension OAuthSwiftClient {
 
     private func showRequestLog<T: Requestable>(request: T) {
         print("REQUEST--------------------")
-        print("url \(request.baseURL)/\(request.path))")
+        print("url \(request.baseURL)/\(request.path)")
         print("method \(request.method.rawValue)")
         print("parameters \(request.parameters)")
         print("---------------------------")
