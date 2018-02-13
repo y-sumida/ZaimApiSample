@@ -9,6 +9,7 @@
 import Foundation
 import OAuthSwift
 import RxSwift
+import RealmSwift
 
 class CategoriesModel: Codable {
     var categories: [Category]
@@ -17,11 +18,11 @@ class CategoriesModel: Codable {
         return client.rx_responseObject(request: CategoryRequest())
     }
 
-    class Category: Codable {
-        var id: Int
-        var name: String
-        var parentCategoryId: Int
-        var active: Int
+    class Category: RealmSwift.Object, Codable {
+        @objc dynamic var id: Int = 0
+        @objc dynamic var name: String = ""
+        @objc dynamic var parentCategoryId: Int = 0
+        @objc dynamic var active: Int = 0
 
         private enum CodingKeys: String, CodingKey {
             case id
