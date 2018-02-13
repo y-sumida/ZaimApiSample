@@ -30,6 +30,10 @@ class CategoriesModel: Codable {
             case parentCategoryId = "parent_category_id"
             case active
         }
+
+        override static func primaryKey() -> String? {
+            return "id"
+        }
     }
 }
 
