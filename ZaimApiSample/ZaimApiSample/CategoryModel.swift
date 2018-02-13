@@ -18,22 +18,23 @@ class CategoriesModel: Codable {
         return client.rx_responseObject(request: CategoryRequest())
     }
 
-    class Category: RealmSwift.Object, Codable {
-        @objc dynamic var id: Int = 0
-        @objc dynamic var name: String = ""
-        @objc dynamic var parentCategoryId: Int = 0
-        @objc dynamic var active: Int = 0
+}
 
-        private enum CodingKeys: String, CodingKey {
-            case id
-            case name
-            case parentCategoryId = "parent_category_id"
-            case active
-        }
+class Category: RealmSwift.Object, Codable {
+    @objc dynamic var id: Int = 0
+    @objc dynamic var name: String = ""
+    @objc dynamic var parentCategoryId: Int = 0
+    @objc dynamic var active: Int = 0
 
-        override static func primaryKey() -> String? {
-            return "id"
-        }
+    private enum CodingKeys: String, CodingKey {
+        case id
+        case name
+        case parentCategoryId = "parent_category_id"
+        case active
+    }
+
+    override static func primaryKey() -> String? {
+        return "id"
     }
 }
 
