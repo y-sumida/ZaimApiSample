@@ -46,6 +46,7 @@
 		A999556C1ECC8D9A0067ABC8 /* Requestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A999556B1ECC8D9A0067ABC8 /* Requestable.swift */; };
 		A999556E1ECC8E010067ABC8 /* OAuthSwift+RxSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = A999556D1ECC8E010067ABC8 /* OAuthSwift+RxSwift.swift */; };
 		A99955701ECC942E0067ABC8 /* UserVerifyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A999556F1ECC942E0067ABC8 /* UserVerifyModel.swift */; };
+		A9B0976D203469F000F4BF5B /* GenresModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B0976C203469F000F4BF5B /* GenresModel.swift */; };
 		A9D349BC1EDB13C900B846AD /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D349BB1EDB13C900B846AD /* ProfileViewModel.swift */; };
 		A9D349BE1EDEFE4100B846AD /* UIScrollView+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D349BD1EDEFE4100B846AD /* UIScrollView+Rx.swift */; };
 		A9F306061ED9C1C60040C6B3 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F306051ED9C1C60040C6B3 /* ProfileViewController.swift */; };
@@ -107,6 +108,7 @@
 		A999556B1ECC8D9A0067ABC8 /* Requestable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Requestable.swift; sourceTree = "<group>"; };
 		A999556D1ECC8E010067ABC8 /* OAuthSwift+RxSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "OAuthSwift+RxSwift.swift"; sourceTree = "<group>"; };
 		A999556F1ECC942E0067ABC8 /* UserVerifyModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserVerifyModel.swift; sourceTree = "<group>"; };
+		A9B0976C203469F000F4BF5B /* GenresModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenresModel.swift; sourceTree = "<group>"; };
 		A9D349BB1EDB13C900B846AD /* ProfileViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		A9D349BD1EDEFE4100B846AD /* UIScrollView+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIScrollView+Rx.swift"; sourceTree = "<group>"; };
 		A9F306051ED9C1C60040C6B3 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -155,6 +157,7 @@
 			isa = PBXGroup;
 			children = (
 				A94E48DE2031D7C7003D3190 /* CategoriesModel.swift */,
+				A9B0976C203469F000F4BF5B /* GenresModel.swift */,
 				A92870FF1ECDF27700E0C867 /* MoneyDeleteModel.swift */,
 				A92870F21ECDDB4A00E0C867 /* MoneyModel.swift */,
 				9420DD791ED454C10008BA44 /* MoneyRegisterModel.swift */,
@@ -375,6 +378,7 @@
 				A92871251ED1D9AB00E0C867 /* MoneyUpdateModel.swift in Sources */,
 				A928712B1ED1E3F100E0C867 /* PaymentsViewModel.swift in Sources */,
 				A92871021ED07E8800E0C867 /* ZaimApiCode.swift in Sources */,
+				A9B0976D203469F000F4BF5B /* GenresModel.swift in Sources */,
 				A92871101ED15E4C00E0C867 /* DatePickerCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
