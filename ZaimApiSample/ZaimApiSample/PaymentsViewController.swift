@@ -61,6 +61,7 @@ class PaymentsViewController: UIViewController {
 
         // TODO 認証チェック含めてAppDelegateに移す
         getCategories()
+        getGenres()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -166,6 +167,26 @@ class PaymentsViewController: UIViewController {
                         }
                     }
                     print(realm.objects(Category.self))
+            },
+                onError: {(error: Error) in
+                    print(error.localizedDescription)
+            })
+            .disposed(by: bag)
+    }
+
+    private func getGenres() {
+        guard let client = oauthClient else { return }
+        GenresModel.call(client: client)
+            .subscribe(
+                onNext: {model, response in
+                    let realm = try! Realm()
+                    try! realm.write {
+                        realm.deleteAll()
+                        for genre in model.genres {
+                            realm.add(genre)
+                        }
+                    }
+                    print(realm.objects(Genre.self))
             },
                 onError: {(error: Error) in
                     print(error.localizedDescription)
