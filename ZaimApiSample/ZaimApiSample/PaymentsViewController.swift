@@ -160,7 +160,9 @@ class PaymentsViewController: UIViewController {
                     try! realm.write {
                         realm.deleteAll()
                         for category in model.categories {
-                            realm.add(category)
+                            if category.mode == "payment" {
+                                realm.add(category)
+                            }
                         }
                     }
                     print(realm.objects(Category.self))
