@@ -1,5 +1,5 @@
 //
-//  CategoryModel.swift
+//  CategoriesModel.swift
 //  ZaimApiSample
 //
 //  Created by Yuki Sumida on 2018/02/12.
