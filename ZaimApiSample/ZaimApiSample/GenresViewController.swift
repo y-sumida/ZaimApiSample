@@ -13,6 +13,7 @@ class GenresViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
 
     private let bag: DisposeBag = DisposeBag()
+    private var viewModel: GenresViewModel?
 
     var categoryId: Variable<PaymentCategory?>!
     var genreId: Variable<PaymentGenre?>!
@@ -23,6 +24,10 @@ class GenresViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        if let id = categoryId.value {
+            viewModel = GenresViewModel(categoryId: id.rawValue)
+        }
 
         // ナビゲーションバー設定
         if let navi = navigationController {
@@ -55,7 +60,9 @@ class GenresViewController: UIViewController {
 
 extension GenresViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        genreId.value = (paymentGenres[categoryId.value!]?[indexPath.row])!
+        guard let vm = viewModel, vm.genres.count > indexPath.row else { return }
+
+        genreId.value = PaymentGenre(rawValue: vm.genres[indexPath.row].id)
         categoryId.value = genreId.value?.parentCategory
         self.dismiss(animated: true, completion: nil)
     }
@@ -63,12 +70,15 @@ extension GenresViewController: UITableViewDelegate {
 
 extension GenresViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return paymentGenres[categoryId.value!]!.count
+        guard let vm = viewModel else { return 0 }
+        return vm.genres.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let vm = viewModel, vm.genres.count > indexPath.row else { return UITableViewCell() }
+
         let cell: GenreSelectCell = tableView.dequeueReusableCell(withIdentifier: "GenreSelectCell") as! GenreSelectCell
-        cell.genreLabel.text = paymentGenres[categoryId.value!]?[indexPath.row].description
+        cell.genreLabel.text = vm.genres[indexPath.row].name
         return cell
     }
 }
