@@ -16,7 +16,7 @@ class GenresViewController: UIViewController {
     private var viewModel: GenresViewModel?
 
     var categoryId: Variable<PaymentCategory?>!
-    var genreId: Variable<PaymentGenre?>!
+    var genreId: Variable<Genre?>!
 
     deinit {
         print("Genres deinit")
@@ -62,8 +62,8 @@ extension GenresViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let vm = viewModel, vm.genres.count > indexPath.row else { return }
 
-        genreId.value = PaymentGenre(rawValue: vm.genres[indexPath.row].id)
-        categoryId.value = genreId.value?.parentCategory
+        genreId.value = vm.genres[indexPath.row]
+        categoryId.value = PaymentCategory(rawValue: (genreId.value?.categoryId)!)
         self.dismiss(animated: true, completion: nil)
     }
 }

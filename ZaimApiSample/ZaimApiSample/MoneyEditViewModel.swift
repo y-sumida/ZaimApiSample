@@ -9,6 +9,7 @@
 import Foundation
 import RxSwift
 import OAuthSwift
+import RealmSwift
 
 class MoneyEditViewModel {
     var id: Int?
@@ -16,7 +17,7 @@ class MoneyEditViewModel {
     var amount: Variable<Int> = Variable(0)
     var date: Variable<String> = Variable("")
     var categoryId: Variable<PaymentCategory?>!
-    var genreId: Variable<PaymentGenre?>!
+    var genreId: Variable<Genre?>!
 
     let isUpdate: Variable<Bool> = Variable(false)
     let finishTrigger: PublishSubject<Void> = PublishSubject()
@@ -35,7 +36,10 @@ class MoneyEditViewModel {
             amount.value = money.amount
             date.value = money.date
             categoryId = Variable(money.categoryId)
-            genreId = Variable(money.genreId)
+
+            let realm: Realm = try! Realm()
+            let genre = realm.objects(Genre.self).map { $0 }.filter { $0.id == money.genreId }
+            genreId = Variable(genre.first)
         }
         else {
             categoryId = Variable(nil)
@@ -71,7 +75,7 @@ class MoneyEditViewModel {
                     self?.original.mode = self?.mode.value
                     self?.original.date = (self?.date.value)!
                     self?.original.categoryId = self?.categoryId.value
-                    self?.original.genreId = self?.genreId.value
+                    self?.original.genreId = self?.genreId.value?.id ?? 0
                     self?.finishTrigger.onNext(())
                 },
                 onError: {(error: Error) in
@@ -93,7 +97,7 @@ class MoneyEditViewModel {
                     self?.isUpdate.value = category != nil && genre != nil
                 }
                 else {
-                    self?.isUpdate.value = (mode != self?.original.mode || amount != self?.original.amount || date != self?.original.date || genre != self?.original.genreId)
+                    self?.isUpdate.value = (mode != self?.original.mode || amount != self?.original.amount || date != self?.original.date || genre?.id != self?.original.genreId)
                 }
             })
             .disposed(by: bag)

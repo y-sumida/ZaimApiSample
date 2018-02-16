@@ -27,7 +27,7 @@ class MoneyCell: UITableViewCell {
 
             viewModel.genreId.asObservable()
                 .subscribe(onNext: {[weak self] value in
-                    self?.genreLabel.text = value?.description
+                    self?.genreLabel.text = value?.name
                 })
                 .disposed(by: bag)
 

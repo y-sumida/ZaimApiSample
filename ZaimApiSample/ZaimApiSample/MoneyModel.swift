@@ -22,7 +22,7 @@ class MoneyModel: Codable {
         var date: String
         var amount: Int
         var categoryId: PaymentCategory!
-        var genreId: PaymentGenre!
+        var genreId: Int
 
         private enum CodingKeys: String, CodingKey {
             case id

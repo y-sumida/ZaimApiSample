@@ -13,13 +13,13 @@ class CategoriesViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
 
     private var originarlCategoryId: PaymentCategory!
-    private var originarlGenreId: PaymentGenre!
+    private var originarlGenreId: Genre!
     var categoryId: Variable<PaymentCategory?>! {
         didSet {
             originarlCategoryId = categoryId.value
         }
     }
-    var genreId: Variable<PaymentGenre?>! {
+    var genreId: Variable<Genre?>! {
         didSet {
             originarlGenreId = genreId.value
         }
