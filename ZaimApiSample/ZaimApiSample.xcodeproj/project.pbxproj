@@ -29,6 +29,7 @@
 		A92871301ED333AB00E0C867 /* GenreSelectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A928712E1ED333AB00E0C867 /* GenreSelectCell.swift */; };
 		A92871311ED333AB00E0C867 /* GenreSelectCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A928712F1ED333AB00E0C867 /* GenreSelectCell.xib */; };
 		A92C12F02035BD6600C14195 /* GenresViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92C12EF2035BD6600C14195 /* GenresViewModel.swift */; };
+		A92C12F22038650600C14195 /* CategoriesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92C12F12038650500C14195 /* CategoriesViewModel.swift */; };
 		A94E48D9202F214C003D3190 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A981E6CD202F2025008A026B /* Realm.framework */; };
 		A94E48DA202F214C003D3190 /* Realm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A981E6CD202F2025008A026B /* Realm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A94E48DB202F214C003D3190 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A981E6CB202F2019008A026B /* RealmSwift.framework */; };
@@ -91,6 +92,7 @@
 		A928712E1ED333AB00E0C867 /* GenreSelectCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenreSelectCell.swift; sourceTree = "<group>"; };
 		A928712F1ED333AB00E0C867 /* GenreSelectCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GenreSelectCell.xib; sourceTree = "<group>"; };
 		A92C12EF2035BD6600C14195 /* GenresViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenresViewModel.swift; sourceTree = "<group>"; };
+		A92C12F12038650500C14195 /* CategoriesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewModel.swift; sourceTree = "<group>"; };
 		A94E48DE2031D7C7003D3190 /* CategoriesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesModel.swift; sourceTree = "<group>"; };
 		A970EA411EE6ECC600D5388B /* UIViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		A981E6CB202F2019008A026B /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = Carthage/Build/iOS/RealmSwift.framework; sourceTree = "<group>"; };
@@ -198,6 +200,7 @@
 		A92871211ED1D98000E0C867 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				A92C12F12038650500C14195 /* CategoriesViewModel.swift */,
 				A92C12EF2035BD6600C14195 /* GenresViewModel.swift */,
 				A92871221ED1D99B00E0C867 /* MoneyEditViewModel.swift */,
 				A928712A1ED1E3F100E0C867 /* PaymentsViewModel.swift */,
@@ -362,6 +365,7 @@
 				9420DD7C1ED4563D0008BA44 /* AppConst.swift in Sources */,
 				A92C12F02035BD6600C14195 /* GenresViewModel.swift in Sources */,
 				A92871201ED1D22200E0C867 /* CategoriesViewController.swift in Sources */,
+				A92C12F22038650600C14195 /* CategoriesViewModel.swift in Sources */,
 				A92870F31ECDDB4A00E0C867 /* MoneyModel.swift in Sources */,
 				A9F306061ED9C1C60040C6B3 /* ProfileViewController.swift in Sources */,
 				A999556C1ECC8D9A0067ABC8 /* Requestable.swift in Sources */,

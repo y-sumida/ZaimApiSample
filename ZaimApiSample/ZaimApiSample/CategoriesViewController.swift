@@ -12,6 +12,7 @@ import RxSwift
 class CategoriesViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
 
+    private var viewModel: CategoriesViewModel = CategoriesViewModel()
     private var originarlCategoryId: PaymentCategory!
     private var originarlGenreId: Genre!
     var categoryId: Variable<PaymentCategory?>! {
@@ -65,7 +66,9 @@ class CategoriesViewController: UIViewController {
 
 extension CategoriesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        categoryId.value = paymentCategories[indexPath.row]
+        guard viewModel.categories.count > indexPath.row else { return }
+
+        categoryId.value = PaymentCategory(rawValue: viewModel.categories[indexPath.row].id)
 
         // ジャンル選択画面へ遷移
         let vc: GenresViewController  = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "GenresViewController") as! GenresViewController
@@ -79,12 +82,14 @@ extension CategoriesViewController: UITableViewDelegate {
 
 extension CategoriesViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return paymentCategories.count
+        return viewModel.categories.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-            let cell: CategorySelectCell = tableView.dequeueReusableCell(withIdentifier: "CategorySelectCell") as! CategorySelectCell
-            cell.categoryLabel.text = paymentCategories[indexPath.row].description
-            return cell
+        guard viewModel.categories.count > indexPath.row else { return UITableViewCell() }
+
+        let cell: CategorySelectCell = tableView.dequeueReusableCell(withIdentifier: "CategorySelectCell") as! CategorySelectCell
+        cell.categoryLabel.text = viewModel.categories[indexPath.row].name
+        return cell
     }
 }
