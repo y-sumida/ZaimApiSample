@@ -159,10 +159,9 @@ class PaymentsViewController: UIViewController {
                 onNext: {model, response in
                     let realm = try! Realm()
                     try! realm.write {
-                        realm.deleteAll()
                         for category in model.categories {
                             if category.mode == "payment" {
-                                realm.add(category)
+                                realm.add(category, update: true)
                             }
                         }
                     }
@@ -181,9 +180,8 @@ class PaymentsViewController: UIViewController {
                 onNext: {model, response in
                     let realm = try! Realm()
                     try! realm.write {
-                        realm.deleteAll()
                         for genre in model.genres {
-                            realm.add(genre)
+                            realm.add(genre, update: true)
                         }
                     }
                     print(realm.objects(Genre.self))
