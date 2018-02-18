@@ -64,7 +64,7 @@ extension GenresViewController: UITableViewDelegate {
 
         genreId.value = vm.genres[indexPath.row]
         categoryId.value = PaymentCategory(rawValue: (genreId.value?.categoryId)!)
-        self.dismiss(animated: true, completion: nil)
+        self.navigationController?.popToRootViewController(animated: true)
     }
 }
 

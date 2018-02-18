@@ -191,12 +191,7 @@ extension EditViewController: UITableViewDelegate {
             vc.categoryId = viewModel.categoryId
             vc.genreId = viewModel.genreId
 
-            // ナビゲーション
-            let nvc = UINavigationController(rootViewController: vc)
-            nvc.modalPresentationStyle = .custom
-            nvc.modalTransitionStyle = .coverVertical
-
-            self.present(nvc, animated: true, completion: nil)
+            self.navigationController?.pushViewController(vc, animated: true)
         }
     }
 }
