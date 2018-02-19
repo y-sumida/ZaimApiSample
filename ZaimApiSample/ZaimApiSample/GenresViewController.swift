@@ -8,6 +8,7 @@
 
 import UIKit
 import RxSwift
+import RealmSwift
 
 class GenresViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
@@ -15,7 +16,7 @@ class GenresViewController: UIViewController {
     private let bag: DisposeBag = DisposeBag()
     private var viewModel: GenresViewModel?
 
-    var categoryId: Variable<PaymentCategory?>!
+    var categoryId: Variable<Category?>!
     var genreId: Variable<Genre?>!
 
     deinit {
@@ -25,8 +26,8 @@ class GenresViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        if let id = categoryId.value {
-            viewModel = GenresViewModel(categoryId: id.rawValue)
+        if let category = categoryId.value {
+            viewModel = GenresViewModel(categoryId: category.id)
         }
 
         // ナビゲーションバー設定
@@ -63,7 +64,11 @@ extension GenresViewController: UITableViewDelegate {
         guard let vm = viewModel, vm.genres.count > indexPath.row else { return }
 
         genreId.value = vm.genres[indexPath.row]
-        categoryId.value = PaymentCategory(rawValue: (genreId.value?.categoryId)!)
+
+        // TODO viewModel経由でカテゴリを逆引きできるようにする
+        let realm: Realm = try! Realm()
+        let category = realm.objects(Category.self).map { $0 }.filter { $0.id == self.genreId.value?.categoryId }
+        categoryId.value = category.first
         self.navigationController?.popToRootViewController(animated: true)
     }
 }

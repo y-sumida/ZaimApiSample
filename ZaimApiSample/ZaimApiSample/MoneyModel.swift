@@ -21,7 +21,7 @@ class MoneyModel: Codable {
         var mode: MoneyMode!
         var date: String
         var amount: Int
-        var categoryId: PaymentCategory!
+        var categoryId: Int
         var genreId: Int
 
         private enum CodingKeys: String, CodingKey {

@@ -13,9 +13,9 @@ class CategoriesViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
 
     private var viewModel: CategoriesViewModel = CategoriesViewModel()
-    private var originarlCategoryId: PaymentCategory!
+    private var originarlCategoryId: Category!
     private var originarlGenreId: Genre!
-    var categoryId: Variable<PaymentCategory?>! {
+    var categoryId: Variable<Category?>! {
         didSet {
             originarlCategoryId = categoryId.value
         }
@@ -68,7 +68,7 @@ extension CategoriesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard viewModel.categories.count > indexPath.row else { return }
 
-        categoryId.value = PaymentCategory(rawValue: viewModel.categories[indexPath.row].id)
+        categoryId.value = viewModel.categories[indexPath.row]
 
         // ジャンル選択画面へ遷移
         let vc: GenresViewController  = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "GenresViewController") as! GenresViewController

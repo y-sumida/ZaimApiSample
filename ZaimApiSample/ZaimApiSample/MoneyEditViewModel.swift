@@ -16,7 +16,7 @@ class MoneyEditViewModel {
     var mode: Variable<MoneyMode> = Variable(.payment)
     var amount: Variable<Int> = Variable(0)
     var date: Variable<String> = Variable("")
-    var categoryId: Variable<PaymentCategory?>!
+    var categoryId: Variable<Category?>!
     var genreId: Variable<Genre?>!
 
     let isUpdate: Variable<Bool> = Variable(false)
@@ -35,9 +35,10 @@ class MoneyEditViewModel {
             mode.value = money.mode
             amount.value = money.amount
             date.value = money.date
-            categoryId = Variable(money.categoryId)
 
             let realm: Realm = try! Realm()
+            let category = realm.objects(Category.self).map { $0 }.filter { $0.id == money.categoryId }
+            categoryId = Variable(category.first)
             let genre = realm.objects(Genre.self).map { $0 }.filter { $0.id == money.genreId }
             genreId = Variable(genre.first)
         }
@@ -74,7 +75,7 @@ class MoneyEditViewModel {
                     self?.original.amount = (self?.amount.value)!
                     self?.original.mode = self?.mode.value
                     self?.original.date = (self?.date.value)!
-                    self?.original.categoryId = self?.categoryId.value
+                    self?.original.categoryId = self?.categoryId.value?.id ?? 0
                     self?.original.genreId = self?.genreId.value?.id ?? 0
                     self?.finishTrigger.onNext(())
                 },
