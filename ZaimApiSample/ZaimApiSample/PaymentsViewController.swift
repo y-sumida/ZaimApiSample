@@ -264,6 +264,7 @@ class PaymentsViewController: UIViewController {
         vc.dismissAction = {[unowned self] in
             if let indexPathForSelectedRow = self.tableView.indexPathForSelectedRow {
                 self.tableView.deselectRow(at: indexPathForSelectedRow, animated: false)
+                self.tableView.flashScrollIndicators()
             }
         }
 
