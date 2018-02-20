@@ -14,6 +14,6 @@ class GenresViewModel {
 
     init(categoryId: Int) {
         realm = try! Realm()
-        genres = realm.objects(Genre.self).map { $0 }.filter { $0.categoryId == categoryId }
+        genres = realm.objects(Genre.self).filter("categoryId == %@ and active == 1", categoryId).map { $0 }
     }
 }
