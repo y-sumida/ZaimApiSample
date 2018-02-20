@@ -14,7 +14,7 @@ class CategoriesViewModel {
 
     init() {
         realm = try! Realm()
-        categories = realm.objects(Category.self).map { $0 }
+        categories = realm.objects(Category.self).filter("active == 1").map { $0 }
     }
 }
 
