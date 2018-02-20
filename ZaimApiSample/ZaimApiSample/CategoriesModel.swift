@@ -23,14 +23,12 @@ class CategoriesModel: Codable {
 class Category: RealmSwift.Object, Codable {
     @objc dynamic var id: Int = 0
     @objc dynamic var name: String = ""
-    @objc dynamic var parentCategoryId: Int = 0
     @objc dynamic var active: Int = 0
     var mode: String = ""
 
     private enum CodingKeys: String, CodingKey {
         case id
         case name
-        case parentCategoryId = "parent_category_id"
         case active
         case mode
     }

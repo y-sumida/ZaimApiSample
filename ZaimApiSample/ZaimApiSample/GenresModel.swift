@@ -22,14 +22,12 @@ class Genre: RealmSwift.Object, Codable {
     @objc dynamic var id: Int = 0
     @objc dynamic var name: String = ""
     @objc dynamic var categoryId: Int = 0
-    @objc dynamic var parentGenreId: Int = 0
     @objc dynamic var active: Int = 0
 
     private enum CodingKeys: String, CodingKey {
         case id
         case name
         case categoryId = "category_id"
-        case parentGenreId = "parent_genre_id"
         case active
     }
 
