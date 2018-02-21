@@ -11,9 +11,11 @@ import RealmSwift
 class GenresViewModel {
     private let realm: Realm
     var genres: [Genre] = []
+    var category: Category!
 
     init(categoryId: Int) {
         realm = try! Realm()
         genres = realm.objects(Genre.self).filter("categoryId == %@ and active == 1", categoryId).map { $0 }
+        category = realm.objects(Category.self).filter("id == %@", categoryId).map { $0 }.first
     }
 }

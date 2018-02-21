@@ -8,7 +8,6 @@
 
 import UIKit
 import RxSwift
-import RealmSwift
 
 class GenresViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
@@ -64,11 +63,7 @@ extension GenresViewController: UITableViewDelegate {
         guard let vm = viewModel, vm.genres.count > indexPath.row else { return }
 
         genreId.value = vm.genres[indexPath.row]
-
-        // TODO viewModel経由でカテゴリを逆引きできるようにする
-        let realm: Realm = try! Realm()
-        let category = realm.objects(Category.self).map { $0 }.filter { $0.id == self.genreId.value?.categoryId }
-        categoryId.value = category.first
+        categoryId.value = vm.category
         self.navigationController?.popToRootViewController(animated: true)
     }
 }
