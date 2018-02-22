@@ -43,7 +43,7 @@ struct MoneyRegisterParam {
         self.mode = viewModel.mode.value
         self.amount = viewModel.amount.value
         self.date = viewModel.date.value
-        self.categoryId = viewModel.categoryId.value?.id ?? 0
+        self.categoryId = viewModel.category.value?.id ?? 0
         self.genreId = viewModel.genreId.value?.id ?? 0
     }
 }

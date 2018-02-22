@@ -13,11 +13,11 @@ class CategoriesViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
 
     private var viewModel: CategoriesViewModel = CategoriesViewModel()
-    private var originarlCategoryId: Category!
+    private var originarlCategory: Category!
     private var originarlGenreId: Genre!
-    var categoryId: Variable<Category?>! {
+    var category: Variable<Category?>! {
         didSet {
-            originarlCategoryId = categoryId.value
+            originarlCategory = category.value
         }
     }
     var genreId: Variable<Genre?>! {
@@ -58,7 +58,7 @@ class CategoriesViewController: UIViewController {
     }
 
     @IBAction func tapCancelButton(_ sender: Any) {
-        categoryId.value = originarlCategoryId
+        category.value = originarlCategory
         genreId.value = originarlGenreId
         self.dismiss(animated: true, completion: nil)
     }
@@ -68,11 +68,11 @@ extension CategoriesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard viewModel.categories.count > indexPath.row else { return }
 
-        categoryId.value = viewModel.categories[indexPath.row]
+        category.value = viewModel.categories[indexPath.row]
 
         // ジャンル選択画面へ遷移
         let vc: GenresViewController  = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "GenresViewController") as! GenresViewController
-        vc.categoryId = categoryId
+        vc.category = category
         vc.genreId = genreId
 
         // ナビゲーション

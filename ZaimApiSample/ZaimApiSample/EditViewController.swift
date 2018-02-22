@@ -188,7 +188,7 @@ extension EditViewController: UITableViewDelegate {
         if indexPath.section == 1 {
             // カテゴリ選択へ遷移
             let vc: CategoriesViewController  = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CategoriesViewController") as! CategoriesViewController
-            vc.categoryId = viewModel.categoryId
+            vc.category = viewModel.category
             vc.genreId = viewModel.genreId
 
             self.navigationController?.pushViewController(vc, animated: true)

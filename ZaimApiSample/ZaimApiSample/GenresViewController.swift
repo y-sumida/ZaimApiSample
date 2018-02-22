@@ -15,7 +15,7 @@ class GenresViewController: UIViewController {
     private let bag: DisposeBag = DisposeBag()
     private var viewModel: GenresViewModel?
 
-    var categoryId: Variable<Category?>!
+    var category: Variable<Category?>!
     var genreId: Variable<Genre?>!
 
     deinit {
@@ -25,7 +25,7 @@ class GenresViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        if let category = categoryId.value {
+        if let category = category.value {
             viewModel = GenresViewModel(categoryId: category.id)
         }
 
@@ -63,7 +63,7 @@ extension GenresViewController: UITableViewDelegate {
         guard let vm = viewModel, vm.genres.count > indexPath.row else { return }
 
         genreId.value = vm.genres[indexPath.row]
-        categoryId.value = vm.category
+        category.value = vm.category
         self.navigationController?.popToRootViewController(animated: true)
     }
 }
