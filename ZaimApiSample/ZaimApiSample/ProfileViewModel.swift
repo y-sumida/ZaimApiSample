@@ -25,10 +25,9 @@ class ProfileViewModel {
             .observeOn(MainScheduler.instance)
             .subscribe(
                 onNext: {model, response in
-                    // TODO meを外したい
-                    self.name = model.me.name
-                    self.inputCount = model.me.inputCount
-                    self.dayCount = model.me.dayCount
+                    self.name = model.name
+                    self.inputCount = model.inputCount
+                    self.dayCount = model.dayCount
                     self.finishTrigger.onNext(())
             },
                 onError: {(error: Error) in
