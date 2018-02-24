@@ -263,7 +263,7 @@ class PaymentsViewController: UIViewController {
         vc.client = oauthClient
         vc.dismissAction = {[unowned self] in
             if let indexPathForSelectedRow = self.tableView.indexPathForSelectedRow {
-                self.tableView.deselectRow(at: indexPathForSelectedRow, animated: false)
+                self.tableView.deselectRow(at: indexPathForSelectedRow, animated: true)
                 self.tableView.flashScrollIndicators()
             }
         }
